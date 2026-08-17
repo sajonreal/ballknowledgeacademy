@@ -59,7 +59,7 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: 8, queso: 10, cocina: 10, prota: 5,
       animacion: 8, trama: 7, fanService: 10,
-      fantasia: 10, perSec: 5, aprendizaje: null, final: 10
+      fantasia: 10, perSec: 5, aprendizaje: 7, final: 10
     }
   },
   {
@@ -69,7 +69,7 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: 9.5, queso: 8.5, cocina: 9, prota: 9,
       animacion: 9.5, trama: 9, fanService: 9,
-      fantasia: 7, perSec: 9, aprendizaje: null, final: null
+      fantasia: 7, perSec: 9, aprendizaje: 5, final: null
     }
   },
   {
@@ -79,7 +79,7 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: 8.5, queso: 9.5, cocina: 7.5, prota: 9.5,
       animacion: 9.5, trama: 8, fanService: 0,
-      fantasia: 5, perSec: 8.5, aprendizaje: null, final: 10
+      fantasia: 5, perSec: 8.5, aprendizaje: 6.5, final: 10
     }
   },
   {
@@ -89,17 +89,17 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: 9, queso: 10, cocina: 8, prota: 7,
       animacion: 8, trama: 8, fanService: 7,
-      fantasia: 10, perSec: 9, aprendizaje: null, final: 9
+      fantasia: 10, perSec: 9, aprendizaje: 5, final: 9
     }
   },
   {
     nombre: "Darling In The FranXX",
     imagen: "images/darling-in-the-franxx.jpg",
-    nota: 8,
+    nota: 7,
     subnotas: {
-      opEd: 9, queso: 8, cocina: 7, prota: 10,
+      opEd: 9, queso: 8, cocina: 7, prota: 9,
       animacion: 9, trama: 9, fanService: 8,
-      fantasia: 10, perSec: 7, aprendizaje: null, final: 8
+      fantasia: 10, perSec: 7, aprendizaje: 5, final: 8
     }
   },
   {
@@ -108,8 +108,8 @@ const ANIME_COMPLETADOS = [
     nota: 10,
     subnotas: {
       opEd: 10, queso: 10, cocina: 10, prota: 10,
-      animacion: 8, trama: 9, fanService: 0,
-      fantasia: 5, perSec: 9, aprendizaje: null, final: 10
+      animacion: 9, trama: 9, fanService: 0,
+      fantasia: 5, perSec: 9, aprendizaje: 9, final: 10
     }
   },
   {
@@ -119,7 +119,7 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: 10, queso: 8, cocina: 7, prota: 7,
       animacion: 10, trama: 6, fanService: 7,
-      fantasia: 10, perSec: 5, aprendizaje: null, final: 6
+      fantasia: 10, perSec: 5, aprendizaje: 5, final: 6
     }
   },
   {
@@ -129,7 +129,7 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: 10, queso: 8.5, cocina: 7, prota: 10,
       animacion: 8, trama: 9, fanService: 3,
-      fantasia: 10, perSec: 10, aprendizaje: null, final: null
+      fantasia: 10, perSec: 10, aprendizaje: 8.5, final: null
     }
   },
   {
@@ -139,7 +139,7 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: null, queso: 9, cocina: 8, prota: 10,
       animacion: 10, trama: 9, fanService: 8,
-      fantasia: 10, perSec: 8, aprendizaje: null, final: 10
+      fantasia: 10, perSec: 8, aprendizaje: 6, final: 10
     }
   },
   {
@@ -149,7 +149,7 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: 5, queso: 8, cocina: 7, prota: 9,
       animacion: 8.5, trama: 10, fanService: 0,
-      fantasia: 6.5, perSec: 6.5, aprendizaje: null, final: 9
+      fantasia: 6.5, perSec: 6.5, aprendizaje: 8, final: 9
     }
   },
   {
@@ -159,7 +159,7 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: 8, queso: 10, cocina: 10, prota: 10,
       animacion: 10, trama: 10, fanService: 0,
-      fantasia: 8, perSec: 10, aprendizaje: null, final: 10
+      fantasia: 8, perSec: 10, aprendizaje: 8, final: 10
     }
   },
   {
@@ -169,19 +169,28 @@ const ANIME_COMPLETADOS = [
     subnotas: {
       opEd: 5, queso: 7, cocina: 6.5, prota: 3,
       animacion: 7, trama: 6, fanService: 10,
-      fantasia: 10, perSec: 9, aprendizaje: null, final: 6
+      fantasia: 10, perSec: 7, aprendizaje: 2.5, final: 6
     }
   },
   {
     nombre: "Kaguya-sama",
     imagen: "images/kaguya-sama.jpg",
-    nota: null,
+    nota: 10,
     subnotas: {
-      opEd: null, queso: null, cocina: null, prota: null,
-      animacion: null, trama: null, fanService: null,
-      fantasia: null, perSec: null, aprendizaje: null, final: null
+      opEd: 10, queso: 8.5, cocina: 10, prota: 10,
+      animacion: 9, trama: 10, fanService: 8,
+      fantasia: 5, perSec: 10, aprendizaje: 9.5, final: 9
     }
-  }
+  },
+ 	{
+	nombre: "Overflow",
+	imagen: "images/overflow.jpg",
+	nota: 3,
+    subnotas: {
+      opEd: 0, queso: 9, cocina: 0, prota: 4,
+      animacion: 7, trama: 0, fanService: 10,
+      fantasia: 10, perSec: 0, aprendizaje: 4, final: null
+	}
 ];
 
 
@@ -194,44 +203,42 @@ const ANIME_COMPLETADOS = [
    "comentario": opcional, por qué te interesa este anime
 ------------------------------------------------------------ */
 const ANIME_PLANEADOS = [
-  { nombre: "Horimiya", imagen: "images/horimiya.jpg", prioridad: true, etiqueta: "" },
+  { nombre: "Horimiya", imagen: "images/horimiya.webp", prioridad: true, etiqueta: "" },
   { nombre: "You And I Are Polar Opposites", imagen: "images/you-and-i-are-polar-opposites.jpg", prioridad: true, etiqueta: "" },
-  { nombre: "The Angel Next Door Spoils Me Rotten", imagen: "images/the-angel-next-door-spoils-me-rotten.jpg", prioridad: true, etiqueta: "" },
-  { nombre: "Your Name", imagen: "images/your-name.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "The Angel Next Door Spoils Me Rotten", imagen: "images/the-angel-next-door-spoils-me-rotten.webp", prioridad: true, etiqueta: "" },
   { nombre: "I Want to Eat Your Pancreas", imagen: "images/i-want-to-eat-your-pancreas.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Monogatari", imagen: "images/monogatari.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "High School DxD", imagen: "images/high-school-dxd.jpg", prioridad: false, etiqueta: "H" },
+  { nombre: "Monogatari", imagen: "images/monogatari.webp", prioridad: false, etiqueta: "" },
+  { nombre: "High School DxD", imagen: "images/high-school-dxd.png", prioridad: false, etiqueta: "H" },
   { nombre: "Josee, the Tiger and the Fish", imagen: "images/josee-the-tiger-and-the-fish.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Orange", imagen: "images/orange.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Golden Time", imagen: "images/golden-time.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Toradora!", imagen: "images/toradora.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Toradora!", imagen: "images/toradora.avif", prioridad: false, etiqueta: "" },
   { nombre: "The Ramparts Of Ice", imagen: "images/the-ramparts-of-ice.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Alya Sometimes Hides Her Feelings In Russian", imagen: "images/alya-sometimes-hides-her-feelings-in-russian.jpg", prioridad: true, etiqueta: "" },
   { nombre: "Blue Box", imagen: "images/blue-box.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Plastic Memories", imagen: "images/plastic-memories.jpg", prioridad: true, etiqueta: "" },
   { nombre: "Nisekoi", imagen: "images/nisekoi.jpg", prioridad: false, etiqueta: "" },
   { nombre: "More Than a Married Couple, But Not Lovers", imagen: "images/more-than-a-married-couple-but-not-lovers.jpg", prioridad: true, etiqueta: "" },
-  { nombre: "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You", imagen: "images/the-100-girlfriends-who-really-really-really-really-really-love-you.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Overflow", imagen: "images/overflow.jpg", prioridad: false, etiqueta: "H" },
-  { nombre: "My Love Story with Yamada-kun at Lv999", imagen: "images/my-love-story-with-yamada-kun-at-lv999.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Weathering With You", imagen: "images/weathering-with-you.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Oregairu", imagen: "images/oregairu.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You", imagen: "images/the-100-girlfriends-who-really-really-really-really-really-love-you.webp", prioridad: false, etiqueta: "" },
+  { nombre: "My Love Story with Yamada-kun at Lv999", imagen: "images/my-love-story-with-yamada-kun-at-lv999.avif", prioridad: false, etiqueta: "" },
+  { nombre: "Weathering With You", imagen: "images/weathering-with-you.avif", prioridad: false, etiqueta: "" },
+  { nombre: "Oregairu", imagen: "images/oregairu.webp", prioridad: false, etiqueta: "" },
   { nombre: "Fruits Basket", imagen: "images/fruits-basket.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Just Because!", imagen: "images/just-because.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Komi Can't Communicate", imagen: "images/komi-can-t-communicate.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Just Because!", imagen: "images/just-because.png", prioridad: false, etiqueta: "" },
+  { nombre: "Komi Can't Communicate", imagen: "images/komi-can-t-communicate.avif", prioridad: false, etiqueta: "" },
   { nombre: "Our Dating Story: The Experienced You and the Inexperienced Me", imagen: "images/our-dating-story-the-experienced-you-and-the-inexperienced-me.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Yamada-kun and the Seven Witches", imagen: "images/yamada-kun-and-the-seven-witches.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Masamune-kun's Revenge", imagen: "images/masamune-kun-s-revenge.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Masamune-kun's Revenge", imagen: "images/masamune-kun-s-revenge.webp", prioridad: false, etiqueta: "" },
   { nombre: "A Galaxy Next Door", imagen: "images/a-galaxy-next-door.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Kubo Won't Let Me Be Invisible", imagen: "images/kubo-won-t-let-me-be-invisible.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Boarding School Juliet", imagen: "images/boarding-school-juliet.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "We Never Learn", imagen: "images/we-never-learn.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Haganai", imagen: "images/haganai.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Saekano: How to Raise a Boring Girlfriend", imagen: "images/saekano-how-to-raise-a-boring-girlfriend.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "We Never Learn", imagen: "images/we-never-learn.png", prioridad: false, etiqueta: "" },
+  { nombre: "Haganai", imagen: "images/haganai.webp", prioridad: false, etiqueta: "" },
+  { nombre: "Saekano: How to Raise a Boring Girlfriend", imagen: "images/saekano-how-to-raise-a-boring-girlfriend.webp", prioridad: false, etiqueta: "" },
   { nombre: "Wotakoi: Love Is Hard for Otaku", imagen: "images/wotakoi-love-is-hard-for-otaku.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "The Café Terrace and Its Goddesses", imagen: "images/the-caf-terrace-and-its-goddesses.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "The Café Terrace and Its Goddesses", imagen: "images/the-caf-terrace-and-its-goddesses.webp", prioridad: false, etiqueta: "" },
   { nombre: "Science Fell in Love, So I Tried to Prove It", imagen: "images/science-fell-in-love-so-i-tried-to-prove-it.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Okitsura", imagen: "images/okitsura.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Okitsura", imagen: "images/okitsura.jpe", prioridad: false, etiqueta: "" },
   { nombre: "Hokkaido Gals Are Super Adorable!", imagen: "images/hokkaido-gals-are-super-adorable.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Dealing With The Mikadono Sisters Is A Breeze", imagen: "images/dealing-with-the-mikadono-sisters-is-a-breeze.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Don't Toy With Me Miss Nagatoro", imagen: "images/don-t-toy-with-me-miss-nagatoro.jpg", prioridad: false, etiqueta: "" }
