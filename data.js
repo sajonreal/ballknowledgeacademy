@@ -164,7 +164,7 @@ const ANIME_COMPLETADOS = [
   },
   {
     nombre: "The Dangers In My Heart",
-    imagen: "images/the-dangers-in-my-heart.jpg",
+    imagen: "images/the-dangers-in-my-heart.webp",
     nota: 6,
     subnotas: {
       opEd: 5, queso: 7, cocina: 6.5, prota: 3,
@@ -339,11 +339,11 @@ const IMAGEN_PLAYLIST = "images/playlist-cover.jpg";
    poco inclinadas, como una polaroid. Si pones menos de 4,
    simplemente se quedan huecos vacíos donde faltan.
 ------------------------------------------------------------ */
-const VIDEO_COMUNIDAD = "";
+const VIDEO_COMUNIDAD = "images/video";
 
 const IMAGENES_COMUNIDAD = [
-  "images/comunidad1.jpg",
+  "images/comunidad1.png",
   "images/comunidad2.jpg",
-  "images/comunidad3.jpg",
-  "images/comunidad4.jpg"
+  "images/comunidad3.png",
+  "images/comunidad4.png"
 ];
