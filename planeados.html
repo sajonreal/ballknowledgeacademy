@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Planeados · Ballknowledge Academy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-decor">
+    <div class="wave-layer one"></div>
+    <div class="wave-layer two"></div>
+    <span class="bg-heart h1">♥</span>
+    <span class="bg-heart h2">♥</span>
+    <span class="bg-heart h3">♥</span>
+    <span class="bg-heart h4">♥</span>
+    <span class="bg-heart h5">♥</span>
+  </div>
+
+  <header class="top-bar"><span class="logo">🎓 Ballknowledge Academy</span></header>
+
+  <div class="page-header reveal">
+    <h1>📌 Planeados</h1>
+    <p>La cola de escalada: lo próximo que vamos a ver</p>
+  </div>
+
+  <div class="grid-animes" id="grid-planeados"></div>
+
+  <footer class="espaciador"></footer>
+
+  <nav class="bottom-nav">
+    <a href="index.html"><span class="icono">🏠</span>Inicio</a>
+    <a href="resenas.html"><span class="icono">📝</span>Reseñas</a>
+    <a href="planeados.html"><span class="icono">📌</span>Planeados</a>
+    <a href="calendario.html"><span class="icono">📆</span>Calendario</a>
+    <a href="listas.html"><span class="icono">🎧</span>Listas</a>
+  </nav>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function pintarPlaneados() {
+      const grid = document.getElementById("grid-planeados");
+      grid.innerHTML = "";
+
+      if (!ANIME_PLANEADOS.length) {
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">La lista de planeados está vacía. ¡Añade algo en data.js!</div>`;
+        return;
+      }
+
+      ANIME_PLANEADOS.forEach(anime => {
+        const card = document.createElement("div");
+        card.className = "anime-card reveal";
+
+        const imgWrap = crearImagenConFallback(anime.imagen, anime.nombre);
+        card.appendChild(imgWrap);
+
+        const body = document.createElement("div");
+        body.className = "anime-card-body";
+
+        const tags = [`<span class="tag tag-peak" style="margin-top:2px;">En cola</span>`];
+        if (anime.prioridad) tags.push(`<span class="tag tag-prioridad">Prioridad</span>`);
+        if (anime.etiqueta) tags.push(`<span class="tag tag-etiqueta">${anime.etiqueta}</span>`);
+
+        body.innerHTML = `
+          <div class="categorias" style="margin-bottom:6px;">${tags.join("")}</div>
+          <h3>${anime.nombre}</h3>
+          <p class="resena">${anime.comentario || ""}</p>
+        `;
+        card.appendChild(body);
+        grid.appendChild(card);
+      });
+
+      activarRevelados();
+    }
+
+    pintarPlaneados();
+  </script>
+</body>
+</html>

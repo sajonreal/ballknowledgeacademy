@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Reseñas · Ballknowledge Academy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-decor">
+    <div class="wave-layer one"></div>
+    <div class="wave-layer two"></div>
+    <span class="bg-heart h1">♥</span>
+    <span class="bg-heart h2">♥</span>
+    <span class="bg-heart h3">♥</span>
+    <span class="bg-heart h4">♥</span>
+    <span class="bg-heart h5">♥</span>
+  </div>
+
+  <header class="top-bar"><span class="logo">🎓 Ballknowledge Academy</span></header>
+
+  <div class="page-header reveal">
+    <h1>📝 Reseñas</h1>
+    <p>Solo los animes que hemos escalado nosotros, con su desglose completo</p>
+  </div>
+
+  <button class="orden-toggle" id="btn-orden">Ordenar: mejor nota primero ⇅</button>
+
+  <div class="resenas-lista" id="lista-resenas"></div>
+
+  <footer class="espaciador"></footer>
+
+  <nav class="bottom-nav">
+    <a href="index.html"><span class="icono">🏠</span>Inicio</a>
+    <a href="resenas.html"><span class="icono">📝</span>Reseñas</a>
+    <a href="planeados.html"><span class="icono">📌</span>Planeados</a>
+    <a href="calendario.html"><span class="icono">📆</span>Calendario</a>
+    <a href="listas.html"><span class="icono">🎧</span>Listas</a>
+  </nav>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    let ordenAscendente = false;
+
+    function valorOrden(anime) {
+      // los que aún no tienen nota (en visionado) van siempre al principio
+      return anime.nota === null || anime.nota === undefined ? Infinity : anime.nota;
+    }
+
+    function pintarResenas() {
+      const cont = document.getElementById("lista-resenas");
+      cont.innerHTML = "";
+
+      const lista = [...ANIME_COMPLETADOS].sort((a, b) => {
+        const diff = valorOrden(b) - valorOrden(a);
+        return ordenAscendente ? -diff : diff;
+      });
+
+      lista.forEach(anime => {
+        const card = document.createElement("div");
+        card.className = "resena-card reveal";
+
+        const media = document.createElement("div");
+        media.className = "resena-media";
+        const img = document.createElement("img");
+        img.src = anime.imagen;
+        img.alt = anime.nombre;
+        img.loading = "lazy";
+        img.onerror = () => {
+          media.classList.add("img-fallback");
+          media.innerHTML = `<span class="img-fallback-letra">${anime.nombre.charAt(0).toUpperCase()}</span>`;
+        };
+        media.appendChild(img);
+        card.appendChild(media);
+
+        const body = document.createElement("div");
+        body.className = "resena-body";
+
+        const top = document.createElement("div");
+        top.className = "resena-top";
+
+        const notaTexto = (anime.nota === null || anime.nota === undefined) ? "?" : anime.nota;
+        top.innerHTML = `
+          <h3>${anime.nombre}</h3>
+          <div class="nota-final-box">
+            <span class="nfb-label">Nota final</span>
+            <span class="nfb-value">⭐ ${notaTexto}</span>
+          </div>
+        `;
+        body.appendChild(top);
+
+        const grid = document.createElement("div");
+        grid.className = "stat-grid";
+        ESTADISTICAS.forEach(stat => {
+          const valor = anime.subnotas ? anime.subnotas[stat.key] : null;
+          const valorTexto = (valor === null || valor === undefined) ? "?" : valor;
+          const chip = document.createElement("div");
+          chip.className = "stat-chip";
+          chip.innerHTML = `<span class="sc-emoji">${stat.emoji}</span><span class="sc-label">${stat.label}</span><span class="sc-value">${valorTexto}</span>`;
+          grid.appendChild(chip);
+        });
+        body.appendChild(grid);
+
+        card.appendChild(body);
+        cont.appendChild(card);
+      });
+
+      activarRevelados();
+    }
+
+    document.getElementById("btn-orden").addEventListener("click", (e) => {
+      ordenAscendente = !ordenAscendente;
+      e.target.textContent = ordenAscendente ? "Ordenar: peor nota primero ⇅" : "Ordenar: mejor nota primero ⇅";
+      pintarResenas();
+    });
+
+    pintarResenas();
+  </script>
+</body>
+</html>

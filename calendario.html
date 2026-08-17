@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Calendario · Ballknowledge Academy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-decor">
+    <div class="wave-layer one"></div>
+    <div class="wave-layer two"></div>
+    <span class="bg-heart h1">♥</span>
+    <span class="bg-heart h2">♥</span>
+    <span class="bg-heart h3">♥</span>
+    <span class="bg-heart h4">♥</span>
+    <span class="bg-heart h5">♥</span>
+  </div>
+
+  <header class="top-bar"><span class="logo">🎓 Ballknowledge Academy</span></header>
+
+  <div class="calendario-hoy reveal">
+    <h1 class="fecha-grande" id="fecha-hoy">—</h1>
+    <p class="fecha-sub">Esto es lo que toca ver hoy</p>
+  </div>
+
+  <div class="calendario-gif-spot" id="gif-calendario-top"></div>
+
+  <div id="episodios-hoy"></div>
+
+  <button class="toggle-proximos" id="btn-proximos">Ver días programados ▾</button>
+  <div class="proximos-dias" id="proximos-dias"></div>
+
+  <div class="calendario-gif-spot" id="gif-calendario-bottom"></div>
+
+  <section class="texto-cierre reveal">
+    <h2>🗓️ El poder de organizarse</h2>
+    <p>No hace falta escalar la montaña entera de un tirón. Con saber qué toca hoy ya vas ganando: un par de episodios, sin agobios, sin decidir cada noche qué ver ni dejar nada a medias sin querer.</p>
+    <p>Tener el plan escrito de antemano quita la pereza de decidir y deja más sitio para simplemente disfrutar de lo que toca ver. Cinco minutos organizando ahora ahorran mucho más tiempo después.</p>
+  </section>
+
+  <footer class="espaciador"></footer>
+
+  <nav class="bottom-nav">
+    <a href="index.html"><span class="icono">🏠</span>Inicio</a>
+    <a href="resenas.html"><span class="icono">📝</span>Reseñas</a>
+    <a href="planeados.html"><span class="icono">📌</span>Planeados</a>
+    <a href="calendario.html"><span class="icono">📆</span>Calendario</a>
+    <a href="listas.html"><span class="icono">🎧</span>Listas</a>
+  </nav>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function pintarHoy() {
+      document.getElementById("fecha-hoy").textContent = getTodayLabel();
+
+      const hoyKey = getTodayKey();
+      const episodios = CALENDARIO[hoyKey] || [];
+      const cont = document.getElementById("episodios-hoy");
+      cont.innerHTML = "";
+
+      if (!episodios.length) {
+        cont.innerHTML = `<div class="empty-state" style="margin:14px 18px 0;">Hoy no hay nada programado. Día libre para escalar sin prisa ⛰️</div>`;
+        return;
+      }
+
+      episodios.forEach(ep => {
+        const card = document.createElement("div");
+        card.className = "episodio-card";
+
+        const imgWrap = crearImagenConFallback(buscarImagenAnime(ep.anime), ep.anime);
+        card.appendChild(imgWrap);
+
+        const info = document.createElement("div");
+        info.className = "episodio-info";
+        info.innerHTML = `<div class="episodio-numero">Episodio ${ep.episodio}</div><h3>${ep.anime}</h3>`;
+        card.appendChild(info);
+
+        cont.appendChild(card);
+      });
+    }
+
+    function pintarProximos() {
+      const cont = document.getElementById("proximos-dias");
+      const hoyKey = getTodayKey();
+
+      const fechasFuturas = Object.keys(CALENDARIO)
+        .filter(k => k > hoyKey)
+        .sort();
+
+      if (!fechasFuturas.length) {
+        cont.innerHTML = `<div class="empty-state">Nada programado más adelante todavía.</div>`;
+        return;
+      }
+
+      cont.innerHTML = "";
+      fechasFuturas.forEach(fecha => {
+        const d = new Date(fecha + "T00:00:00");
+        const bloque = document.createElement("div");
+        bloque.className = "dia-bloque";
+        const titulo = `${DIAS_SEMANA[d.getDay()]} ${d.getDate()}`;
+        const lista = CALENDARIO[fecha].map(e => `<div class="mini-ep">🎬 ${e.anime} — Ep. ${e.episodio}</div>`).join("");
+        bloque.innerHTML = `<h4>${titulo}</h4>${lista}`;
+        cont.appendChild(bloque);
+      });
+    }
+
+    function pintarGifsCalendario() {
+      const gifs = typeof GIFS_DECORATIVOS !== "undefined" ? GIFS_DECORATIVOS : [];
+      const top = document.getElementById("gif-calendario-top");
+      const bottom = document.getElementById("gif-calendario-bottom");
+      if (gifs[4]) top.appendChild(crearGifSlot(gifs[4], "gif-solo tilt-e"));
+      if (gifs[5]) bottom.appendChild(crearGifSlot(gifs[5], "gif-solo size-lg tilt-b"));
+    }
+
+    document.getElementById("btn-proximos").addEventListener("click", (e) => {
+      const panel = document.getElementById("proximos-dias");
+      panel.classList.toggle("open");
+      e.target.textContent = panel.classList.contains("open") ? "Ocultar días programados ▴" : "Ver días programados ▾";
+    });
+
+    pintarHoy();
+    pintarProximos();
+    pintarGifsCalendario();
+    vigilarCambioDeDia(() => { pintarHoy(); pintarProximos(); });
+  </script>
+</body>
+</html>

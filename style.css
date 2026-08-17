@@ -1,0 +1,939 @@
+/* ============================================================
+   BALLKNOWLEDGE ACADEMY — style.css
+   Paleta: blanco + rosa pastel neón
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
+
+:root {
+  --white: #ffffff;
+  --bg: #fff7fb;
+  --bg-soft: #ffeef6;
+  --pink-pastel: #ffd6ec;
+  --pink-mid: #ffa9d8;
+  --pink-neon: #ff5fb2;
+  --pink-neon-strong: #ff2d95;
+  --pink-glow: #ff8dc7;
+  --text-dark: #3a2233;
+  --text-soft: #8a6d7c;
+  --gold: #ffd76b;
+
+  --shadow-neon: 0 0 18px rgba(255, 45, 149, 0.28), 0 4px 20px rgba(255, 95, 178, 0.15);
+  --shadow-card: 0 6px 24px rgba(255, 95, 178, 0.14);
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  color: var(--text-dark);
+  padding-bottom: 92px; /* espacio para el nav inferior */
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Baloo 2', sans-serif;
+}
+
+a { text-decoration: none; color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+/* ---------------- Top bar ---------------- */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--pink-pastel);
+}
+
+.top-bar .logo {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--pink-neon-strong);
+  letter-spacing: 0.3px;
+}
+
+/* ---------------- Hero ---------------- */
+.hero {
+  position: relative;
+  padding: 64px 22px 46px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto -20%;
+  height: 420px;
+  background: radial-gradient(closest-side, rgba(255, 141, 199, 0.35), transparent 70%);
+  filter: blur(10px);
+  animation: pulseGlow 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+.hero-title {
+  position: relative;
+  font-size: clamp(2.1rem, 9vw, 3rem);
+  font-weight: 800;
+  margin: 0;
+  color: var(--text-dark);
+  line-height: 1.1;
+  animation: apareceArriba 0.9s var(--ease) both;
+}
+
+.hero-title .accent {
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon), #ff9ad5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+.hero-underline {
+  width: 120px;
+  height: 6px;
+  margin: 14px auto 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  box-shadow: var(--shadow-neon);
+  animation: latido 2.4s ease-in-out infinite, apareceArriba 0.9s var(--ease) both;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.25); }
+}
+
+.hero-slogan {
+  margin: 18px auto 0;
+  max-width: 320px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  animation: apareceArriba 1s 0.15s var(--ease) both;
+}
+
+.hero-slogan::before { content: "⛰️ "; }
+
+/* ---------------- Corazones flotantes ---------------- */
+#hearts-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -10vh;
+  animation-name: subirCorazon;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 6px rgba(255, 95, 178, 0.6));
+}
+
+@keyframes subirCorazon {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(18px) rotate(25deg); opacity: 0; }
+}
+
+@keyframes apareceArriba {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- Secciones genéricas ---------------- */
+.section {
+  padding: 30px 18px 6px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.section-subtitle {
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  margin: 0 0 16px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------- Tarjetas "anuncio" (home) ---------------- */
+.anuncio-card {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  overflow: hidden;
+}
+
+.anuncio-card:active { transform: scale(0.98); }
+
+.anuncio-card .img-wrap {
+  width: 92px;
+  height: 92px;
+  min-width: 92px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--pink-pastel);
+}
+
+.anuncio-card .img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.anuncio-info { flex: 1; min-width: 0; }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.tag-actual { background: #ffe4f1; color: var(--pink-neon-strong); }
+.tag-top { background: #fff2cf; color: #b5860a; }
+.tag-peak { background: #f0e4ff; color: #8a4fd6; }
+
+.tag-actual::before { content: "🟢 "; }
+.tag-top::before { content: "🏆 "; }
+.tag-peak::before { content: "👀 "; }
+
+.anuncio-info h3 {
+  margin: 0 0 3px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.anuncio-info p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mini-lista {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mini-chip {
+  font-size: 0.7rem;
+  background: var(--bg-soft);
+  color: var(--text-soft);
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--pink-pastel);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 26px 16px;
+  color: var(--text-soft);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--pink-mid);
+  font-size: 0.9rem;
+}
+
+/* ---------------- Grid de reseñas / planeados ---------------- */
+.grid-animes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 4px 18px 28px;
+}
+
+.anime-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.anime-card:active { transform: scale(0.97); }
+
+.anime-card .img-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--pink-pastel);
+}
+
+.anime-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+.anime-card-body { padding: 10px 12px 14px; }
+
+.anime-card-body h3 {
+  font-size: 0.9rem;
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+
+.nota-badge {
+  display: inline-block;
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 3px 11px;
+  border-radius: 999px;
+  color: var(--white);
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.35);
+  margin-bottom: 8px;
+}
+
+.categorias { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.categoria-chip {
+  font-size: 0.62rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--pink-neon-strong);
+  border: 1px solid var(--pink-pastel);
+  font-weight: 600;
+}
+
+.anime-card-body p.resena {
+  font-size: 0.76rem;
+  color: var(--text-soft);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Filtros de categoría (reseñas) */
+.filtros {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 18px 18px;
+  scrollbar-width: none;
+}
+.filtros::-webkit-scrollbar { display: none; }
+
+.filtro-btn {
+  flex: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--pink-pastel);
+  background: var(--white);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  transition: all 0.3s var(--ease);
+}
+.filtro-btn.active {
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: var(--shadow-neon);
+}
+
+/* ---------------- Calendario ---------------- */
+.calendario-hoy {
+  text-align: center;
+  padding: 18px 18px 8px;
+}
+
+.fecha-grande {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 8vw, 2.4rem);
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+  animation: apareceArriba 0.7s var(--ease) both;
+}
+
+.fecha-sub { color: var(--text-soft); font-size: 0.85rem; margin-top: 4px; }
+
+.episodio-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  margin: 12px 18px 0;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+  animation: apareceArriba 0.6s var(--ease) both;
+}
+
+.episodio-card .img-wrap {
+  width: 76px; height: 76px; min-width: 76px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--pink-pastel);
+}
+.episodio-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+.episodio-info h3 { margin: 0 0 4px; font-size: 0.95rem; }
+.episodio-numero {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--pink-neon-strong);
+}
+
+.toggle-proximos {
+  display: block;
+  margin: 26px auto 0;
+  background: none;
+  border: none;
+  color: var(--pink-neon-strong);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 10px 16px;
+}
+
+.proximos-dias {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s var(--ease);
+  padding: 0 18px;
+}
+.proximos-dias.open { max-height: 1200px; padding-top: 8px; padding-bottom: 20px; }
+
+.dia-bloque {
+  margin-bottom: 14px;
+  background: var(--bg-soft);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  border: 1px solid var(--pink-pastel);
+}
+.dia-bloque h4 {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  color: var(--pink-neon-strong);
+}
+.dia-bloque .mini-ep {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  padding: 3px 0;
+}
+
+/* ---------------- Placeholder de imagen (fallback) ---------------- */
+.img-wrap { position: relative; }
+.img-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--pink-pastel), var(--pink-mid));
+}
+.img-fallback-letra {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--white);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* ---------------- Nav inferior ---------------- */
+.bottom-nav {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(96%, 460px);
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border-radius: 22px;
+  padding: 10px 4px;
+  box-shadow: var(--shadow-neon);
+  border: 1px solid var(--pink-pastel);
+  z-index: 40;
+}
+
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  padding: 6px 7px;
+  border-radius: 14px;
+  transition: all 0.3s var(--ease);
+}
+
+.bottom-nav a .icono { font-size: 1.15rem; transition: transform 0.3s var(--ease); }
+
+.bottom-nav a.active {
+  color: var(--pink-neon-strong);
+  background: var(--bg-soft);
+}
+.bottom-nav a.active .icono { transform: translateY(-2px) scale(1.1); }
+
+/* ---------------- Texto largo / lore (home) ---------------- */
+.hero-intro {
+  max-width: 340px;
+  margin: 16px auto 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+  animation: apareceArriba 1.05s 0.25s var(--ease) both;
+}
+
+.lore-section {
+  padding: 8px 22px 6px;
+}
+.lore-section h2 {
+  font-size: 1.15rem;
+  margin: 0 0 8px;
+}
+.lore-section p {
+  font-size: 0.87rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+  margin: 0 0 10px;
+}
+
+.stat-legend-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 6px 18px 10px;
+}
+.stat-legend-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--pink-pastel);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s var(--ease);
+}
+.stat-legend-item:active { transform: scale(0.98); }
+.stat-legend-item .sl-emoji { font-size: 1.25rem; line-height: 1; }
+.stat-legend-item h4 { margin: 0 0 2px; font-size: 0.86rem; }
+.stat-legend-item p { margin: 0; font-size: 0.76rem; color: var(--text-soft); line-height: 1.4; }
+
+/* ---------------- Parallax ---------------- */
+.parallax-section { padding: 10px 0 6px; }
+
+.parallax-image-wrap {
+  position: relative;
+  height: 240px;
+  margin: 0 18px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+}
+
+.parallax-image-wrap img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 112%;
+  height: 145%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.parallax-image-wrap.img-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--pink-pastel), var(--pink-mid));
+}
+.parallax-image-wrap.img-fallback .fallback-icon {
+  font-size: 2.4rem;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+}
+
+.parallax-caption {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  margin: 8px 24px 0;
+}
+
+/* ---------------- Gifs desordenados ---------------- */
+.gif-scatter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 14px 26px 26px;
+}
+
+.gif-item {
+  width: 104px;
+  height: 104px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--pink-pastel);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+  transition: transform 0.4s var(--ease);
+}
+.gif-item img { width: 100%; height: 100%; object-fit: cover; }
+.gif-item:active { transform: scale(0.94) rotate(0deg) !important; }
+
+.gif-item:nth-child(6n+1) { transform: rotate(-7deg) translateY(8px); }
+.gif-item:nth-child(6n+2) { transform: rotate(5deg) translateY(-6px); }
+.gif-item:nth-child(6n+3) { transform: rotate(-3deg) translateY(14px); }
+.gif-item:nth-child(6n+4) { transform: rotate(8deg) translateY(0); }
+.gif-item:nth-child(6n+5) { transform: rotate(-9deg) translateY(-10px); }
+.gif-item:nth-child(6n+6) { transform: rotate(4deg) translateY(6px); }
+
+.gif-item.img-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--pink-pastel), var(--pink-mid));
+  font-size: 1.6rem;
+}
+
+/* ---------------- Gifs individuales sueltos por la página ---------------- */
+.gif-item.gif-solo {
+  width: 66px;
+  height: 66px;
+  border-radius: 16px;
+  flex: none;
+}
+.gif-item.gif-solo.size-lg { width: 92px; height: 92px; border-radius: 20px; }
+.gif-item.gif-solo.size-sm { width: 52px; height: 52px; border-radius: 13px; }
+
+.gif-item.tilt-a { transform: rotate(-9deg); }
+.gif-item.tilt-b { transform: rotate(8deg); }
+.gif-item.tilt-c { transform: rotate(-6deg); }
+.gif-item.tilt-d { transform: rotate(10deg); }
+.gif-item.tilt-e { transform: rotate(-4deg); }
+.gif-item.gif-solo:active { transform: scale(0.92) rotate(0deg) !important; }
+
+.title-with-gif {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.title-with-gif .section-title,
+.title-with-gif h2 { margin: 0; }
+
+.hero-gifs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  margin: 20px 0 2px;
+}
+
+.calendario-gif-spot {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 4px;
+}
+
+/* ---------------- Fondo: olas finas + corazones grandes ---------------- */
+.bg-decor {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-decor .wave-layer {
+  position: absolute;
+  inset: -60px -80px;
+  background-repeat: repeat;
+}
+
+.bg-decor .wave-layer.one {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='210' viewBox='0 0 300 210'%3E%3Cpath d='M0 40 Q 37.5 15 75 40 T 150 40 T 225 40 T 300 40' stroke='%23ffb8dd' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+  background-size: 300px 210px;
+  opacity: 0.55;
+  animation: waveDriftA 24s linear infinite;
+}
+
+.bg-decor .wave-layer.two {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='230' viewBox='0 0 340 230'%3E%3Cpath d='M0 120 Q 42.5 95 85 120 T 170 120 T 255 120 T 340 120' stroke='%23ffcfe8' stroke-width='1.4' fill='none'/%3E%3C/svg%3E");
+  background-size: 340px 230px;
+  opacity: 0.5;
+  top: 70px;
+  animation: waveDriftB 32s linear infinite reverse;
+}
+
+@keyframes waveDriftA { from { background-position-x: 0; } to { background-position-x: -300px; } }
+@keyframes waveDriftB { from { background-position-x: 0; } to { background-position-x: -340px; } }
+
+.bg-decor .bg-heart {
+  position: absolute;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: rgba(255, 173, 213, 0.32);
+  user-select: none;
+  line-height: 1;
+}
+.bg-heart.h1 { top: 6%;  left: -6%; font-size: 11rem; transform: rotate(-12deg); }
+.bg-heart.h2 { top: 28%; right: -10%; font-size: 13rem; transform: rotate(9deg); }
+.bg-heart.h3 { top: 55%; left: -8%; font-size: 9rem;  transform: rotate(6deg); }
+.bg-heart.h4 { top: 78%; right: -7%; font-size: 12rem; transform: rotate(-8deg); }
+.bg-heart.h5 { top: 100%; left: 12%; font-size: 10rem; transform: rotate(14deg); }
+
+/* ---------------- Listas / Spotify ---------------- */
+.spotify-card {
+  margin: 6px 18px 0;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+  text-align: center;
+}
+
+.spotify-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--pink-pastel);
+  margin-bottom: 14px;
+}
+.spotify-cover img { width: 100%; height: 100%; object-fit: cover; }
+.spotify-cover.img-fallback {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--pink-pastel), var(--pink-mid));
+  font-size: 2.6rem;
+}
+
+.spotify-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  color: var(--white);
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-neon);
+  transition: transform 0.3s var(--ease);
+}
+.spotify-btn:active { transform: scale(0.96); }
+
+.spotify-pendiente {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  background: var(--bg-soft);
+  border: 1px dashed var(--pink-mid);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+/* ---------------- Texto de cierre (relleno cálido) ---------------- */
+.texto-cierre {
+  padding: 30px 22px 8px;
+}
+.texto-cierre h2 { font-size: 1.05rem; margin: 0 0 8px; }
+.texto-cierre p { font-size: 0.85rem; line-height: 1.6; color: var(--text-soft); margin: 0 0 10px; }
+
+/* ---------------- Reseñas estilo Notion ---------------- */
+.resenas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 6px 18px 28px;
+}
+
+.orden-toggle {
+  display: block;
+  margin: 0 18px 14px;
+  background: var(--white);
+  border: 1px solid var(--pink-pastel);
+  color: var(--pink-neon-strong);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 9px 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-card);
+}
+
+.resena-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.resena-card:active { transform: scale(0.99); }
+
+.resena-media {
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  background: var(--pink-pastel);
+}
+.resena-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.resena-body { padding: 14px 16px 16px; }
+
+.resena-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.resena-top h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.nota-final-box {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  padding: 6px 10px;
+  border: 2px dashed var(--pink-neon-strong);
+  border-radius: 14px;
+  background: var(--bg-soft);
+  box-shadow: var(--shadow-neon);
+}
+.nfb-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--pink-neon-strong);
+  text-transform: uppercase;
+}
+.nfb-value {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--text-dark);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.stat-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-soft);
+  border: 1px solid var(--pink-pastel);
+  border-radius: 12px;
+  padding: 7px 9px;
+  font-size: 0.72rem;
+}
+.stat-chip .sc-emoji { font-size: 0.85rem; }
+.stat-chip .sc-label { color: var(--text-soft); flex: 1; }
+.stat-chip .sc-value { font-weight: 700; color: var(--pink-neon-strong); }
+
+/* ---------------- Planeados: tags ---------------- */
+.tag-prioridad {
+  background: #fff2cf; color: #b5860a;
+}
+.tag-prioridad::before { content: "⭐ "; }
+.tag-etiqueta {
+  background: var(--bg-soft); color: var(--text-soft);
+}
+
+/* ---------------- Página cabecera secundaria ---------------- */
+.page-header {
+  padding: 26px 20px 6px;
+  text-align: center;
+}
+.page-header h1 {
+  font-size: 1.6rem;
+  margin: 0 0 4px;
+}
+.page-header p {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+footer.espaciador { height: 20px; }
+
+/* Respeta reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

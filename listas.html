@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Listas · Ballknowledge Academy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-decor">
+    <div class="wave-layer one"></div>
+    <div class="wave-layer two"></div>
+    <span class="bg-heart h1">♥</span>
+    <span class="bg-heart h2">♥</span>
+    <span class="bg-heart h3">♥</span>
+    <span class="bg-heart h4">♥</span>
+    <span class="bg-heart h5">♥</span>
+  </div>
+
+  <header class="top-bar"><span class="logo">🎓 Ballknowledge Academy</span></header>
+
+  <div class="page-header reveal">
+    <h1>🎧 Escúchanos en Spotify</h1>
+    <p>La banda sonora de todo lo que vamos escalando</p>
+  </div>
+
+  <div class="calendario-gif-spot" id="gif-listas-top"></div>
+
+  <div class="spotify-card reveal">
+    <div class="spotify-cover" id="spotify-cover">
+      <img id="spotify-cover-img" src="" alt="Portada de la playlist">
+    </div>
+    <div id="spotify-boton"></div>
+  </div>
+
+  <div class="calendario-gif-spot" id="gif-listas-mid"></div>
+
+  <section class="texto-cierre reveal">
+    <h2>🎵 Sobre las canciones</h2>
+    <p>Aquí va cayendo cualquier tema que nos pegue mientras vemos anime: openings, endings, insert songs, y alguna que otra canción random que simplemente encaja con el momento. No hay un criterio muy estricto, solo que suene bien.</p>
+    <p>La lista se va actualizando según vamos avanzando: cada anime que terminamos suele dejar alguna canción que se queda en la cabeza durante días. Si algún tema te enamora especialmente, seguro que acaba aquí dentro.</p>
+  </section>
+
+  <div class="calendario-gif-spot" id="gif-listas-bottom"></div>
+
+  <footer class="espaciador"></footer>
+
+  <nav class="bottom-nav">
+    <a href="index.html"><span class="icono">🏠</span>Inicio</a>
+    <a href="resenas.html"><span class="icono">📝</span>Reseñas</a>
+    <a href="planeados.html"><span class="icono">📌</span>Planeados</a>
+    <a href="calendario.html"><span class="icono">📆</span>Calendario</a>
+    <a href="listas.html"><span class="icono">🎧</span>Listas</a>
+  </nav>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("spotify-cover-img").onerror = function () {
+      const wrap = this.parentElement;
+      wrap.classList.add("img-fallback");
+      wrap.innerHTML = `<span>🎧</span>`;
+    };
+    document.getElementById("spotify-cover-img").src = (typeof IMAGEN_PLAYLIST !== "undefined") ? IMAGEN_PLAYLIST : "";
+
+    function pintarBotonSpotify() {
+      const cont = document.getElementById("spotify-boton");
+      if (typeof LINK_SPOTIFY !== "undefined" && LINK_SPOTIFY) {
+        cont.innerHTML = `<a class="spotify-btn" href="${LINK_SPOTIFY}" target="_blank" rel="noopener">🎧 Abrir en Spotify</a>`;
+      } else {
+        cont.innerHTML = `<div class="spotify-pendiente">Todavía no se ha añadido el enlace de Spotify — se pone en "LINK_SPOTIFY" dentro de data.js</div>`;
+      }
+    }
+
+    function pintarGifsListas() {
+      const gifs = typeof GIFS_DECORATIVOS !== "undefined" ? GIFS_DECORATIVOS : [];
+      const top = document.getElementById("gif-listas-top");
+      const mid = document.getElementById("gif-listas-mid");
+      const bottom = document.getElementById("gif-listas-bottom");
+      if (gifs[6]) top.appendChild(crearGifSlot(gifs[6], "gif-solo tilt-a"));
+      if (gifs[7]) mid.appendChild(crearGifSlot(gifs[7], "gif-solo size-sm tilt-c"));
+      if (gifs[0]) bottom.appendChild(crearGifSlot(gifs[0], "gif-solo tilt-d"));
+    }
+
+    pintarBotonSpotify();
+    pintarGifsListas();
+    activarRevelados();
+  </script>
+</body>
+</html>
