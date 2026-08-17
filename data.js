@@ -327,3 +327,23 @@ const GIFS_DECORATIVOS = [
 ------------------------------------------------------------ */
 const LINK_SPOTIFY = "https://open.spotify.com/playlist/7BKyZr5MCvESZhlIkn7FNK?si=bvEhiB9kRgOY4I4MdwX0qA";
 const IMAGEN_PLAYLIST = "images/playlist-cover.jpg";
+
+/* ------------------------------------------------------------
+   6) COMUNIDAD — vídeo vertical y fotos
+   ------------------------------------------------------------
+   VIDEO_COMUNIDAD: ruta a un vídeo (formato vertical, tipo
+   móvil) que quieras mostrar. Mientras esté vacío ("") se
+   muestra un marcador de posición en su lugar.
+
+   IMAGENES_COMUNIDAD: hasta 4 rutas de fotos. Aparecen un
+   poco inclinadas, como una polaroid. Si pones menos de 4,
+   simplemente se quedan huecos vacíos donde faltan.
+------------------------------------------------------------ */
+const VIDEO_COMUNIDAD = "";
+
+const IMAGENES_COMUNIDAD = [
+  "images/comunidad1.jpg",
+  "images/comunidad2.jpg",
+  "images/comunidad3.jpg",
+  "images/comunidad4.jpg"
+];
