@@ -150,23 +150,40 @@ img { max-width: 100%; display: block; }
 
 .floating-heart {
   position: absolute;
-  bottom: -10vh;
-  animation-name: subirCorazon;
-  animation-timing-function: ease-in;
+  animation-name: popHeart;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
   animation-fill-mode: forwards;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 6px rgba(255, 95, 178, 0.6));
+  opacity: 0;
+  filter: drop-shadow(0 0 10px rgba(255, 95, 178, 0.5));
 }
 
-@keyframes subirCorazon {
-  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translateY(-100vh) translateX(18px) rotate(25deg); opacity: 0; }
+@keyframes popHeart {
+  0%   { transform: scale(0); opacity: 0; }
+  40%  { transform: scale(1.25); opacity: 1; }
+  60%  { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.85); opacity: 0; }
 }
 
 @keyframes apareceArriba {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Aparición tipo "rebote": de pequeño a grande y de vuelta al tamaño normal.
+   Se usa en tarjetas de anime, imágenes y cuadros de texto. */
+/* Aparición tipo "rebote": de pequeño a grande y de vuelta al tamaño normal.
+   Se usa en tarjetas de anime, imágenes y cuadros de texto. */
+.pop-in {
+  opacity: 0;
+}
+.pop-in.in-view {
+  animation: popIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes popIn {
+  0%   { transform: scale(0.3) rotate(var(--tilt, 0deg)); opacity: 0; }
+  55%  { transform: scale(1.12) rotate(var(--tilt, 0deg)); opacity: 1; }
+  75%  { transform: scale(0.94) rotate(var(--tilt, 0deg)); }
+  100% { transform: scale(1) rotate(var(--tilt, 0deg)); opacity: 1; }
 }
 
 /* ---------------- Secciones genéricas ---------------- */
@@ -191,8 +208,8 @@ img { max-width: 100%; display: block; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transform: translateY(42px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
 }
 .reveal.in-view {
   opacity: 1;
@@ -244,13 +261,21 @@ img { max-width: 100%; display: block; }
   margin-bottom: 6px;
 }
 
-.tag-actual { background: #ffe4f1; color: var(--pink-neon-strong); }
+.tag-actual { background: #dff7ea; color: #1f9d63; }
 .tag-top { background: #fff2cf; color: #b5860a; }
 .tag-peak { background: #f0e4ff; color: #8a4fd6; }
+.tag-charca { background: #efe1d2; color: #8a5a2b; }
 
 .tag-actual::before { content: "🟢 "; }
 .tag-top::before { content: "🏆 "; }
 .tag-peak::before { content: "👀 "; }
+.tag-charca::before { content: "🟤 "; }
+
+/* Acento de color a la izquierda de cada tarjeta, según su categoría */
+.anuncio-card--actual { border-left: 4px solid #1f9d63; }
+.anuncio-card--top { border-left: 4px solid #d8a326; }
+.anuncio-card--peak { border-left: 4px solid #8a4fd6; }
+.anuncio-card--charca { border-left: 4px solid #8a5a2b; }
 
 .anuncio-info h3 {
   margin: 0 0 3px;
@@ -690,6 +715,65 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 22px;
   margin: 20px 0 2px;
+}
+
+/* ---------------- Comunidad ---------------- */
+.video-vertical-wrap {
+  width: 190px;
+  aspect-ratio: 9 / 16;
+  margin: 6px auto 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+  background: var(--pink-pastel);
+}
+.video-vertical-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.video-vertical-wrap.img-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--pink-pastel), var(--pink-mid));
+}
+.video-vertical-wrap.img-fallback .fallback-icon {
+  font-size: 2.4rem;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+}
+
+.comunidad-fotos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 22px 26px 6px;
+  max-width: 340px;
+  margin: 0 auto;
+}
+.comunidad-foto {
+  aspect-ratio: 1;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+  background: var(--pink-pastel);
+  transition: transform 0.3s var(--ease);
+}
+.comunidad-foto img { width: 100%; height: 100%; object-fit: cover; }
+.comunidad-foto:active { transform: scale(0.94) rotate(0deg) !important; }
+.comunidad-foto:nth-child(1) { --tilt: -6deg; }
+.comunidad-foto:nth-child(2) { --tilt: 5deg; }
+.comunidad-foto:nth-child(3) { --tilt: 4deg; }
+.comunidad-foto:nth-child(4) { --tilt: -5deg; }
+.comunidad-foto.img-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--pink-pastel), var(--pink-mid));
+  font-size: 1.6rem;
 }
 
 .calendario-gif-spot {
