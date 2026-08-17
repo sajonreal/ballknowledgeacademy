@@ -66,6 +66,12 @@
     <div id="card-peak"></div>
   </section>
 
+  <section class="section reveal">
+    <h2 class="section-title">🟤 Charca</h2>
+    <p class="section-subtitle">Un tropiezo al azar, para recordar que no todo iba a ser perfecto</p>
+    <div id="card-charca"></div>
+  </section>
+
   <section class="lore-section reveal" style="margin-top:14px;">
     <div class="title-with-gif">
       <h2>📐 Cómo puntuamos</h2>
@@ -73,6 +79,28 @@
     </div>
     <p>Cada reseña se desglosa en estas categorías antes de llegar a la nota final. Puedes ver el detalle completo de cada anime en el apartado de Reseñas.</p>
     <div class="stat-legend-grid" id="leyenda-stats"></div>
+  </section>
+
+  <section class="lore-section reveal" style="margin-top:14px;">
+    <div class="title-with-gif">
+      <h2>👥 Comunidad</h2>
+      <div id="gif-comunidad-1"></div>
+    </div>
+    <p>Fotos, momentos y algún que otro vídeo suelto de todo esto. Aquí es donde se ve que detrás de las notas y las tablas hay gente disfrutando de verdad.</p>
+  </section>
+
+  <section class="section reveal" style="padding-top:0;">
+    <div class="video-vertical-wrap" id="video-comunidad-wrap">
+      <video id="video-comunidad" playsinline controls></video>
+    </div>
+  </section>
+
+  <div class="comunidad-fotos" id="comunidad-fotos"></div>
+
+  <div class="hero-gifs" id="gif-comunidad-2" style="margin-top:22px;"></div>
+
+  <section class="lore-section reveal">
+    <p>La comunidad es la mitad de la gracia de todo esto: sin quien vea el mismo capítulo el mismo día, sin quien discuta si la nota está bien puesta o sin quien mande el gif exacto en el momento exacto, esto sería solo una lista más. Así que gracias por estar — según vayan pasando cosas, iremos dejando aquí las novedades, los momentos random y lo que vaya surgiendo.</p>
   </section>
 
   <footer class="espaciador"></footer>
@@ -95,7 +123,7 @@
         return;
       }
       const card = document.createElement("div");
-      card.className = "anuncio-card";
+      card.className = `anuncio-card anuncio-card--${tipo} pop-in`;
 
       const imgWrap = crearImagenConFallback(anime.imagen, anime.nombre);
       card.appendChild(imgWrap);
@@ -103,8 +131,8 @@
       const info = document.createElement("div");
       info.className = "anuncio-info";
 
-      const tagClass = tipo === "actual" ? "tag-actual" : tipo === "top" ? "tag-top" : "tag-peak";
-      const tagTexto = tipo === "actual" ? "Actual" : tipo === "top" ? "Top nota" : "Posible peak";
+      const tagClass = tipo === "actual" ? "tag-actual" : tipo === "top" ? "tag-top" : tipo === "peak" ? "tag-peak" : "tag-charca";
+      const tagTexto = tipo === "actual" ? "Actual" : tipo === "top" ? "Top nota" : tipo === "peak" ? "Posible peak" : "Charca";
 
       info.innerHTML = `
         <span class="tag ${tagClass}">${tagTexto}</span>
@@ -114,6 +142,7 @@
       card.appendChild(info);
       el.innerHTML = "";
       el.appendChild(card);
+      activarRevelados();
     }
 
     function pintarActual() {
@@ -151,6 +180,14 @@
     function pintarPeak() {
       const elegido = pickRandom(typeof ANIME_PLANEADOS !== "undefined" ? ANIME_PLANEADOS : []);
       renderAnuncio("card-peak", "peak", elegido, elegido ? (elegido.comentario || "En la lista de planeados, esperando su turno.") : "");
+    }
+
+    function pintarCharca() {
+      const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
+        ? ANIME_COMPLETADOS.filter(a => a.nota !== null && a.nota !== undefined && a.nota <= 6)
+        : [];
+      const elegido = pickRandom(candidatos);
+      renderAnuncio("card-charca", "charca", elegido, elegido ? `Nota final: ⭐ ${elegido.nota} · a veces toca escalar un charco` : "");
     }
 
     // pequeñas descripciones para la leyenda de puntuación
@@ -197,14 +234,57 @@
 
       const puntuamosCont = document.getElementById("gif-puntuamos");
       if (gifs[3]) puntuamosCont.appendChild(crearGifSlot(gifs[3], "gif-solo tilt-d"));
+
+      const comunidad1 = document.getElementById("gif-comunidad-1");
+      if (gifs[6]) comunidad1.appendChild(crearGifSlot(gifs[6], "gif-solo tilt-e"));
+
+      const comunidad2 = document.getElementById("gif-comunidad-2");
+      if (gifs[7]) comunidad2.appendChild(crearGifSlot(gifs[7], "gif-solo size-lg tilt-b"));
     }
 
-    lanzarCorazones(24);
+    function pintarComunidad() {
+      const videoWrap = document.getElementById("video-comunidad-wrap");
+      const video = document.getElementById("video-comunidad");
+      const tieneVideo = typeof VIDEO_COMUNIDAD !== "undefined" && VIDEO_COMUNIDAD;
+
+      if (tieneVideo) {
+        video.src = VIDEO_COMUNIDAD;
+        video.onerror = () => {
+          videoWrap.classList.add("img-fallback");
+          videoWrap.innerHTML = `<span class="fallback-icon">🎬</span>`;
+        };
+      } else {
+        videoWrap.classList.add("img-fallback");
+        videoWrap.innerHTML = `<span class="fallback-icon">🎬</span>`;
+      }
+
+      const cont = document.getElementById("comunidad-fotos");
+      const imgs = typeof IMAGENES_COMUNIDAD !== "undefined" ? IMAGENES_COMUNIDAD : [];
+      imgs.slice(0, 4).forEach(src => {
+        const foto = document.createElement("div");
+        foto.className = "comunidad-foto pop-in";
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "";
+        img.loading = "lazy";
+        img.onerror = () => {
+          foto.classList.add("img-fallback");
+          foto.innerHTML = "📷";
+        };
+        foto.appendChild(img);
+        cont.appendChild(foto);
+      });
+      activarRevelados();
+    }
+
+    lanzarCorazones(12);
     pintarActual();
     pintarTop();
     pintarPeak();
+    pintarCharca();
     pintarLeyenda();
     pintarGifsPortada();
+    pintarComunidad();
     vigilarCambioDeDia(pintarActual);
 
     document.getElementById("parallax-img").onerror = function () {
