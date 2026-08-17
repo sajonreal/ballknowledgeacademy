@@ -51,7 +51,7 @@ function crearImagenConFallback(src, alt) {
 /* --------------------------------------------------------
    Corazones flotantes (animación de entrada en la home)
 -------------------------------------------------------- */
-function lanzarCorazones(cantidad = 22) {
+function lanzarCorazones(cantidad = 12) {
   const contenedor = document.getElementById("hearts-layer");
   if (!contenedor) return;
 
@@ -62,11 +62,13 @@ function lanzarCorazones(cantidad = 22) {
     heart.className = "floating-heart";
     heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
-    const left = Math.random() * 100;
-    const duracion = 3.5 + Math.random() * 2.5;
-    const retraso = Math.random() * 1.2;
-    const tam = 0.9 + Math.random() * 1.3;
+    const top = Math.random() * 80;
+    const left = Math.random() * 80;
+    const duracion = 1.3 + Math.random() * 0.7;
+    const retraso = Math.random() * 1.6;
+    const tam = 4 + Math.random() * 3.2;
 
+    heart.style.top = `${top}vh`;
     heart.style.left = `${left}vw`;
     heart.style.animationDuration = `${duracion}s`;
     heart.style.animationDelay = `${retraso}s`;
@@ -162,7 +164,7 @@ function initParallax(imgId, factor = 0.18) {
    Revelado al hacer scroll (fluido, sutil)
 -------------------------------------------------------- */
 function activarRevelados() {
-  const elementos = document.querySelectorAll(".reveal");
+  const elementos = document.querySelectorAll(".reveal, .pop-in");
   if (!("IntersectionObserver" in window)) {
     elementos.forEach(el => el.classList.add("in-view"));
     return;
