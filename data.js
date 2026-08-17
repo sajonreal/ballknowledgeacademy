@@ -191,6 +191,7 @@ const ANIME_COMPLETADOS = [
       animacion: 7, trama: 0, fanService: 10,
       fantasia: 10, perSec: 0, aprendizaje: 4, final: null
 	}
+   }
 ];
 
 
