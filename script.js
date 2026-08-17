@@ -163,21 +163,29 @@ function initParallax(imgId, factor = 0.18) {
 /* --------------------------------------------------------
    Revelado al hacer scroll (fluido, sutil)
 -------------------------------------------------------- */
+let _revealObserver = null;
+
 function activarRevelados() {
-  const elementos = document.querySelectorAll(".reveal, .pop-in");
+  const elementos = document.querySelectorAll(".reveal:not(.in-view), .pop-in:not(.in-view)");
+  if (!elementos.length) return;
+
   if (!("IntersectionObserver" in window)) {
     elementos.forEach(el => el.classList.add("in-view"));
     return;
   }
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  elementos.forEach(el => obs.observe(el));
+
+  if (!_revealObserver) {
+    _revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          _revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+  }
+
+  elementos.forEach(el => _revealObserver.observe(el));
 }
 
 /* --------------------------------------------------------
@@ -194,4 +202,18 @@ function marcarNavActiva() {
 document.addEventListener("DOMContentLoaded", () => {
   marcarNavActiva();
   activarRevelados();
+});
+
+/* Red de seguridad: si por lo que sea el observador no llega a
+   disparar en algún navegador, forzamos visibles los elementos que
+   ya están en pantalla poco después de cargar la página. */
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.querySelectorAll(".reveal:not(.in-view), .pop-in:not(.in-view)").forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("in-view");
+      }
+    });
+  }, 1200);
 });
