@@ -86,13 +86,7 @@
       <h2>👥 Comunidad</h2>
       <div id="gif-comunidad-1"></div>
     </div>
-    <p>Fotos, momentos y algún que otro vídeo suelto de todo esto. Aquí es donde se ve que detrás de las notas y las tablas hay gente disfrutando de verdad.</p>
-  </section>
-
-  <section class="section reveal" style="padding-top:0;">
-    <div class="video-vertical-wrap" id="video-comunidad-wrap">
-      <video id="video-comunidad" playsinline controls></video>
-    </div>
+    <p>Fotos y momentos sueltos de todo esto. Aquí es donde se ve que detrás de las notas y las tablas hay gente disfrutando de verdad.</p>
   </section>
 
   <div class="comunidad-fotos" id="comunidad-fotos"></div>
@@ -243,24 +237,9 @@
     }
 
     function pintarComunidad() {
-      const videoWrap = document.getElementById("video-comunidad-wrap");
-      const video = document.getElementById("video-comunidad");
-      const tieneVideo = typeof VIDEO_COMUNIDAD !== "undefined" && VIDEO_COMUNIDAD;
-
-      if (tieneVideo) {
-        video.src = VIDEO_COMUNIDAD;
-        video.onerror = () => {
-          videoWrap.classList.add("img-fallback");
-          videoWrap.innerHTML = `<span class="fallback-icon">🎬</span>`;
-        };
-      } else {
-        videoWrap.classList.add("img-fallback");
-        videoWrap.innerHTML = `<span class="fallback-icon">🎬</span>`;
-      }
-
       const cont = document.getElementById("comunidad-fotos");
       const imgs = typeof IMAGENES_COMUNIDAD !== "undefined" ? IMAGENES_COMUNIDAD : [];
-      imgs.slice(0, 4).forEach(src => {
+      imgs.slice(0, 6).forEach(src => {
         const foto = document.createElement("div");
         foto.className = "comunidad-foto pop-in";
         const img = document.createElement("img");
