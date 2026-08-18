@@ -191,6 +191,36 @@ const ANIME_COMPLETADOS = [
       animacion: 7, trama: 0, fanService: 10,
       fantasia: 10, perSec: 0, aprendizaje: 4, final: null
 	}
+   },
+   {
+	nombre: "Doki Doki Literature Club",
+	imagen: "images/doki.jpg",
+	nota: null,
+    subnotas: {
+      opEd: null, queso: null, cocina: null, prota: null,
+      animacion: null, trama: null, fanService: null,
+      fantasia: null, perSec: null, aprendizaje: null, final: null
+	}
+   },
+   {
+	nombre: "La Súcubo Seria Hiiragi-san",
+	imagen: "images/sucubo.jpg",
+	nota: null,
+    subnotas: {
+      opEd: null, queso: null, cocina: null, prota: null,
+      animacion: null, trama: null, fanService: null,
+      fantasia: null, perSec: null, aprendizaje: null, final: null
+	}
+   },
+   {
+	nombre: "Miss kobayashi´s Dragon Maid",
+	imagen: "images/kobayashi.jpg",
+	nota: null,
+    subnotas: {
+      opEd: null, queso: null, cocina: null, prota: null,
+      animacion: null, trama: null, fanService: null,
+      fantasia: null, perSec: null, aprendizaje: null, final: null
+	}
    }
 ];
 
