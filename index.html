@@ -238,7 +238,7 @@
 
     function pintarComunidad() {
       const cont = document.getElementById("comunidad-fotos");
-      const imgs = typeof IMAGENES_COMUNIDAD !== "undefined" ? IMAGENES_COMUNIDAD : 6;
+      const imgs = typeof IMAGENES_COMUNIDAD !== "undefined" ? IMAGENES_COMUNIDAD : [];
       imgs.slice(0, 6).forEach(src => {
         const foto = document.createElement("div");
         foto.className = "comunidad-foto pop-in";
