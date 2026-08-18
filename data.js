@@ -344,8 +344,8 @@ const VIDEO_COMUNIDAD = "images/video.html";
 const IMAGENES_COMUNIDAD = [
   "images/comunidad1.png",
   "images/comunidad2.jpg",
-  "images/comunidad3.png",
+  "images/comunidad3.jpg",
   "images/comunidad4.png",
   "images/comunidad5.jpg",
-  "images/comunidad6.jpg"
+  "images/comunidad6.png"
 ];
