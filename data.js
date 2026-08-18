@@ -339,12 +339,11 @@ const IMAGEN_PLAYLIST = "images/playlist-cover.jpg";
    poco inclinadas, como una polaroid. Si pones menos de 4,
    simplemente se quedan huecos vacíos donde faltan.
 ------------------------------------------------------------ */
-const VIDEO_COMUNIDAD = "images/video.html";
 
 const IMAGENES_COMUNIDAD = [
   "images/comunidad1.png",
   "images/comunidad2.jpg",
-  "images/comunidad3.jpg",
+  "images/comunidad3.png",
   "images/comunidad4.png",
   "images/comunidad5.png",
   "images/comunidad6.png"
