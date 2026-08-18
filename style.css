@@ -768,6 +768,8 @@ img { max-width: 100%; display: block; }
 .comunidad-foto:nth-child(2) { --tilt: 5deg; }
 .comunidad-foto:nth-child(3) { --tilt: 4deg; }
 .comunidad-foto:nth-child(4) { --tilt: -5deg; }
+.comunidad-foto:nth-child(5) { --tilt: 7deg; }
+.comunidad-foto:nth-child(6) { --tilt: -4deg; }
 .comunidad-foto.img-fallback {
   display: flex;
   align-items: center;
