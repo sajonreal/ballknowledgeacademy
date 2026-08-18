@@ -343,7 +343,7 @@ const IMAGEN_PLAYLIST = "images/playlist-cover.jpg";
 const IMAGENES_COMUNIDAD = [
   "images/comunidad1.png",
   "images/comunidad2.jpg",
-  "images/comunidad3.png",
+  "images/comunidad3.jpg",
   "images/comunidad4.png",
   "images/comunidad5.png",
   "images/comunidad6.png"
