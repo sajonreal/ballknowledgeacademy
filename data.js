@@ -304,14 +304,7 @@ const ANIME_PLANEADOS = [
    el nombre EXACTAMENTE igual que en esas listas.
 ------------------------------------------------------------ */
 const CALENDARIO = {
-  "2026-08-17": [
-    { anime: "Plastic Memories", episodio: 8 },
-    { anime: "Plastic Memories", episodio: 9 }
-  ],
-  "2026-08-18": [
-    { anime: "Plastic Memories", episodio: 10 },
-    { anime: "Plastic Memories", episodio: 11 }
-  ],
+  
   "2026-08-19": [
     { anime: "Plastic Memories", episodio: 12 },
     { anime: "Plastic Memories", episodio: 13 }
@@ -320,9 +313,57 @@ const CALENDARIO = {
     { anime: "Horimiya", episodio: 1 },
     { anime: "Horimiya", episodio: 2 }
   ],
-  "2026-08-21": [
+"2026-08-21": [
+    { anime: "Horimiya", episodio: 3 },
+    { anime: "Horimiya", episodio: 4 }
+  ],
+"2026-08-22": [
+    { anime: "Horimiya", episodio: 5 },
+    { anime: "Horimiya", episodio: 6 }
+  ],
+"2026-08-23": [
+    { anime: "Horimiya", episodio: 7 },
+    { anime: "Horimiya", episodio: 8 }
+  ],
+  "2026-08-24": [
+    { anime: "Horimiya", episodio: 9 },
+	{ anime: "Horimiya", episodio: 10 }
+  ],
+"2026-08-25": [
+    { anime: "Horimiya", episodio: 11 },
+	{ anime: "Horimiya", episodio: 12 }
+  ],
+"2026-08-26": [
+    { anime: "Horimiya", episodio: 13 },
+	{ anime: "Horimiya", episodio: 1 }
+  ],
+"2026-08-27": [
+    { anime: "Horimiya", episodio: 1 },
+	{ anime: "Horimiya", episodio: 2 }
+  ],
+"2026-08-28": [
     { anime: "Horimiya", episodio: 3 },
 	{ anime: "Horimiya", episodio: 4 }
+  ],
+"2026-08-29": [
+    { anime: "Horimiya", episodio: 5 },
+	{ anime: "Horimiya", episodio: 6 }
+  ],
+"2026-08-30": [
+    { anime: "Horimiya", episodio: 7 },
+	{ anime: "Horimiya", episodio: 8 }
+  ],
+"2026-08-31": [
+    { anime: "Horimiya", episodio: 9 },
+	{ anime: "Horimiya", episodio: 10 }
+  ],
+"2026-09-01": [
+    { anime: "Horimiya", episodio: 11 },
+	{ anime: "Horimiya", episodio: 12 }
+  ],
+"2026-09-02": [
+    { anime: "Horimiya", episodio: 13 },
+	{ anime: "", episodio: 1 }
   ]
 };
 
