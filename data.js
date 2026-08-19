@@ -192,6 +192,16 @@ const ANIME_COMPLETADOS = [
       fantasia: 10, perSec: 0, aprendizaje: 4, final: null
 	}
    },
+	{
+	nombre: "Plastic Memories",
+	imagen: "images/plastic-memories.jpg",
+	nota: 6,
+    subnotas: {
+      opEd: 8, queso: 5.5, cocina: 5.5, prota: 6.5,
+      animacion: 5, trama: 7.5, fanService: 4,
+      fantasia: 10, perSec: 6, aprendizaje: 6, final: 6
+	}
+   },
    {
 	nombre: "Doki Doki Literature Club",
 	imagen: "images/doki.jpg",
@@ -247,7 +257,6 @@ const ANIME_PLANEADOS = [
   { nombre: "The Ramparts Of Ice", imagen: "images/the-ramparts-of-ice.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Alya Sometimes Hides Her Feelings In Russian", imagen: "images/alya-sometimes-hides-her-feelings-in-russian.jpg", prioridad: true, etiqueta: "" },
   { nombre: "Blue Box", imagen: "images/blue-box.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Plastic Memories", imagen: "images/plastic-memories.jpg", prioridad: true, etiqueta: "" },
   { nombre: "Nisekoi", imagen: "images/nisekoi.jpg", prioridad: false, etiqueta: "" },
   { nombre: "More Than a Married Couple, But Not Lovers", imagen: "images/more-than-a-married-couple-but-not-lovers.jpg", prioridad: true, etiqueta: "" },
   { nombre: "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You", imagen: "images/the-100-girlfriends-who-really-really-really-really-really-love-you.webp", prioridad: false, etiqueta: "" },
