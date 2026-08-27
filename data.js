@@ -202,6 +202,16 @@ const ANIME_COMPLETADOS = [
       fantasia: 10, perSec: 6, aprendizaje: 6, final: 6
 	}
    },
+	{
+	nombre: "Horimiya",
+	imagen: "images/horimiya.webp",
+	nota: 6,
+    subnotas: {
+      opEd: 7.5, queso: , cocina: 5.5, prota: 6.5,
+      animacion: 5, trama: 7.5, fanService: 4,
+      fantasia: 10, perSec: 6, aprendizaje: 6, final: 6
+	}
+   },
    {
 	nombre: "Doki Doki Literature Club",
 	imagen: "images/doki.jpg",
@@ -244,7 +254,6 @@ const ANIME_COMPLETADOS = [
    "comentario": opcional, por qué te interesa este anime
 ------------------------------------------------------------ */
 const ANIME_PLANEADOS = [
-  { nombre: "Horimiya", imagen: "images/horimiya.webp", prioridad: true, etiqueta: "" },
   { nombre: "You And I Are Polar Opposites", imagen: "images/you-and-i-are-polar-opposites.jpg", prioridad: true, etiqueta: "" },
   { nombre: "The Angel Next Door Spoils Me Rotten", imagen: "images/the-angel-next-door-spoils-me-rotten.webp", prioridad: true, etiqueta: "" },
   { nombre: "I Want to Eat Your Pancreas", imagen: "images/i-want-to-eat-your-pancreas.jpg", prioridad: false, etiqueta: "" },
