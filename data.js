@@ -207,9 +207,9 @@ const ANIME_COMPLETADOS = [
 	imagen: "images/horimiya.webp",
 	nota: 6,
     subnotas: {
-      opEd: 7.5, queso: , cocina: 5.5, prota: 6.5,
-      animacion: 5, trama: 7.5, fanService: 4,
-      fantasia: 10, perSec: 6, aprendizaje: 6, final: 6
+      opEd: 7.5, queso: 7, cocina: 5, prota: 5.5,
+      animacion: 8, trama: 5, fanService: 2.5,
+      fantasia: 5.5, perSec: 6, aprendizaje: 10, final: 4
 	}
    },
    {
@@ -314,65 +314,29 @@ const ANIME_PLANEADOS = [
 ------------------------------------------------------------ */
 const CALENDARIO = {
   
-  "2026-08-19": [
-    { anime: "Plastic Memories", episodio: 12 },
-    { anime: "Plastic Memories", episodio: 13 }
-  ],
-  "2026-08-20": [
-    { anime: "Horimiya", episodio: 1 },
-    { anime: "Horimiya", episodio: 2 }
-  ],
-"2026-08-21": [
-    { anime: "Horimiya", episodio: 3 },
-    { anime: "Horimiya", episodio: 4 }
-  ],
-"2026-08-22": [
-    { anime: "Horimiya", episodio: 5 },
-    { anime: "Horimiya", episodio: 6 }
-  ],
-"2026-08-23": [
-    { anime: "Horimiya", episodio: 7 },
-    { anime: "Horimiya", episodio: 8 }
-  ],
-  "2026-08-24": [
-    { anime: "Horimiya", episodio: 9 },
-	{ anime: "Horimiya", episodio: 10 }
-  ],
-"2026-08-25": [
-    { anime: "Horimiya", episodio: 11 },
-	{ anime: "Horimiya", episodio: 12 }
-  ],
-"2026-08-26": [
-    { anime: "Horimiya", episodio: 13 },
-	{ anime: "Horimiya", episodio: 1 }
-  ],
-"2026-08-27": [
-    { anime: "Horimiya", episodio: 1 },
-	{ anime: "Horimiya", episodio: 2 }
-  ],
 "2026-08-28": [
-    { anime: "Horimiya", episodio: 3 },
-	{ anime: "Horimiya", episodio: 4 }
+    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 2 },
+	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 3 }
   ],
 "2026-08-29": [
-    { anime: "Horimiya", episodio: 5 },
-	{ anime: "Horimiya", episodio: 6 }
+    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 4 },
+	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 5 }
   ],
 "2026-08-30": [
-    { anime: "Horimiya", episodio: 7 },
-	{ anime: "Horimiya", episodio: 8 }
+    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 6 },
+	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 7 }
   ],
 "2026-08-31": [
-    { anime: "Horimiya", episodio: 9 },
-	{ anime: "Horimiya", episodio: 10 }
+    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 8 },
+	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 9 }
   ],
 "2026-09-01": [
-    { anime: "Horimiya", episodio: 11 },
-	{ anime: "Horimiya", episodio: 12 }
+    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 10 },
+	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 11 }
   ],
 "2026-09-02": [
-    { anime: "Horimiya", episodio: 13 },
-	{ anime: "", episodio: 1 }
+    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 12 },
+	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 13 }
   ]
 };
 
