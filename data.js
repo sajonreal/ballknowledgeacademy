@@ -241,6 +241,16 @@ const ANIME_COMPLETADOS = [
       animacion: null, trama: null, fanService: null,
       fantasia: null, perSec: null, aprendizaje: null, final: null
 	}
+   },
+	 {
+	nombre: "My Love Story with Yamada-kun at Lv999",
+	imagen: "images/my-love-story-with-yamada-kun-at-lv999.avif",
+	nota: null,
+    subnotas: {
+      opEd: null, queso: null, cocina: null, prota: null,
+      animacion: null, trama: null, fanService: null,
+      fantasia: null, perSec: null, aprendizaje: null, final: null
+	}
    }
 ];
 
@@ -269,7 +279,6 @@ const ANIME_PLANEADOS = [
   { nombre: "Nisekoi", imagen: "images/nisekoi.jpg", prioridad: false, etiqueta: "" },
   { nombre: "More Than a Married Couple, But Not Lovers", imagen: "images/more-than-a-married-couple-but-not-lovers.jpg", prioridad: true, etiqueta: "" },
   { nombre: "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You", imagen: "images/the-100-girlfriends-who-really-really-really-really-really-love-you.webp", prioridad: false, etiqueta: "" },
-  { nombre: "My Love Story with Yamada-kun at Lv999", imagen: "images/my-love-story-with-yamada-kun-at-lv999.avif", prioridad: false, etiqueta: "" },
   { nombre: "Weathering With You", imagen: "images/weathering-with-you.avif", prioridad: false, etiqueta: "" },
   { nombre: "Oregairu", imagen: "images/oregairu.webp", prioridad: false, etiqueta: "" },
   { nombre: "Fruits Basket", imagen: "images/fruits-basket.jpg", prioridad: false, etiqueta: "" },
@@ -314,29 +323,29 @@ const ANIME_PLANEADOS = [
 ------------------------------------------------------------ */
 const CALENDARIO = {
   
-"2026-08-28": [
-    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 2 },
-	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 3 }
+"2026-09-03": [
+    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 1 },
+	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 2 }
   ],
-"2026-08-29": [
-    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 4 },
-	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 5 }
+"2026-09-04": [
+    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 3 },
+	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 4 }
   ],
-"2026-08-30": [
-    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 6 },
-	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 7 }
+"2026-09-05": [
+    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 5 },
+	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 6 }
   ],
-"2026-08-31": [
-    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 8 },
-	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 9 }
+"2026-09-06": [
+    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 7 },
+	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 8 }
   ],
-"2026-09-01": [
-    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 10 },
-	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 11 }
+"2026-09-07": [
+    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 9 },
+	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 10 }
   ],
-"2026-09-02": [
-    { anime: "My Love Story with Yamada-kun at Lv999", episodio: 12 },
-	{ anime: "My Love Story with Yamada-kun at Lv999", episodio: 13 }
+"2026-09-08": [
+    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 11 },
+	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 12 }
   ]
 };
 
