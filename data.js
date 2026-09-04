@@ -97,8 +97,8 @@ const ANIME_COMPLETADOS = [
     imagen: "images/darling-in-the-franxx.jpg",
     nota: 7,
     subnotas: {
-      opEd: 9, queso: 8, cocina: 7, prota: 9,
-      animacion: 9, trama: 9, fanService: 8,
+      opEd: 9, queso: 8, cocina: 7, prota: 7,
+      animacion: 9, trama: 8, fanService: 8,
       fantasia: 10, perSec: 7, aprendizaje: 5, final: 8
     }
   },
@@ -245,11 +245,11 @@ const ANIME_COMPLETADOS = [
 	 {
 	nombre: "My Love Story with Yamada-kun at Lv999",
 	imagen: "images/my-love-story-with-yamada-kun-at-lv999.avif",
-	nota: null,
+	nota: 8,
     subnotas: {
-      opEd: null, queso: null, cocina: null, prota: null,
-      animacion: null, trama: null, fanService: null,
-      fantasia: null, perSec: null, aprendizaje: null, final: null
+      opEd: 9, queso: 8, cocina: 7.5, prota: 8,
+      animacion: 8.5, trama: 8, fanService: 0,
+      fantasia: 7, perSec: 7.5, aprendizaje: 7, final: 7.5
 	}
    }
 ];
