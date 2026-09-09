@@ -215,11 +215,11 @@ const ANIME_COMPLETADOS = [
    {
 	nombre: "Doki Doki Literature Club",
 	imagen: "images/doki.jpg",
-	nota: null,
+	nota: 9,
     subnotas: {
-      opEd: null, queso: null, cocina: null, prota: null,
-      animacion: null, trama: null, fanService: null,
-      fantasia: null, perSec: null, aprendizaje: null, final: null
+      opEd: 10, queso: 9.5, cocina: 9.5, prota: 8,
+      animacion: 6, trama: 9.5, fanService: 7,
+      fantasia: 9, perSec: 10, aprendizaje: 6.5, final: 10
 	}
    },
    {
@@ -251,6 +251,26 @@ const ANIME_COMPLETADOS = [
       animacion: 8.5, trama: 8, fanService: 0,
       fantasia: 7, perSec: 7.5, aprendizaje: 7, final: 7.5
 	}
+   },
+	{
+	nombre: "Alya Sometimes Hides Her Feelings In Russian",
+	imagen: "images/alya-sometimes-hides-her-feelings-in-russian.jpg",
+	nota: 8,
+    subnotas: {
+      opEd: 10, queso: 10, cocina: 7.5, prota: 9,
+      animacion: 10, trama: 7, fanService: 8,
+      fantasia: 9, perSec: 6, aprendizaje: 6, final: 8
+	}
+   },
+		{
+	nombre: "Weathering With You",
+	imagen: "images/weathering-with-you.avif",
+	nota: 6,
+    subnotas: {
+      opEd: 8, queso: 7, cocina: 6, prota: 6,
+      animacion: 8, trama: 6, fanService: 3,
+      fantasia: 10, perSec: 6, aprendizaje: 6, final: 6
+	}
    }
 ];
 
@@ -274,7 +294,6 @@ const ANIME_PLANEADOS = [
   { nombre: "Golden Time", imagen: "images/golden-time.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Toradora!", imagen: "images/toradora.avif", prioridad: false, etiqueta: "" },
   { nombre: "The Ramparts Of Ice", imagen: "images/the-ramparts-of-ice.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Alya Sometimes Hides Her Feelings In Russian", imagen: "images/alya-sometimes-hides-her-feelings-in-russian.jpg", prioridad: true, etiqueta: "" },
   { nombre: "Blue Box", imagen: "images/blue-box.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Nisekoi", imagen: "images/nisekoi.jpg", prioridad: false, etiqueta: "" },
   { nombre: "More Than a Married Couple, But Not Lovers", imagen: "images/more-than-a-married-couple-but-not-lovers.jpg", prioridad: true, etiqueta: "" },
