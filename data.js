@@ -21,17 +21,20 @@
    "label" -> el texto que se muestra
 ------------------------------------------------------------ */
 const ESTADISTICAS = [
-  { key: "opEd",        emoji: "🎵", label: "OP/ED" },
-  { key: "queso",       emoji: "🧀", label: "Queso" },
-  { key: "cocina",      emoji: "🍳", label: "Cocina" },
-  { key: "prota",       emoji: "⭐", label: "Prota" },
-  { key: "animacion",   emoji: "🎨", label: "Animación" },
-  { key: "trama",       emoji: "📖", label: "Trama" },
-  { key: "fanService",  emoji: "🔥", label: "Fan Service" },
-  { key: "fantasia",    emoji: "🧙", label: "Fantasía" },
-  { key: "perSec",      emoji: "👥", label: "Per. Sec" },
-  { key: "aprendizaje", emoji: "🧠", label: "Aprendizaje" },
-  { key: "final",       emoji: "🏁", label: "Final" }
+  { key: "opEd",             emoji: "🎵", label: "OP/ED" },
+  { key: "queso",            emoji: "🧀", label: "Queso" },
+  { key: "personalidadQueso", emoji: "🎭", label: "Personalidad Queso" },
+  { key: "cocina",           emoji: "🍳", label: "Cocina" },
+  { key: "prota",            emoji: "⭐", label: "Prota" },
+  { key: "animacion",        emoji: "🎨", label: "Animación" },
+  { key: "trama",            emoji: "📖", label: "Trama" },
+  { key: "historia",         emoji: "📜", label: "Historia" },
+  { key: "fanService",       emoji: "🔥", label: "Fan Service" },
+  { key: "fantasia",         emoji: "🧙", label: "Fantasía" },
+  { key: "perSec",           emoji: "👥", label: "Per. Sec" },
+  { key: "aprendizaje",      emoji: "🧠", label: "Aprendizaje" },
+  { key: "actualHappiness",  emoji: "💗", label: "Actual Happiness" },
+  { key: "final",            emoji: "🏁", label: "Final" }
 ];
 
 /* Si añades una categoría nueva arriba, recuerda añadir su
@@ -57,9 +60,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/the-quintessential-quintuplets.jpg",
     nota: 9,
     subnotas: {
-      opEd: 8, queso: 10, cocina: 10, prota: 5,
-      animacion: 8, trama: 7, fanService: 10,
-      fantasia: 10, perSec: 5, aprendizaje: 7, final: 10
+      opEd: 8, queso: 10, personalidadQueso: null, cocina: 10, prota: 5,
+      animacion: 8, trama: 7, historia: null, fanService: 10,
+      fantasia: 10, perSec: 5, actualHappiness: null, aprendizaje: 7, final: 10
     }
   },
   {
@@ -67,9 +70,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/my-dress-up-darling.webp",
     nota: 9,
     subnotas: {
-      opEd: 9.5, queso: 8.5, cocina: 9, prota: 9,
-      animacion: 9.5, trama: 9, fanService: 9,
-      fantasia: 7, perSec: 9, aprendizaje: 5, final: null
+      opEd: 9.5, queso: 8.5, personalidadQueso: null, cocina: 9, prota: 9,
+      animacion: 9.5, trama: 9, historia: null, fanService: 9,
+      fantasia: 7, perSec: 9, actualHappiness: null, aprendizaje: 5, final: null
     }
   },
   {
@@ -77,9 +80,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/the-fragant-flower-blooms-with-dignity.webp",
     nota: 9,
     subnotas: {
-      opEd: 8.5, queso: 9.5, cocina: 7.5, prota: 9.5,
-      animacion: 9.5, trama: 8, fanService: 0,
-      fantasia: 5, perSec: 8.5, aprendizaje: 6.5, final: 10
+      opEd: 8.5, queso: 9.5, personalidadQueso: null, cocina: 7.5, prota: 9.5,
+      animacion: 9.5, trama: 8, historia: null, fanService: 0,
+      fantasia: 5, perSec: 8.5, actualHappiness: null, aprendizaje: 6.5, final: 10
     }
   },
   {
@@ -87,9 +90,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/call-of-the-night.jpg",
     nota: 8,
     subnotas: {
-      opEd: 9, queso: 10, cocina: 8, prota: 7,
-      animacion: 8, trama: 8, fanService: 7,
-      fantasia: 10, perSec: 9, aprendizaje: 5, final: 9
+      opEd: 9, queso: 8, personalidadQueso: 9, cocina: 8, prota: 7,
+      animacion: 8, trama: 8, historia: 8, fanService: 7,
+      fantasia: 10, perSec: 9, actualHappiness: 6, aprendizaje: 5, final: 9
     }
   },
   {
@@ -97,9 +100,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/darling-in-the-franxx.jpg",
     nota: 7,
     subnotas: {
-      opEd: 9, queso: 8, cocina: 7, prota: 7,
-      animacion: 9, trama: 8, fanService: 8,
-      fantasia: 10, perSec: 7, aprendizaje: 5, final: 8
+      opEd: 9, queso: 8, personalidadQueso: 7, cocina: 7, prota: 7,
+      animacion: 9, trama: 7, historia: 8, fanService: 8,
+      fantasia: 10, perSec: 7, actualHappiness: 5, aprendizaje: 5, final: 8
     }
   },
   {
@@ -107,9 +110,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/your-lie-in-april.png",
     nota: 10,
     subnotas: {
-      opEd: 10, queso: 10, cocina: 10, prota: 10,
-      animacion: 9, trama: 9, fanService: 0,
-      fantasia: 5, perSec: 9, aprendizaje: 9, final: 10
+      opEd: 10, queso: 10, personalidadQueso: 9, cocina: 10, prota: 10,
+      animacion: 9, trama: 9, historia: 9, fanService: 0,
+      fantasia: 5, perSec: 9, actualHappiness: 1, aprendizaje: 9, final: 10
     }
   },
   {
@@ -117,9 +120,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/gals-can-t-be-kind-to-otakus.jpg",
     nota: 7,
     subnotas: {
-      opEd: 10, queso: 8, cocina: 7, prota: 7,
-      animacion: 10, trama: 6, fanService: 7,
-      fantasia: 10, perSec: 5, aprendizaje: 5, final: 6
+      opEd: 10, queso: 8, personalidadQueso: null, cocina: 7, prota: 7,
+      animacion: 10, trama: 6, historia: null, fanService: 7,
+      fantasia: 10, perSec: 5, actualHappiness: null, aprendizaje: 5, final: 6
     }
   },
   {
@@ -127,9 +130,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/rascal-does-not-dream-of-bunny-girl-senpai.jpg",
     nota: 8,
     subnotas: {
-      opEd: 10, queso: 8.5, cocina: 7, prota: 10,
-      animacion: 8, trama: 9, fanService: 3,
-      fantasia: 10, perSec: 10, aprendizaje: 8.5, final: null
+      opEd: 10, queso: 8.5, personalidadQueso: null, cocina: 7, prota: 10,
+      animacion: 8, trama: 9, historia: null, fanService: 3,
+      fantasia: 10, perSec: 10, actualHappiness: null, aprendizaje: 8.5, final: null
     }
   },
   {
@@ -137,9 +140,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/cyberpunk-edgerunners.jpeg",
     nota: 9,
     subnotas: {
-      opEd: null, queso: 9, cocina: 8, prota: 10,
-      animacion: 10, trama: 9, fanService: 8,
-      fantasia: 10, perSec: 8, aprendizaje: 6, final: 10
+      opEd: null, queso: 9, personalidadQueso: 8, cocina: 8, prota: 10,
+      animacion: 10, trama: 8, historia: 9, fanService: 8,
+      fantasia: 10, perSec: 8, actualHappiness: 2, aprendizaje: 6, final: 10
     }
   },
   {
@@ -147,9 +150,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/a-silent-voice.webp",
     nota: 9,
     subnotas: {
-      opEd: 5, queso: 8, cocina: 7, prota: 9,
-      animacion: 8.5, trama: 10, fanService: 0,
-      fantasia: 6.5, perSec: 6.5, aprendizaje: 8, final: 9
+      opEd: 5, queso: 8, personalidadQueso: null, cocina: 7, prota: 9,
+      animacion: 8.5, trama: 10, historia: null, fanService: 0,
+      fantasia: 6.5, perSec: 6.5, actualHappiness: null, aprendizaje: 8, final: 9
     }
   },
   {
@@ -157,9 +160,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/violet-evergarden.webp",
     nota: 10,
     subnotas: {
-      opEd: 8, queso: 10, cocina: 10, prota: 10,
-      animacion: 10, trama: 10, fanService: 0,
-      fantasia: 8, perSec: 10, aprendizaje: 8, final: 10
+      opEd: 8, queso: 9, personalidadQueso: 9, cocina: 10, prota: 10,
+      animacion: 10, trama: 10, historia: 10, fanService: 0,
+      fantasia: 8, perSec: 10, actualHappiness: 2, aprendizaje: 9, final: 10
     }
   },
   {
@@ -167,9 +170,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/the-dangers-in-my-heart.webp",
     nota: 6,
     subnotas: {
-      opEd: 5, queso: 7, cocina: 6.5, prota: 3,
-      animacion: 7, trama: 6, fanService: 10,
-      fantasia: 10, perSec: 7, aprendizaje: 2.5, final: 6
+      opEd: 5, queso: 7, personalidadQueso: null, cocina: 6.5, prota: 3,
+      animacion: 7, trama: 6, historia: null, fanService: 10,
+      fantasia: 10, perSec: 7, actualHappiness: null, aprendizaje: 2.5, final: 6
     }
   },
   {
@@ -177,9 +180,9 @@ const ANIME_COMPLETADOS = [
     imagen: "images/kaguya-sama.jpg",
     nota: 10,
     subnotas: {
-      opEd: 10, queso: 8.5, cocina: 10, prota: 10,
-      animacion: 9, trama: 10, fanService: 8,
-      fantasia: 5, perSec: 10, aprendizaje: 9.5, final: 9
+      opEd: 10, queso: 8.5, personalidadQueso: null, cocina: 10, prota: 10,
+      animacion: 9, trama: 10, historia: null, fanService: 8,
+      fantasia: 5, perSec: 10, actualHappiness: null, aprendizaje: 9.5, final: 9
     }
   },
  	{
@@ -187,9 +190,9 @@ const ANIME_COMPLETADOS = [
 	imagen: "images/overflow.jpg",
 	nota: 3,
     subnotas: {
-      opEd: 0, queso: 9, cocina: 0, prota: 4,
-      animacion: 7, trama: 0, fanService: 10,
-      fantasia: 10, perSec: 0, aprendizaje: 4, final: null
+      opEd: 0, queso: 9, personalidadQueso: null, cocina: 0, prota: 4,
+      animacion: 7, trama: 0, historia: null, fanService: 10,
+      fantasia: 10, perSec: 0, actualHappiness: null, aprendizaje: 4, final: null
 	}
    },
 	{
@@ -197,9 +200,9 @@ const ANIME_COMPLETADOS = [
 	imagen: "images/plastic-memories.jpg",
 	nota: 6,
     subnotas: {
-      opEd: 8, queso: 5.5, cocina: 5.5, prota: 6.5,
-      animacion: 5, trama: 7.5, fanService: 4,
-      fantasia: 10, perSec: 6, aprendizaje: 6, final: 6
+      opEd: 8, queso: 5.5, personalidadQueso: null, cocina: 5.5, prota: 6.5,
+      animacion: 5, trama: 7.5, historia: null, fanService: 4,
+      fantasia: 10, perSec: 6, actualHappiness: null, aprendizaje: 6, final: 6
 	}
    },
 	{
@@ -207,9 +210,9 @@ const ANIME_COMPLETADOS = [
 	imagen: "images/horimiya.webp",
 	nota: 6,
     subnotas: {
-      opEd: 7.5, queso: 7, cocina: 5, prota: 5.5,
-      animacion: 8, trama: 5, fanService: 2.5,
-      fantasia: 5.5, perSec: 6, aprendizaje: 10, final: 4
+      opEd: 7.5, queso: 7, personalidadQueso: null, cocina: 5, prota: 5.5,
+      animacion: 8, trama: 5, historia: null, fanService: 2.5,
+      fantasia: 5.5, perSec: 6, actualHappiness: null, aprendizaje: 10, final: 4
 	}
    },
    {
@@ -217,19 +220,19 @@ const ANIME_COMPLETADOS = [
 	imagen: "images/doki.jpg",
 	nota: 9,
     subnotas: {
-      opEd: 10, queso: 9.5, cocina: 9.5, prota: 8,
-      animacion: 6, trama: 9.5, fanService: 7,
-      fantasia: 9, perSec: 10, aprendizaje: 6.5, final: 10
+      opEd: 10, queso: 9.5, personalidadQueso: null, cocina: 9.5, prota: 8,
+      animacion: 6, trama: 9.5, historia: null, fanService: 7,
+      fantasia: 9, perSec: 10, actualHappiness: null, aprendizaje: 6.5, final: 10
 	}
    },
    {
 	nombre: "La Súcubo Seria Hiiragi-san",
 	imagen: "images/sucubo.jpg",
-	nota: null,
+	nota: 9,
     subnotas: {
-      opEd: null, queso: null, cocina: null, prota: null,
-      animacion: null, trama: null, fanService: null,
-      fantasia: null, perSec: null, aprendizaje: null, final: null
+      opEd: null, queso: 10, personalidadQueso: 10, cocina: 10, prota: 10,
+      animacion: 8, trama: 8, historia: 9, fanService: 10,
+      fantasia: 10, perSec: 6, actualHappiness: 8, aprendizaje: 9, final: 10
 	}
    },
    {
@@ -237,9 +240,9 @@ const ANIME_COMPLETADOS = [
 	imagen: "images/kobayashi.jpg",
 	nota: null,
     subnotas: {
-      opEd: null, queso: null, cocina: null, prota: null,
-      animacion: null, trama: null, fanService: null,
-      fantasia: null, perSec: null, aprendizaje: null, final: null
+      opEd: null, queso: null, personalidadQueso: null, cocina: null, prota: null,
+      animacion: null, trama: null, historia: null, fanService: null,
+      fantasia: null, perSec: null, actualHappiness: null, aprendizaje: null, final: null
 	}
    },
 	 {
@@ -247,9 +250,9 @@ const ANIME_COMPLETADOS = [
 	imagen: "images/my-love-story-with-yamada-kun-at-lv999.avif",
 	nota: 8,
     subnotas: {
-      opEd: 9, queso: 8, cocina: 7.5, prota: 8,
-      animacion: 8.5, trama: 8, fanService: 0,
-      fantasia: 7, perSec: 7.5, aprendizaje: 7, final: 7.5
+      opEd: 9, queso: 8, personalidadQueso: null, cocina: 7.5, prota: 8,
+      animacion: 8.5, trama: 8, historia: null, fanService: 0,
+      fantasia: 7, perSec: 7.5, actualHappiness: null, aprendizaje: 7, final: 7.5
 	}
    },
 	{
@@ -257,19 +260,19 @@ const ANIME_COMPLETADOS = [
 	imagen: "images/alya-sometimes-hides-her-feelings-in-russian.jpg",
 	nota: 8,
     subnotas: {
-      opEd: 10, queso: 10, cocina: 7.5, prota: 9,
-      animacion: 10, trama: 7, fanService: 8,
-      fantasia: 9, perSec: 6, aprendizaje: 6, final: 8
+      opEd: 10, queso: 10, personalidadQueso: null, cocina: 7.5, prota: 9,
+      animacion: 10, trama: 7, historia: null, fanService: 8,
+      fantasia: 9, perSec: 6, actualHappiness: null, aprendizaje: 6, final: 8
 	}
    },
 		{
 	nombre: "Weathering With You",
 	imagen: "images/weathering-with-you.avif",
-	nota: 6,
+	nota: 7,
     subnotas: {
-      opEd: 8, queso: 7, cocina: 6, prota: 6,
-      animacion: 8, trama: 6, fanService: 3,
-      fantasia: 10, perSec: 6, aprendizaje: 6, final: 6
+      opEd: 8, queso: 7, personalidadQueso: 9, cocina: 6, prota: 6,
+      animacion: 8, trama: 6, historia: 7, fanService: 3,
+      fantasia: 10, perSec: 6, actualHappiness: 5, aprendizaje: 6, final: 6
 	}
    }
 ];
