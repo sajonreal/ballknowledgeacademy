@@ -61,12 +61,6 @@
   </section>
 
   <section class="section reveal">
-    <h2 class="section-title">😁 Actual Happiness</h2>
-    <p class="section-subtitle">He was whipping up amazing foods. Like making happiness. Actual happiness? Actual happiness</p>
-    <div id="card-happiness"></div>
-  </section>
-
-  <section class="section reveal">
     <h2 class="section-title">🟤 Charca</h2>
     <p class="section-subtitle">Un tropiezo al azar, para recordar que no todo iba a ser perfecto</p>
     <div id="card-charca"></div>
@@ -182,12 +176,6 @@
       renderAnuncio("card-peak", "peak", elegido, elegido ? (elegido.comentario || "En la lista de planeados, esperando su turno.") : "");
     }
     
-    function pintarHappiness() {
-      const elegido = pickRandom(typeof ANIME_COMPLETADOS !== "undefined" ? ANIME_COMPLETADOS.filter(a => a.nota === 10) : [];
-      const elegido = pickRandom(candidatos);
-      renderAnuncio("card-happiness", "happiness", elegido, elegido ? (elegido.comentario || "Perfecto para echarse unas risas.") : "");
-    }
-
     function pintarCharca() {
       const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
         ? ANIME_COMPLETADOS.filter(a => a.nota !== null && a.nota !== undefined && a.nota <= 6)
