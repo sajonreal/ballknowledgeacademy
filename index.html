@@ -61,15 +61,21 @@
   </section>
 
   <section class="section reveal">
-    <h2 class="section-title">👀 Posible peak</h2>
-    <p class="section-subtitle">Algo de la lista de planeados que promete demasiado</p>
-    <div id="card-peak"></div>
+    <h2 class="section-title">😁 Actual Happiness</h2>
+    <p class="section-subtitle">He was whipping up amazing foods. Like making happiness. Actual happiness? Actual happiness</p>
+    <div id="card-happiness"></div>
   </section>
 
   <section class="section reveal">
     <h2 class="section-title">🟤 Charca</h2>
     <p class="section-subtitle">Un tropiezo al azar, para recordar que no todo iba a ser perfecto</p>
     <div id="card-charca"></div>
+  </section>
+  
+  <section class="section reveal">
+    <h2 class="section-title">👀 Posible peak</h2>
+    <p class="section-subtitle">Algo de la lista de planeados que promete demasiado</p>
+    <div id="card-peak"></div>
   </section>
 
   <section class="lore-section reveal" style="margin-top:14px;">
@@ -175,6 +181,12 @@
       const elegido = pickRandom(typeof ANIME_PLANEADOS !== "undefined" ? ANIME_PLANEADOS : []);
       renderAnuncio("card-peak", "peak", elegido, elegido ? (elegido.comentario || "En la lista de planeados, esperando su turno.") : "");
     }
+    
+    function pintarHappiness() {
+      const elegido = pickRandom(typeof ANIME_COMPLETADOS !== "undefined" ? ANIME_COMPLETADOS.filter(a => a.nota === 10) : [];
+      const elegido = pickRandom(candidatos);
+      renderAnuncio("card-happiness", "happiness", elegido, elegido ? (elegido.comentario || "Perfecto para echarse unas risas.") : "");
+    }
 
     function pintarCharca() {
       const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
@@ -188,13 +200,16 @@
     const DESCRIPCIONES_STAT = {
       opEd: "Lo pegadizo que se queda el opening o el ending en la cabeza.",
       queso: "Nivel de la waifu principal o principales.",
+      personalidadQueso: "Personalidad de los quesos principales",
       cocina: "Qué tan atrevidas son las conversaciones entre los protagonistas.",
       prota: "Cuánto engancha, o desespera, el protagonista.",
       animacion: "Calidad y cuidado del apartado visual.",
-      trama: "Qué tan sólida y bien hilada está la historia.",
+      trama: "Como de original e interesante resulta la trama de primeras",
+      historia: "Como de bien hilada está la historia",
       fanService: "Cantidad de fan service, para bien o para mal.",
       fantasia: "Nivel de elementos fantásticos o sobrenaturales.",
       perSec: "Qué tan buenos son los personajes secundarios.",
+      actualHappiness: "Como de feliz te ha hecho este anime",
       aprendizaje: "Qué tanto se ha aprendido de la historia.",
       final: "Cómo de bien, o de mal, cierra la historia."
     };
