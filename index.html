@@ -61,6 +61,12 @@
   </section>
 
   <section class="section reveal">
+    <h2 class="section-title">💗 Actual happiness</h2>
+    <p class="section-subtitle">Un 10 en felicidad, whipping out amazing romace!</p>
+    <div id="card-happiness"></div>
+  </section>
+
+  <section class="section reveal">
     <h2 class="section-title">🟤 Charca</h2>
     <p class="section-subtitle">Un tropiezo al azar, para recordar que no todo iba a ser perfecto</p>
     <div id="card-charca"></div>
@@ -125,8 +131,60 @@
       const info = document.createElement("div");
       info.className = "anuncio-info";
 
-      const tagClass = tipo === "actual" ? "tag-actual" : tipo === "top" ? "tag-top" : tipo === "peak" ? "tag-peak" : "tag-charca";
-      const tagTexto = tipo === "actual" ? "Actual" : tipo === "top" ? "Top nota" : tipo === "peak" ? "Posible peak" : "Charca";
+       const tagClass = "tag-" + tipo;
+       function pintarCharca() {
+      const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
+        ? ANIME_COMPLETADOS.filter(a => a.nota !== null && a.nota !== undefined && a.nota <= 6)
+        : [];
+      const elegido = pickRandom(candidatos);
+      renderAnuncio("card-charca", "charca", elegido, elegido ? `Nota final: ⭐ ${elegido.nota} · a veces toca escalar un charco` : "");
+    }
+
+    // pequeñas descripciones para la leyenda de puntuación
+    const DESCRIPCIONES_STAT = {
+      opEd: "Lo pegadizo que se queda el opening o el ending en la cabeza.",
+      queso: "Nivel de la waifu principal o principales.",
+      personalidadQueso: "Personalidad de los quesos principales",
+      cocina: "Qué tan atrevidas son las conversaciones entre los protagonistas.",
+       // pequeñas descripciones para la leyenda de puntuación
+    const DESCRIPCIONES_STAT = {
+      opEd: "Lo pegadizo que se queda el opening o el ending en la cabeza.",
+      queso: "Nivel de la waifu principal o principales.",
+      personalidadQueso: "Personalidad de los quesos principales",
+      cocina: "Qué tan atrevidas son las conversaciones entre los protagonistas.",
+      prota: "Cuánto engancha, o desespera, el protagonista.",
+      animacion: "Calidad y cuidado del apartado visual.",
+      trama: "Como de original e interesante resulta la trama de primeras",
+      historia: "Como de bien hilada está la historia",
+      fanService: "Cantidad de fan service, para bien o para mal.",
+      fantasia: "Nivel de elementos fantásticos o sobrenaturales.",
+      perSec: "Qué tan buenos son los personajes secundarios.",
+      actualHappiness: "Como de feliz te ha hecho este anime",
+      aprendizaje: "Qué tanto se ha aprendido de la historia.",
+      final: "Cómo de bien, o de mal, cierra la historia."
+    };
+       function pintarHappiness() {
+      const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
+        ? ANIME_COMPLETADOS.filter(a => a.subnotas && a.subnotas.actualHappiness === 10)
+        : [];
+      const elegido = pickRandom(candidatos);
+      renderAnuncio("card-happiness", "happiness", elegido, elegido ? `Actual happiness: 💗 10` : "");
+    }
+
+    function pintarLeyenda() {
+      const cont = document.getElementById("leyenda-stats");
+      ESTADISTICAS.forEach(stat => {
+        const item = document.createElement("div");
+        item.className = "stat-legend-item";
+        item.innerHTML = `
+          <span class="sl-emoji">${stat.emoji}</span>
+          <div>
+            <h4>${stat.label}</h4>
+            <p>${DESCRIPCIONES_STAT[stat.key] || ""}</p>
+          </div>
+          
+      const TIPOS_ANUNCIO = { actual: "Actual", top: "Top nota", peak: "Posible peak", happiness: "Actual happiness", charca: "Charca" };
+      const tagTexto = TIPOS_ANUNCIO[tipo] || tipo;
 
       info.innerHTML = `
         <span class="tag ${tagClass}">${tagTexto}</span>
@@ -165,7 +223,7 @@
       }
     }
 
-    function pintarTop() {
+    function pintarTop() pintarHappiness(); {
       const candidatos = (typeof ANIME_COMPLETADOS !== "undefined") ? ANIME_COMPLETADOS.filter(a => a.nota === 10) : [];
       const elegido = pickRandom(candidatos);
       renderAnuncio("card-top", "top", elegido, elegido ? `Nota final: ⭐ ${elegido.nota}` : "");
