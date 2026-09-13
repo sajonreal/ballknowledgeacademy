@@ -482,3 +482,5 @@ const RULETA_VIDEOS = [
   "images/ruleta-video2.mp4",
   "images/ruleta-video3.mp4"
 ];
+
+const RULETA_MUSICA = "images/ruleta-musica.mp3";
