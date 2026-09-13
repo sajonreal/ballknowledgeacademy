@@ -465,3 +465,20 @@ const IMAGENES_COMUNIDAD = [
   "images/comunidad5.png",
   "images/comunidad6.png"
 ];
+
+/* ------------------------------------------------------------
+   7) RULETA — vídeos y música de la secuencia dramática
+   ------------------------------------------------------------
+   RULETA_VIDEOS: hasta 3 rutas de vídeo que se reproducen uno
+   detrás de otro (sin su propio sonido) tras tirar de la
+   palanca. Si dejas el array vacío o con rutas que no existen,
+   la ruleta salta directa al resultado sin romperse.
+
+   RULETA_MUSICA: ruta a un audio de fondo que suena mientras
+   se reproducen los vídeos. Déjalo "" si no quieres música.
+------------------------------------------------------------ */
+const RULETA_VIDEOS = [
+  "images/ruleta-video1.mp4",
+  "images/ruleta-video2.mp4",
+  "images/ruleta-video3.mp4"
+];
