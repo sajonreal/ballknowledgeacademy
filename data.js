@@ -497,9 +497,9 @@ const IMAGENES_COMUNIDAD = [
    se reproducen los vídeos. Déjalo "" si no quieres música.
 ------------------------------------------------------------ */
 const RULETA_VIDEOS = [
-  "images/ruleta-video1.mov",
-  "images/ruleta-video2.mov",
-  "images/ruleta-video3.mov"
+  "images/ruleta-video1.mp4",
+  "images/ruleta-video2.mp4",
+  "images/ruleta-video3.mp4"
 ];
 
 const RULETA_MUSICA = "images/ruleta-musica.mp3";
