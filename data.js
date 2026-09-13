@@ -342,7 +342,26 @@ const ANIME_PLANEADOS = [
   { nombre: "My Teen Romantic Comedy SNAFU", imagen: "images/snafu.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Uzaki-chan Wants to Hang Out!", imagen: "images/uzaki.jpg", prioridad: false, etiqueta: "" },
   { nombre: "ranma 1-2", imagen: "images/ranma.jpeg", prioridad: false, etiqueta: "" },
-  { nombre: "My Love Story!", imagen: "images/story.png", prioridad: false, etiqueta: "" }
+  { nombre: "My Love Story!", imagen: "images/story.png", prioridad: false, etiqueta: "" },
+  { nombre: "GAMERS!", imagen: "images/gamers.avif", prioridad: false, etiqueta: "" },
+  { nombre: "NANA", imagen: "images/nana.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "higehiro after being rejected i shaved and took in a high school runaway", imagen: "images/higehiro.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "The Pet Girl of Sakurasou", imagen: "images/pet.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Kamisama Kiss", imagen: "images/kamisama.webp", prioridad: false, etiqueta: "" },
+  { nombre: "Tomo-chan is a Girl!", imagen: "images/tomo.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Spice and Wolf", imagen: "images/spice.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "The Ancient Magus' Bride", imagen: "images/magus.webp", prioridad: false, etiqueta: "" },
+  { nombre: "Sankarea: Undying Love", imagen: "images/sankaera.webp", prioridad: false, etiqueta: "" },
+  { nombre: "ReLIFE", imagen: "images/life.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Monthly Girls' Nozaki-kun", imagen: "images/month.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "My Little Monster", imagen: "images/monster.webp", prioridad: false, etiqueta: "" },
+  { nombre: "Recovery of an MMO Junkie", imagen: "images/mmo.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "How to Raise a Boring Girlfriend", imagen: "images/boring.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Snow White with the Red Hair", imagen: "images/roja.webp", prioridad: false, etiqueta: "" },
+  { nombre: "Blue Spring Ride", imagen: "images/blue.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Love, Chunibyo & Other Delusions!", imagen: "images/chunibyo.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Umamusume: Pretty Derby", imagen: "images/umamusume.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Smoking Behind the Supermarket with You", imagen: "images/smoking.jpg", prioridad: false, etiqueta: "" }
 ];
 
 
