@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ruleta · Ballknowledge Academy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-decor">
+    <div class="wave-layer one"></div>
+    <div class="wave-layer two"></div>
+    <span class="bg-heart h1">♥</span>
+    <span class="bg-heart h2">♥</span>
+    <span class="bg-heart h3">♥</span>
+  </div>
+
+  <header class="top-bar"><span class="logo">🎓 Ballknowledge Academy</span></header>
+
+  <div class="page-header reveal">
+    <h1>🎰 Ruleta</h1>
+    <p>Tira de la palanca y deja que el destino elija tu próximo anime</p>
+  </div>
+
+  <section class="ruleta-section reveal">
+    <div class="slot-machine" id="maquina">
+      <div class="marquee">
+        <span class="marquee-luz"></span><span class="marquee-luz"></span><span class="marquee-luz"></span>
+        BALLKNOWLEDGE
+        <span class="marquee-luz"></span><span class="marquee-luz"></span><span class="marquee-luz"></span>
+      </div>
+
+      <div class="reels-panel">
+        <div class="reel-window"><div class="reel-strip" id="reel1">
+          <span class="reel-symbol">🍥</span><span class="reel-symbol">⭐</span><span class="reel-symbol">🎌</span><span class="reel-symbol">🍡</span>
+          <span class="reel-symbol">🍥</span><span class="reel-symbol">⭐</span><span class="reel-symbol">🎌</span><span class="reel-symbol">🍡</span>
+        </div></div>
+        <div class="reel-window"><div class="reel-strip" id="reel2">
+          <span class="reel-symbol">🎌</span><span class="reel-symbol">🍡</span><span class="reel-symbol">🍥</span><span class="reel-symbol">⭐</span>
+          <span class="reel-symbol">🎌</span><span class="reel-symbol">🍡</span><span class="reel-symbol">🍥</span><span class="reel-symbol">⭐</span>
+        </div></div>
+        <div class="reel-window"><div class="reel-strip" id="reel3">
+          <span class="reel-symbol">🍡</span><span class="reel-symbol">🍥</span><span class="reel-symbol">⭐</span><span class="reel-symbol">🎌</span>
+          <span class="reel-symbol">🍡</span><span class="reel-symbol">🍥</span><span class="reel-symbol">⭐</span><span class="reel-symbol">🎌</span>
+        </div></div>
+      </div>
+
+      <div class="payline"></div>
+      <div class="machine-base"></div>
+
+      <div class="lever-wrap" id="palanca-wrap">
+        <div class="lever-rod"></div>
+        <div class="lever-ball"></div>
+      </div>
+    </div>
+
+    <p class="ruleta-hint" id="ruleta-hint">👆 Toca la palanca para tirar</p>
+  </section>
+
+  <div class="video-overlay" id="video-overlay">
+    <video id="ruleta-video" playsinline muted></video>
+  </div>
+  <audio id="ruleta-musica" preload="none"></audio>
+
+  <div class="resultado-wrap" id="resultado-wrap">
+    <h2 class="resultado-titulo">🎉 ¡Le ha tocado a...!</h2>
+    <div id="resultado-ruleta"></div>
+    <button class="orden-toggle" id="btn-otra-vez">🔁 Tirar otra vez</button>
+  </div>
+
+  <footer class="espaciador"></footer>
+
+  <nav class="bottom-nav">
+    <a href="index.html"><span class="icono">🏠</span>Inicio</a>
+    <a href="resenas.html"><span class="icono">📝</span>Reseñas</a>
+    <a href="planeados.html"><span class="icono">📌</span>Planeados</a>
+    <a href="calendario.html"><span class="icono">📆</span>Calendario</a>
+    <a href="ruleta.html"><span class="icono">🎰</span>Ruleta</a>
+    <a href="listas.html"><span class="icono">🎧</span>Listas</a>
+  </nav>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    let girando = false;
+
+    function iniciarRuleta() {
+      if (girando) return;
+      girando = true;
+
+      document.getElementById("ruleta-hint").style.opacity = "0";
+
+      const palancaWrap = document.getElementById("palanca-wrap");
+      const reels = [document.getElementById("reel1"), document.getElementById("reel2"), document.getElementById("reel3")];
+      const maquina = document.getElementById("maquina");
+
+      palancaWrap.classList.add("tirando");
+      setTimeout(() => palancaWrap.classList.remove("tirando"), 400);
+
+      reels.forEach(r => r.classList.add("girando"));
+
+      setTimeout(() => {
+        reels.forEach(r => r.classList.remove("girando"));
+        maquina.classList.add("acercando");
+
+        setTimeout(() => {
+          iniciarVideos();
+        }, 900);
+      }, 3000);
+    }
+
+    function iniciarVideos() {
+      const overlay = document.getElementById("video-overlay");
+      const video = document.getElementById("ruleta-video");
+      const musica = document.getElementById("ruleta-musica");
+      const videos = (typeof RULETA_VIDEOS !== "undefined" ? RULETA_VIDEOS : []).filter(Boolean);
+
+      overlay.classList.add("visible");
+
+      if (typeof RULETA_MUSICA !== "undefined" && RULETA_MUSICA) {
+        musica.src = RULETA_MUSICA;
+        musica.currentTime = 0;
+        musica.play().catch(() => {});
+      }
+
+      if (videos.length === 0) {
+        setTimeout(finalizarSecuencia, 1200);
+        return;
+      }
+
+      let i = 0;
+      const reproducirActual = () => {
+        video.src = videos[i];
+        video.play().catch(() => {});
+      };
+
+      video.onended = () => {
+        i++;
+        if (i < videos.length) reproducirActual();
+        else finalizarSecuencia();
+      };
+      video.onerror = () => {
+        i++;
+        if (i < videos.length) reproducirActual();
+        else finalizarSecuencia();
+      };
+
+      reproducirActual();
+    }
+
+    function finalizarSecuencia() {
+      const overlay = document.getElementById("video-overlay");
+      const video = document.getElementById("ruleta-video");
+      const musica = document.getElementById("ruleta-musica");
+
+      overlay.classList.remove("visible");
+      video.pause();
+      musica.pause();
+
+      revelarAnime();
+    }
+
+    function revelarAnime() {
+      const maquina = document.getElementById("maquina");
+      maquina.classList.add("oculta");
+
+      const candidatos = typeof ANIME_PLANEADOS !== "undefined" ? ANIME_PLANEADOS : [];
+      const elegido = pickRandom(candidatos);
+
+      const cont = document.getElementById("resultado-ruleta");
+      cont.innerHTML = "";
+
+      if (!elegido) {
+        cont.innerHTML = `<div class="empty-state">No hay nada en Planeados todavía para elegir 🎲</div>`;
+      } else {
+        const card = document.createElement("div");
+        card.className = "resultado-card pop-in";
+
+        const imgWrap = crearImagenConFallback(elegido.imagen, elegido.nombre);
+        card.appendChild(imgWrap);
+
+        const info = document.createElement("div");
+        info.className = "resultado-info";
+        info.innerHTML = `<span class="tag tag-peak">¡Elegido!</span><h2>${elegido.nombre}</h2>`;
+        card.appendChild(info);
+
+        cont.appendChild(card);
+      }
+
+      document.getElementById("resultado-wrap").classList.add("visible");
+      activarRevelados();
+      girando = false;
+    }
+
+    document.getElementById("palanca-wrap").addEventListener("click", iniciarRuleta);
+
+    document.getElementById("btn-otra-vez").addEventListener("click", () => {
+      document.getElementById("resultado-wrap").classList.remove("visible");
+      document.getElementById("maquina").classList.remove("acercando", "oculta");
+      document.getElementById("ruleta-hint").style.opacity = "1";
+    });
+  </script>
+</body>
+</html>
