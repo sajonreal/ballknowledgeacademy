@@ -149,18 +149,33 @@
       reproducirActual();
     }
 
-    function finalizarSecuencia() {
-      const overlay = document.getElementById("video-overlay");
-      const video = document.getElementById("ruleta-video");
-      const musica = document.getElementById("ruleta-musica");
-
-      overlay.classList.remove("visible");
-      video.pause();
-      musica.pause();
-
-      revelarAnime();
+    function fadeOutAudio(audio, duracionMs = 1800) {
+  const volumenInicial = audio.volume || 1;
+  const pasos = 30;
+  const intervalo = duracionMs / pasos;
+  let paso = 0;
+  const fade = setInterval(() => {
+    paso++;
+    audio.volume = Math.max(0, volumenInicial * (1 - paso / pasos));
+    if (paso >= pasos) {
+      clearInterval(fade);
+      audio.pause();
+      audio.volume = volumenInicial; // se restaura para la próxima tirada
     }
+  }, intervalo);
+}
 
+function finalizarSecuencia() {
+  const overlay = document.getElementById("video-overlay");
+  const video = document.getElementById("ruleta-video");
+  const musica = document.getElementById("ruleta-musica");
+
+  overlay.classList.remove("visible");
+  video.pause();
+  fadeOutAudio(musica, 1800); // la música se apaga suavemente en vez de cortarse
+
+  revelarAnime();
+}
     function revelarAnime() {
       const maquina = document.getElementById("maquina");
       maquina.classList.add("oculta");
