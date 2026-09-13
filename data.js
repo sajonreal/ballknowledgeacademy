@@ -121,8 +121,18 @@ const ANIME_COMPLETADOS = [
     nota: 7,
     subnotas: {
       opEd: 10, queso: 9, personalidadQueso: 7.5, cocina: 7, prota: 7,
-      animacion: 10, trama: 6, historia: 6, fanService: 7,
+      animacion: 9, trama: 6, historia: 6, fanService: 7,
       fantasia: 10, perSec: 5, actualHappiness: 7.5, aprendizaje: 5, final: 6
+    }
+  },
+	{
+    nombre: "Witch Watch",
+    imagen: "images/witchwatch.jpg",
+    nota: 8,
+    subnotas: {
+      opEd: 10, queso: 8, personalidadQueso: 8, cocina: 6, prota: 8,
+      animacion: 9, trama: 8, historia: 8, fanService: 4,
+      fantasia: 10, perSec: 8, actualHappiness: 10, aprendizaje: 5, final: null
     }
   },
   {
@@ -141,7 +151,7 @@ const ANIME_COMPLETADOS = [
     nota: 9,
     subnotas: {
       opEd: null, queso: 9, personalidadQueso: 8, cocina: 8, prota: 10,
-      animacion: 10, trama: 8, historia: 9, fanService: 8,
+      animacion: 9, trama: 8, historia: 9, fanService: 8,
       fantasia: 10, perSec: 8, actualHappiness: 2, aprendizaje: 6, final: 10
     }
   },
@@ -301,7 +311,6 @@ const ANIME_PLANEADOS = [
   { nombre: "Nisekoi", imagen: "images/nisekoi.jpg", prioridad: false, etiqueta: "" },
   { nombre: "More Than a Married Couple, But Not Lovers", imagen: "images/more-than-a-married-couple-but-not-lovers.jpg", prioridad: true, etiqueta: "" },
   { nombre: "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You", imagen: "images/the-100-girlfriends-who-really-really-really-really-really-love-you.webp", prioridad: false, etiqueta: "" },
-  { nombre: "Weathering With You", imagen: "images/weathering-with-you.avif", prioridad: false, etiqueta: "" },
   { nombre: "Oregairu", imagen: "images/oregairu.webp", prioridad: false, etiqueta: "" },
   { nombre: "Fruits Basket", imagen: "images/fruits-basket.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Just Because!", imagen: "images/just-because.png", prioridad: false, etiqueta: "" },
@@ -321,7 +330,19 @@ const ANIME_PLANEADOS = [
   { nombre: "Okitsura", imagen: "images/okitsura.jpe", prioridad: false, etiqueta: "" },
   { nombre: "Hokkaido Gals Are Super Adorable!", imagen: "images/hokkaido-gals-are-super-adorable.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Dealing With The Mikadono Sisters Is A Breeze", imagen: "images/dealing-with-the-mikadono-sisters-is-a-breeze.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Don't Toy With Me Miss Nagatoro", imagen: "images/don-t-toy-with-me-miss-nagatoro.jpg", prioridad: false, etiqueta: "" }
+  { nombre: "I Have a Crush at Work", imagen: "images/crush.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "7th Time Loop", imagen: "images/loop.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "My Happy Marriage", imagen: "images/marriage.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Aharen-san wa Hakarenai", imagen: "images/aharen.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "TONIKAWA: Over the Moon for You", imagen: "images/tonikawa.webp", prioridad: false, etiqueta: "" },
+  { nombre: "Don't Toy With Me Miss Nagatoro", imagen: "images/don-t-toy-with-me-miss-nagatoro.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "The Shiunji Family Children", imagen: "images/shiunji.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Makeine", imagen: "images/makeine.webp", prioridad: false, etiqueta: "" },
+  { nombre: "To Every You I've Loved Before", imagen: "images/you.jpe", prioridad: false, etiqueta: "" },
+  { nombre: "My Teen Romantic Comedy SNAFU", imagen: "images/snafu.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Uzaki-chan Wants to Hang Out!", imagen: "images/uzaki.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "ranma 1-2", imagen: "images/ranma.jpeg", prioridad: false, etiqueta: "" },
+  { nombre: "My Love Story!", imagen: "images/story.png", prioridad: false, etiqueta: "" }
 ];
 
 
