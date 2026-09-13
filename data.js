@@ -366,30 +366,42 @@ const ANIME_PLANEADOS = [
 ------------------------------------------------------------ */
 const CALENDARIO = {
   
-"2026-09-03": [
-    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 1 },
-	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 2 }
+"2026-09-13": [
+    { anime: "You And I Are Polar Opposites", episodio: 9 },
+	{ anime: "You And I Are Polar Opposites", episodio: 10 }
   ],
-"2026-09-04": [
-    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 3 },
-	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 4 }
+"2026-09-14": [
+    { anime: "You And I Are Polar Opposites", episodio: 11 },
+	{ anime: "You And I Are Polar Opposites", episodio: 12 }
   ],
-"2026-09-05": [
-    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 5 },
-	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 6 }
+	"2026-09-15": [
+    { anime: "The Ramparts Of Ice", episodio: 1 },
+	{ anime: "The Ramparts Of Ice", episodio: 2 }
   ],
-"2026-09-06": [
-    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 7 },
-	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 8 }
+	"2026-09-16": [
+    { anime: "The Ramparts Of Ice", episodio: 3 },
+	{ anime: "The Ramparts Of Ice", episodio: 4 }
   ],
-"2026-09-07": [
-    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 9 },
-	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 10 }
+	"2026-09-17": [
+    { anime: "The Ramparts Of Ice", episodio: 5 },
+	{ anime: "The Ramparts Of Ice", episodio: 6 }
   ],
-"2026-09-08": [
-    { anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 11 },
-	{ anime: "Alya Sometimes Hides Her Feelings In Russian", episodio: 12 }
-  ]
+	"2026-09-18": [
+    { anime: "The Ramparts Of Ice", episodio: 7 },
+	{ anime: "The Ramparts Of Ice", episodio: 8 }
+  ],
+	"2026-09-19": [
+    { anime: "The Ramparts Of Ice", episodio: 9 },
+	{ anime: "The Ramparts Of Ice", episodio: 10 }
+  ],
+	"2026-09-20": [
+    { anime: "The Ramparts Of Ice", episodio: 11 },
+	{ anime: "The Ramparts Of Ice", episodio: 12 }
+  ],
+	"2026-09-21": [
+    { anime: "The Ramparts Of Ice", episodio: 13 },
+	{ anime: "The Ramparts Of Ice", episodio: 14 }
+  ],
 };
 
 
