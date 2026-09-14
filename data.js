@@ -307,7 +307,7 @@ const ANIME_PLANEADOS = [
   { nombre: "Golden Time", imagen: "images/golden-time.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Toradora!", imagen: "images/toradora.avif", prioridad: false, etiqueta: "" },
   { nombre: "The Ramparts Of Ice", imagen: "images/the-ramparts-of-ice.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Blue Box", imagen: "images/blue-box.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Blue Box", imagen: "images/blue-box.jpg", prioridad: true, etiqueta: "" },
   { nombre: "Nisekoi", imagen: "images/nisekoi.jpg", prioridad: false, etiqueta: "" },
   { nombre: "More Than a Married Couple, But Not Lovers", imagen: "images/more-than-a-married-couple-but-not-lovers.jpg", prioridad: true, etiqueta: "" },
   { nombre: "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You", imagen: "images/the-100-girlfriends-who-really-really-really-really-really-love-you.webp", prioridad: false, etiqueta: "" },
@@ -329,7 +329,7 @@ const ANIME_PLANEADOS = [
   { nombre: "Science Fell in Love, So I Tried to Prove It", imagen: "images/science-fell-in-love-so-i-tried-to-prove-it.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Okitsura", imagen: "images/okitsura.jpe", prioridad: false, etiqueta: "" },
   { nombre: "Hokkaido Gals Are Super Adorable!", imagen: "images/hokkaido-gals-are-super-adorable.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Dealing With The Mikadono Sisters Is A Breeze", imagen: "images/dealing-with-the-mikadono-sisters-is-a-breeze.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Dealing With The Mikadono Sisters Is A Breeze", imagen: "images/dealing-with-the-mikadono-sisters-is-a-breeze.jpg", prioridad: true, etiqueta: "" },
   { nombre: "I Have a Crush at Work", imagen: "images/crush.jpg", prioridad: false, etiqueta: "" },
   { nombre: "7th Time Loop", imagen: "images/loop.jpg", prioridad: false, etiqueta: "" },
   { nombre: "My Happy Marriage", imagen: "images/marriage.jpg", prioridad: false, etiqueta: "" },
@@ -340,7 +340,7 @@ const ANIME_PLANEADOS = [
   { nombre: "Makeine", imagen: "images/makeine.webp", prioridad: false, etiqueta: "" },
   { nombre: "To Every You I've Loved Before", imagen: "images/you.jpe", prioridad: false, etiqueta: "" },
   { nombre: "My Teen Romantic Comedy SNAFU", imagen: "images/snafu.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Uzaki-chan Wants to Hang Out!", imagen: "images/uzaki.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "Uzaki-chan Wants to Hang Out!", imagen: "images/uzaki.jpg", prioridad: true, etiqueta: "" },
   { nombre: "ranma 1-2", imagen: "images/ranma.jpeg", prioridad: false, etiqueta: "" },
   { nombre: "My Love Story!", imagen: "images/story.png", prioridad: false, etiqueta: "" },
   { nombre: "GAMERS!", imagen: "images/gamers.avif", prioridad: false, etiqueta: "" },
@@ -361,7 +361,8 @@ const ANIME_PLANEADOS = [
   { nombre: "Blue Spring Ride", imagen: "images/blue.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Love, Chunibyo & Other Delusions!", imagen: "images/chunibyo.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Umamusume: Pretty Derby", imagen: "images/umamusume.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Smoking Behind the Supermarket with You", imagen: "images/smoking.jpg", prioridad: false, etiqueta: "" }
+  { nombre: "Smoking Behind the Supermarket with You", imagen: "images/smoking.jpg", prioridad: false, etiqueta: "" },
+  { nombre: "CLANNAD", imagen: "images/clannad.jpg", prioridad: false, etiqueta: "" }
 ];
 
 
