@@ -351,7 +351,7 @@ const ANIME_PLANEADOS = [
   { nombre: "Tomo-chan is a Girl!", imagen: "images/tomo.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Spice and Wolf", imagen: "images/spice.jpg", prioridad: false, etiqueta: "" },
   { nombre: "The Ancient Magus' Bride", imagen: "images/magus.webp", prioridad: false, etiqueta: "" },
-  { nombre: "Sankarea: Undying Love", imagen: "images/sankaera.webp", prioridad: false, etiqueta: "" },
+  { nombre: "Sankarea: Undying Love", imagen: "images/sankarea.webp", prioridad: false, etiqueta: "" },
   { nombre: "ReLIFE", imagen: "images/life.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Monthly Girls' Nozaki-kun", imagen: "images/month.jpg", prioridad: false, etiqueta: "" },
   { nombre: "My Little Monster", imagen: "images/monster.webp", prioridad: false, etiqueta: "" },
