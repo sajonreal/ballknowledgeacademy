@@ -422,6 +422,34 @@ const CALENDARIO = {
     { anime: "The Ramparts Of Ice", episodio: 13 },
 	{ anime: "The Ramparts Of Ice", episodio: 14 }
   ],
+	"2026-09-22": [
+    { anime: "You And I Are Polar Opposites", episodio: 1 },
+	{ anime: "You And I Are Polar Opposites", episodio: 2 }
+  ],
+	"2026-09-23": [
+    { anime: "You And I Are Polar Opposites", episodio: 3 },
+	{ anime: "You And I Are Polar Opposites", episodio: 4 }
+  ],
+	"2026-09-24": [
+    { anime: "You And I Are Polar Opposites", episodio: 5 },
+	{ anime: "You And I Are Polar Opposites", episodio: 6 }
+  ],
+	"2026-09-25": [
+    { anime: "You And I Are Polar Opposites", episodio: 7 },
+	{ anime: "You And I Are Polar Opposites", episodio: 8 }
+  ],
+	"2026-09-26": [
+    { anime: "You And I Are Polar Opposites", episodio: 9 },
+	{ anime: "You And I Are Polar Opposites", episodio: 10 }
+  ],
+	"2026-09-27": [
+    { anime: "You And I Are Polar Opposites", episodio: 11 },
+	{ anime: "You And I Are Polar Opposites", episodio: 12 }
+  ],
+	"2026-09-28": [
+    { anime: "You And I Are Polar Opposites", episodio: 13 },
+	{ anime: "The Ramparts Of Ice", episodio: 1 }
+  ],
 };
 
 
