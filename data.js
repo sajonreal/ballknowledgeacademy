@@ -532,3 +532,13 @@ const RULETA_VIDEOS = [
 ];
 
 const RULETA_MUSICA = "images/ruleta-musica.mp3";
+/* ------------------------------------------------------------
+   8) RULETA — gifs decorativos debajo de la máquina
+   ------------------------------------------------------------
+   RULETA_GIFS: hasta 2 rutas de gifs propios para esta página
+   (distintos de los de GIFS_DECORATIVOS, para no repetir).
+------------------------------------------------------------ */
+const RULETA_GIFS = [
+  "images/ruleta-gif1.gif",
+  "images/ruleta-gif2.gif"
+];
