@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Reseñas · Ballknowledge Academy</title>
 <link rel="stylesheet" href="style.css">
+<link rel="apple-touch-icon" href="images/icon-180.png">
+<link rel="icon" href="images/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Ballknowledge Academy">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -23,6 +28,10 @@
   <div class="page-header reveal">
     <h1>📝 Reseñas</h1>
     <p>Solo los animes que hemos escalado nosotros, con su desglose completo</p>
+  </div>
+
+  <div class="buscador-wrap">
+    <input type="text" id="buscador" class="buscador" placeholder="🔍 Buscar anime por nombre...">
   </div>
 
   <button class="orden-toggle" id="btn-orden">Ordenar: mejor nota primero ⇅</button>
@@ -44,6 +53,7 @@
   <script src="script.js"></script>
   <script>
     let ordenAscendente = false;
+    let terminoBusqueda = "";
 
     function valorOrden(anime) {
       // los que aún no tienen nota (en visionado) van siempre al principio
@@ -54,10 +64,19 @@
       const cont = document.getElementById("lista-resenas");
       cont.innerHTML = "";
 
-      const lista = [...ANIME_COMPLETADOS].sort((a, b) => {
+      const filtrada = ANIME_COMPLETADOS.filter(a =>
+        a.nombre.toLowerCase().includes(terminoBusqueda)
+      );
+
+      const lista = [...filtrada].sort((a, b) => {
         const diff = valorOrden(b) - valorOrden(a);
         return ordenAscendente ? -diff : diff;
       });
+
+      if (!lista.length) {
+        cont.innerHTML = `<div class="empty-state">No hay ninguna reseña que coincida con "${terminoBusqueda}".</div>`;
+        return;
+      }
 
       lista.forEach(anime => {
         const card = document.createElement("div");
@@ -114,6 +133,11 @@
     document.getElementById("btn-orden").addEventListener("click", (e) => {
       ordenAscendente = !ordenAscendente;
       e.target.textContent = ordenAscendente ? "Ordenar: peor nota primero ⇅" : "Ordenar: mejor nota primero ⇅";
+      pintarResenas();
+    });
+
+    document.getElementById("buscador").addEventListener("input", (e) => {
+      terminoBusqueda = e.target.value.trim().toLowerCase();
       pintarResenas();
     });
 
