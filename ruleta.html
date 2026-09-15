@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ruleta · Ballknowledge Academy</title>
 <link rel="stylesheet" href="style.css">
+<link rel="apple-touch-icon" href="images/icon-180.png">
+<link rel="icon" href="images/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Ballknowledge Academy">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -24,6 +29,15 @@
   </div>
 
   <section class="ruleta-section reveal">
+    <span class="casino-symbol cs-1">🎲</span>
+    <span class="casino-symbol cs-2">🍒</span>
+    <span class="casino-symbol cs-3">🔔</span>
+    <span class="casino-symbol cs-4">7️⃣</span>
+    <span class="casino-symbol cs-5">♠️</span>
+    <span class="casino-symbol cs-6">💰</span>
+    <span class="casino-symbol cs-7">🃏</span>
+    <span class="casino-symbol cs-8">✨</span>
+
     <div class="slot-machine" id="maquina">
       <div class="marquee">
         <span class="marquee-luz"></span><span class="marquee-luz"></span><span class="marquee-luz"></span>
@@ -56,6 +70,8 @@
     </div>
 
     <p class="ruleta-hint" id="ruleta-hint">👆 Toca la palanca para tirar</p>
+
+    <div class="hero-gifs" id="ruleta-gifs" style="margin-top:26px;"></div>
   </section>
 
   <div class="video-overlay" id="video-overlay">
@@ -150,32 +166,33 @@
     }
 
     function fadeOutAudio(audio, duracionMs = 1800) {
-  const volumenInicial = audio.volume || 1;
-  const pasos = 30;
-  const intervalo = duracionMs / pasos;
-  let paso = 0;
-  const fade = setInterval(() => {
-    paso++;
-    audio.volume = Math.max(0, volumenInicial * (1 - paso / pasos));
-    if (paso >= pasos) {
-      clearInterval(fade);
-      audio.pause();
-      audio.volume = volumenInicial; // se restaura para la próxima tirada
+      const volumenInicial = audio.volume || 1;
+      const pasos = 30;
+      const intervalo = duracionMs / pasos;
+      let paso = 0;
+      const fade = setInterval(() => {
+        paso++;
+        audio.volume = Math.max(0, volumenInicial * (1 - paso / pasos));
+        if (paso >= pasos) {
+          clearInterval(fade);
+          audio.pause();
+          audio.volume = volumenInicial;
+        }
+      }, intervalo);
     }
-  }, intervalo);
-}
 
-function finalizarSecuencia() {
-  const overlay = document.getElementById("video-overlay");
-  const video = document.getElementById("ruleta-video");
-  const musica = document.getElementById("ruleta-musica");
+    function finalizarSecuencia() {
+      const overlay = document.getElementById("video-overlay");
+      const video = document.getElementById("ruleta-video");
+      const musica = document.getElementById("ruleta-musica");
 
-  overlay.classList.remove("visible");
-  video.pause();
-  fadeOutAudio(musica, 1800); // la música se apaga suavemente en vez de cortarse
+      overlay.classList.remove("visible");
+      video.pause();
+      fadeOutAudio(musica, 1800);
 
-  revelarAnime();
-}
+      revelarAnime();
+    }
+
     function revelarAnime() {
       const maquina = document.getElementById("maquina");
       maquina.classList.add("oculta");
@@ -208,6 +225,13 @@ function finalizarSecuencia() {
       girando = false;
     }
 
+    function pintarGifsRuleta() {
+      const cont = document.getElementById("ruleta-gifs");
+      const gifs = typeof RULETA_GIFS !== "undefined" ? RULETA_GIFS : [];
+      if (gifs[0]) cont.appendChild(crearGifSlot(gifs[0], "gif-solo size-lg tilt-a"));
+      if (gifs[1]) cont.appendChild(crearGifSlot(gifs[1], "gif-solo size-lg tilt-c"));
+    }
+
     document.getElementById("palanca-wrap").addEventListener("click", iniciarRuleta);
 
     document.getElementById("btn-otra-vez").addEventListener("click", () => {
@@ -215,6 +239,8 @@ function finalizarSecuencia() {
       document.getElementById("maquina").classList.remove("acercando", "oculta");
       document.getElementById("ruleta-hint").style.opacity = "1";
     });
+
+    pintarGifsRuleta();
   </script>
 </body>
 </html>
