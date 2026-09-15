@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Planeados · Ballknowledge Academy</title>
 <link rel="stylesheet" href="style.css">
+<link rel="apple-touch-icon" href="images/icon-180.png">
+<link rel="icon" href="images/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Ballknowledge Academy">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -25,6 +30,10 @@
     <p>La cola de escalada: lo próximo que vamos a ver</p>
   </div>
 
+  <div class="buscador-wrap">
+    <input type="text" id="buscador" class="buscador" placeholder="🔍 Buscar anime por nombre...">
+  </div>
+
   <div class="grid-animes" id="grid-planeados"></div>
 
   <footer class="espaciador"></footer>
@@ -41,16 +50,27 @@
   <script src="data.js"></script>
   <script src="script.js"></script>
   <script>
+    let terminoBusqueda = "";
+
     function pintarPlaneados() {
       const grid = document.getElementById("grid-planeados");
       grid.innerHTML = "";
+
+      const filtrados = ANIME_PLANEADOS.filter(a =>
+        a.nombre.toLowerCase().includes(terminoBusqueda)
+      );
 
       if (!ANIME_PLANEADOS.length) {
         grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">La lista de planeados está vacía. ¡Añade algo en data.js!</div>`;
         return;
       }
 
-      ANIME_PLANEADOS.forEach(anime => {
+      if (!filtrados.length) {
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">No hay ningún anime planeado que coincida con "${terminoBusqueda}".</div>`;
+        return;
+      }
+
+      filtrados.forEach(anime => {
         const card = document.createElement("div");
         card.className = "anime-card reveal";
 
@@ -75,6 +95,11 @@
 
       activarRevelados();
     }
+
+    document.getElementById("buscador").addEventListener("input", (e) => {
+      terminoBusqueda = e.target.value.trim().toLowerCase();
+      pintarPlaneados();
+    });
 
     pintarPlaneados();
   </script>
