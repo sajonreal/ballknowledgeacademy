@@ -114,6 +114,8 @@
   </nav>
 
   <script src="data.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script src="script.js"></script>
   <script>
     function renderAnuncio(contenedorId, tipo, anime, extra) {
@@ -281,14 +283,20 @@
 
     lanzarCorazones(8);
     pintarActual();
-    pintarTop();
-    pintarHappiness();
     pintarPeak();
-    pintarCharca();
     pintarLeyenda();
     pintarGifsPortada();
     pintarComunidad();
     vigilarCambioDeDia(pintarActual);
+
+    // Estas tres dependen de las notas, así que esperan a Firebase
+    // (si no está configurado todavía, se resuelve al instante igualmente)
+    (async () => {
+      await cargarNotasUsuariosYAplicar();
+      pintarTop();
+      pintarHappiness();
+      pintarCharca();
+    })();
 
     document.getElementById("parallax-img").onerror = function () {
       const wrap = this.parentElement;
