@@ -1024,11 +1024,6 @@ footer.espaciador { height: 20px; }
   }
 }
 
-/* Tablón "Actual happiness" — tono rosa */
-.tag-happiness { background: #ffe1ef; color: #d6317e; }
-.tag-happiness::before { content: "💗 "; }
-.anuncio-card--happiness { border-left: 4px solid #d6317e; }
-
 /* ============================================================
    RULETA — máquina tragaperras
    ============================================================ */
@@ -1254,6 +1249,7 @@ footer.espaciador { height: 20px; }
 .resultado-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 .resultado-info { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .resultado-info h2 { margin: 0; font-size: 1.15rem; }
+
 /* ---------------- Símbolos de casino alrededor de la máquina ---------------- */
 .ruleta-section {
   position: relative;
@@ -1303,4 +1299,221 @@ footer.espaciador { height: 20px; }
 }
 .buscador::placeholder {
   color: var(--text-soft);
+}
+
+/* ---------------- Pantalla de inicio de sesión ---------------- */
+#login-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(160deg, var(--bg), var(--pink-pastel));
+}
+
+.login-card {
+  width: 100%;
+  max-width: 320px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px 26px;
+  text-align: center;
+  box-shadow: var(--shadow-neon);
+  border: 1px solid var(--pink-pastel);
+  animation: apareceArriba 0.6s var(--ease) both;
+}
+
+.login-logo {
+  font-size: 2.4rem;
+  margin-bottom: 6px;
+}
+
+.login-card h1 {
+  font-size: 1.2rem;
+  margin: 0 0 4px;
+}
+
+.login-card > p {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  margin: 0 0 20px;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#login-form input {
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--pink-pastel);
+  background: var(--bg-soft);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.3s var(--ease);
+}
+#login-form input:focus {
+  border-color: var(--pink-neon);
+}
+
+#login-form button {
+  margin-top: 4px;
+  padding: 12px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  color: var(--white);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  box-shadow: var(--shadow-neon);
+  transition: transform 0.3s var(--ease);
+}
+#login-form button:active { transform: scale(0.97); }
+
+.login-error {
+  min-height: 16px;
+  font-size: 0.78rem;
+  color: #d6317e;
+  margin: 0;
+}
+
+/* ---------------- Botones de valoración en Reseñas ---------------- */
+.valorar-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.mini-accion-btn {
+  flex: 1;
+  min-width: 130px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--pink-pastel);
+  background: var(--bg-soft);
+  color: var(--pink-neon-strong);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease);
+}
+.mini-accion-btn:active { transform: scale(0.96); }
+.mini-accion-btn.destacado {
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: var(--shadow-neon);
+  flex-basis: 100%;
+}
+
+/* ---------------- Overlay del formulario de valoración ---------------- */
+.valorar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 26px 16px 60px;
+  background: rgba(58, 34, 51, 0.55);
+  backdrop-filter: blur(3px);
+}
+.valorar-overlay.visible { display: flex; }
+
+.valorar-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 22px 20px 24px;
+  box-shadow: var(--shadow-neon);
+  border: 1px solid var(--pink-pastel);
+}
+.valorar-card h2 { font-size: 1.05rem; margin: 0 0 4px; }
+.valorar-sub { font-size: 0.78rem; color: var(--text-soft); margin: 0 0 14px; }
+
+.valorar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.valorar-campo { display: flex; flex-direction: column; gap: 4px; }
+.valorar-campo label { font-size: 0.68rem; color: var(--text-soft); font-weight: 600; }
+.valorar-campo input,
+.valorar-final input {
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--pink-pastel);
+  background: var(--bg-soft);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.valorar-campo input:focus,
+.valorar-final input:focus { border-color: var(--pink-neon); }
+
+.valorar-final {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 18px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--pink-pastel);
+}
+.valorar-final label { font-size: 0.78rem; font-weight: 700; color: var(--pink-neon-strong); }
+
+.valorar-botones { display: flex; gap: 10px; }
+.valorar-cancelar,
+.valorar-guardar {
+  flex: 1;
+  padding: 11px;
+  border-radius: 999px;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+.valorar-cancelar {
+  background: var(--bg-soft);
+  color: var(--text-soft);
+  border: 1px solid var(--pink-pastel);
+}
+.valorar-guardar {
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  color: var(--white);
+  box-shadow: var(--shadow-neon);
+}
+.valorar-cancelar:active,
+.valorar-guardar:active { transform: scale(0.97); }
+
+.valorar-nota-envio {
+  margin: 10px 0 0;
+  font-size: 0.68rem;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+/* ---------------- Panel "ver notas de los usuarios" ---------------- */
+.vernotas-usuario {
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--pink-pastel);
+}
+.vernotas-usuario:last-child { border-bottom: none; margin-bottom: 6px; }
+.vernotas-usuario h4 {
+  margin: 0 0 8px;
+  font-size: 0.88rem;
+  color: var(--pink-neon-strong);
 }
