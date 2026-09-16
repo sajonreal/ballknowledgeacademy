@@ -10,11 +10,6 @@
 <meta name="apple-mobile-web-app-title" content="Ballknowledge Academy">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="images/icon-180.png">
-<link rel="icon" href="images/icon-180.png">
-<meta name="apple-mobile-web-app-title" content="Ballknowledge Academy">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -54,15 +49,50 @@
     <a href="listas.html"><span class="icono">🎧</span>Listas</a>
   </nav>
 
+  <!-- Formulario de valoración (oculto hasta que se abre) -->
+  <div class="valorar-overlay" id="valorar-overlay">
+    <div class="valorar-card">
+      <h2 id="valorar-titulo">Valorar anime</h2>
+      <p class="valorar-sub" id="valorar-sub"></p>
+
+      <div class="valorar-grid" id="valorar-grid"></div>
+
+      <div class="valorar-final">
+        <label for="valorar-final-input">🏁 Nota final</label>
+        <input type="number" id="valorar-final-input" min="1" max="10" step="0.5">
+      </div>
+
+      <div class="valorar-botones">
+        <button type="button" class="valorar-cancelar" id="valorar-cancelar">Cancelar</button>
+        <button type="button" class="valorar-guardar" id="valorar-guardar">📧 Guardar y enviar</button>
+      </div>
+      <p class="valorar-nota-envio">Se abrirá tu app de Mail con las notas ya escritas — solo tienes que pulsar enviar.</p>
+    </div>
+  </div>
+
+  <!-- Panel para ver las notas de los dos usuarios -->
+  <div class="valorar-overlay" id="vernotas-overlay">
+    <div class="valorar-card">
+      <h2 id="vernotas-titulo">Notas de los usuarios</h2>
+      <div id="vernotas-contenido"></div>
+      <div class="valorar-botones">
+        <button type="button" class="valorar-cancelar" id="vernotas-cerrar" style="width:100%;">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
   <script src="data.js"></script>
   <script src="script.js"></script>
   <script>
+    const CORREO_VALORACIONES = "jarranztorrijos@gmail.com";
+
     let ordenAscendente = false;
     let terminoBusqueda = "";
+    let animeEnEdicion = null;
 
     function valorOrden(anime) {
-      // los que aún no tienen nota (en visionado) van siempre al principio
-      return anime.nota === null || anime.nota === undefined ? Infinity : anime.nota;
+      const n = calcularNotasFinales(anime).nota;
+      return n === null || n === undefined ? Infinity : n;
     }
 
     function pintarResenas() {
@@ -83,7 +113,11 @@
         return;
       }
 
+      const usuarioActual = getUsuarioActual();
+
       lista.forEach(anime => {
+        const { nota, subnotas } = calcularNotasFinales(anime);
+
         const card = document.createElement("div");
         card.className = "resena-card reveal";
 
@@ -106,7 +140,7 @@
         const top = document.createElement("div");
         top.className = "resena-top";
 
-        const notaTexto = (anime.nota === null || anime.nota === undefined) ? "?" : anime.nota;
+        const notaTexto = (nota === null || nota === undefined) ? "?" : nota;
         top.innerHTML = `
           <h3>${anime.nombre}</h3>
           <div class="nota-final-box">
@@ -119,7 +153,7 @@
         const grid = document.createElement("div");
         grid.className = "stat-grid";
         ESTADISTICAS.forEach(stat => {
-          const valor = anime.subnotas ? anime.subnotas[stat.key] : null;
+          const valor = subnotas ? subnotas[stat.key] : null;
           const valorTexto = (valor === null || valor === undefined) ? "?" : valor;
           const chip = document.createElement("div");
           chip.className = "stat-chip";
@@ -128,6 +162,33 @@
         });
         body.appendChild(grid);
 
+        // Botones de valoración personal
+        const yaValorado = anime.notasUsuarios && anime.notasUsuarios[usuarioActual];
+        const accionesWrap = document.createElement("div");
+        accionesWrap.className = "valorar-acciones";
+
+        if (yaValorado) {
+          const btnCambiar = document.createElement("button");
+          btnCambiar.className = "mini-accion-btn";
+          btnCambiar.textContent = "✏️ Cambiar valoración";
+          btnCambiar.addEventListener("click", () => abrirFormularioValoracion(anime));
+
+          const btnVer = document.createElement("button");
+          btnVer.className = "mini-accion-btn";
+          btnVer.textContent = "👀 Ver notas de los usuarios";
+          btnVer.addEventListener("click", () => abrirVerNotas(anime));
+
+          accionesWrap.appendChild(btnCambiar);
+          accionesWrap.appendChild(btnVer);
+        } else {
+          const btnValorar = document.createElement("button");
+          btnValorar.className = "mini-accion-btn destacado";
+          btnValorar.textContent = "⭐ Valorar este anime";
+          btnValorar.addEventListener("click", () => abrirFormularioValoracion(anime));
+          accionesWrap.appendChild(btnValorar);
+        }
+
+        body.appendChild(accionesWrap);
         card.appendChild(body);
         cont.appendChild(card);
       });
@@ -135,6 +196,125 @@
       activarRevelados();
     }
 
+    /* ---------------- Formulario de valoración ---------------- */
+    function abrirFormularioValoracion(anime) {
+      animeEnEdicion = anime;
+      const usuarioActual = getUsuarioActual();
+      const notaPrevia = (anime.notasUsuarios && anime.notasUsuarios[usuarioActual]) || {};
+
+      document.getElementById("valorar-titulo").textContent = `Valorar: ${anime.nombre}`;
+      document.getElementById("valorar-sub").textContent = `Valorando como ${usuarioActual}`;
+
+      const grid = document.getElementById("valorar-grid");
+      grid.innerHTML = "";
+      ESTADISTICAS.forEach(stat => {
+        const campo = document.createElement("div");
+        campo.className = "valorar-campo";
+        const valorPrevio = notaPrevia[stat.key] ?? "";
+        campo.innerHTML = `
+          <label for="v-${stat.key}">${stat.emoji} ${stat.label}</label>
+          <input type="number" id="v-${stat.key}" min="1" max="10" step="0.5" value="${valorPrevio}">
+        `;
+        grid.appendChild(campo);
+      });
+
+      document.getElementById("valorar-final-input").value = notaPrevia.final ?? "";
+      document.getElementById("valorar-overlay").classList.add("visible");
+    }
+
+    function cerrarFormularioValoracion() {
+      document.getElementById("valorar-overlay").classList.remove("visible");
+      animeEnEdicion = null;
+    }
+
+    function guardarYEnviarValoracion() {
+      if (!animeEnEdicion) return;
+      const usuarioActual = getUsuarioActual();
+
+      const valores = {};
+      let huecos = false;
+      ESTADISTICAS.forEach(stat => {
+        const input = document.getElementById(`v-${stat.key}`);
+        const v = input.value.trim();
+        if (v === "") { huecos = true; return; }
+        valores[stat.key] = Number(v);
+      });
+      const finalInput = document.getElementById("valorar-final-input");
+      if (finalInput.value.trim() === "") huecos = true;
+      else valores.final = Number(finalInput.value);
+
+      if (huecos || Object.values(valores).some(v => v < 1 || v > 10)) {
+        alert("Rellena todas las casillas con un número entre 1 y 10.");
+        return;
+      }
+
+      // Bloque listo para copiar y pegar en data.js
+      const lineas = ESTADISTICAS.map(stat => `      ${stat.key}: ${valores[stat.key]}`).join(",\n");
+      const bloqueCodigo =
+        `"${usuarioActual}": {\n${lineas},\n      final: ${valores.final}\n    }`;
+
+      const asunto = `Valoración: ${usuarioActual} — ${animeEnEdicion.nombre}`;
+      const cuerpo =
+`Anime: ${animeEnEdicion.nombre}
+Usuario: ${usuarioActual}
+
+${ESTADISTICAS.map(stat => `${stat.emoji} ${stat.label}: ${valores[stat.key]}`).join("\n")}
+
+Nota final: ${valores.final}
+
+---
+Copia esto dentro de "notasUsuarios" de este anime en data.js:
+
+${bloqueCodigo}`;
+
+      const mailtoUrl = `mailto:${CORREO_VALORACIONES}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+      window.location.href = mailtoUrl;
+
+      cerrarFormularioValoracion();
+    }
+
+    document.getElementById("valorar-cancelar").addEventListener("click", cerrarFormularioValoracion);
+    document.getElementById("valorar-guardar").addEventListener("click", guardarYEnviarValoracion);
+
+    /* ---------------- Ver notas de los usuarios ---------------- */
+    function abrirVerNotas(anime) {
+      document.getElementById("vernotas-titulo").textContent = `Notas de: ${anime.nombre}`;
+      const cont = document.getElementById("vernotas-contenido");
+      cont.innerHTML = "";
+
+      const usuarios = anime.notasUsuarios || {};
+      const nombres = Object.keys(usuarios);
+
+      if (!nombres.length) {
+        cont.innerHTML = `<p class="valorar-sub">Todavía no hay notas guardadas.</p>`;
+      } else {
+        nombres.forEach(nombreUsuario => {
+          const datos = usuarios[nombreUsuario];
+          const bloque = document.createElement("div");
+          bloque.className = "vernotas-usuario";
+          bloque.innerHTML = `
+            <h4>${nombreUsuario}</h4>
+            <div class="stat-grid">
+              ${ESTADISTICAS.map(stat => {
+                const v = datos[stat.key];
+                const texto = (v === null || v === undefined) ? "?" : v;
+                return `<div class="stat-chip"><span class="sc-emoji">${stat.emoji}</span><span class="sc-label">${stat.label}</span><span class="sc-value">${texto}</span></div>`;
+              }).join("")}
+              <div class="stat-chip"><span class="sc-emoji">🏁</span><span class="sc-label">Nota final</span><span class="sc-value">${datos.final ?? "?"}</span></div>
+            </div>
+          `;
+          cont.appendChild(bloque);
+        });
+      }
+
+      document.getElementById("vernotas-overlay").classList.add("visible");
+    }
+
+    document.getElementById("vernotas-cerrar").addEventListener("click", () => {
+      document.getElementById("vernotas-overlay").classList.remove("visible");
+    });
+
+    /* ---------------- Filtros y orden ---------------- */
     document.getElementById("btn-orden").addEventListener("click", (e) => {
       ordenAscendente = !ordenAscendente;
       e.target.textContent = ordenAscendente ? "Ordenar: peor nota primero ⇅" : "Ordenar: mejor nota primero ⇅";
