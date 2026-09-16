@@ -5,11 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ballknowledge Academy</title>
 <link rel="stylesheet" href="style.css">
-  <link rel="apple-touch-icon" href="images/icon-180.png">
-<link rel="icon" href="images/icon-180.png">
-<meta name="apple-mobile-web-app-title" content="Ballknowledge Academy">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -115,7 +110,6 @@
     <a href="resenas.html"><span class="icono">📝</span>Reseñas</a>
     <a href="planeados.html"><span class="icono">📌</span>Planeados</a>
     <a href="calendario.html"><span class="icono">📆</span>Calendario</a>
-    <a href="ruleta.html"><span class="icono">🎰</span>Ruleta</a>
     <a href="listas.html"><span class="icono">🎧</span>Listas</a>
   </nav>
 
@@ -179,14 +173,16 @@
     }
 
     function pintarTop() {
-      const candidatos = (typeof ANIME_COMPLETADOS !== "undefined") ? ANIME_COMPLETADOS.filter(a => a.nota === 10) : [];
+      const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
+        ? ANIME_COMPLETADOS.filter(a => calcularNotasFinales(a).nota === 10)
+        : [];
       const elegido = pickRandom(candidatos);
-      renderAnuncio("card-top", "top", elegido, elegido ? `Nota final: ⭐ ${elegido.nota}` : "");
+      renderAnuncio("card-top", "top", elegido, elegido ? `Nota final: ⭐ ${calcularNotasFinales(elegido).nota}` : "");
     }
 
     function pintarHappiness() {
       const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
-        ? ANIME_COMPLETADOS.filter(a => a.subnotas && a.subnotas.actualHappiness === 10)
+        ? ANIME_COMPLETADOS.filter(a => calcularNotasFinales(a).subnotas.actualHappiness === 10)
         : [];
       const elegido = pickRandom(candidatos);
       renderAnuncio("card-happiness", "happiness", elegido, elegido ? `Actual happiness: 💗 10` : "");
@@ -199,10 +195,13 @@
 
     function pintarCharca() {
       const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
-        ? ANIME_COMPLETADOS.filter(a => a.nota !== null && a.nota !== undefined && a.nota <= 6)
+        ? ANIME_COMPLETADOS.filter(a => {
+            const n = calcularNotasFinales(a).nota;
+            return n !== null && n !== undefined && n <= 6;
+          })
         : [];
       const elegido = pickRandom(candidatos);
-      renderAnuncio("card-charca", "charca", elegido, elegido ? `Nota final: ⭐ ${elegido.nota} · a veces toca escalar un charco` : "");
+      renderAnuncio("card-charca", "charca", elegido, elegido ? `Nota final: ⭐ ${calcularNotasFinales(elegido).nota} · a veces toca escalar un charco` : "");
     }
 
     // pequeñas descripciones para la leyenda de puntuación
