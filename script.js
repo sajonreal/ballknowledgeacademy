@@ -126,6 +126,62 @@ function calcularNotasFinales(anime) {
   return { nota, subnotas };
 }
 
+/* --------------------------------------------------------
+   Firebase: valoraciones compartidas de verdad entre los
+   dos dispositivos. Si "FIREBASE_CONFIG" no existe todavía
+   en data.js, estas funciones simplemente no hacen nada y
+   la web sigue funcionando con los valores fijos de siempre.
+-------------------------------------------------------- */
+function slugAnime(nombre) {
+  return nombre
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+let _dbFirestore = null;
+
+function initFirebase() {
+  if (_dbFirestore) return _dbFirestore;
+  if (typeof FIREBASE_CONFIG === "undefined" || typeof firebase === "undefined") return null;
+  if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+  _dbFirestore = firebase.firestore();
+  return _dbFirestore;
+}
+
+/* Trae las valoraciones de Firebase y las mete directamente
+   dentro de ANIME_COMPLETADOS (en "notasUsuarios"), para que
+   calcularNotasFinales() las use exactamente igual que si
+   estuvieran escritas a mano en data.js. */
+async function cargarNotasUsuariosYAplicar() {
+  const db = initFirebase();
+  if (!db || typeof ANIME_COMPLETADOS === "undefined") return;
+
+  try {
+    const snapshot = await db.collection("valoraciones").get();
+    const mapa = {};
+    snapshot.forEach(doc => { mapa[doc.id] = doc.data(); });
+
+    ANIME_COMPLETADOS.forEach(anime => {
+      const datos = mapa[slugAnime(anime.nombre)];
+      if (datos) anime.notasUsuarios = datos;
+    });
+  } catch (err) {
+    console.error("No se pudieron cargar las valoraciones de Firebase:", err);
+  }
+}
+
+/* Guarda (o actualiza) la valoración de un usuario para un
+   anime, sin borrar la del otro usuario (merge: true). */
+async function guardarNotaUsuarioFirebase(animeNombre, usuario, valores) {
+  const db = initFirebase();
+  if (!db) throw new Error("Firebase no está configurado todavía en data.js.");
+  const id = slugAnime(animeNombre);
+  await db.collection("valoraciones").doc(id).set({ [usuario]: valores }, { merge: true });
+}
+
+
 /* Crea un <img> con fallback bonito si la imagen no existe todavía */
 function crearImagenConFallback(src, alt) {
   const wrap = document.createElement("div");
