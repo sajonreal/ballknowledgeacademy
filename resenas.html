@@ -64,9 +64,9 @@
 
       <div class="valorar-botones">
         <button type="button" class="valorar-cancelar" id="valorar-cancelar">Cancelar</button>
-        <button type="button" class="valorar-guardar" id="valorar-guardar">📧 Guardar y enviar</button>
+        <button type="button" class="valorar-guardar" id="valorar-guardar">💾 Guardar valoración</button>
       </div>
-      <p class="valorar-nota-envio">Se abrirá tu app de Mail con las notas ya escritas — solo tienes que pulsar enviar.</p>
+      <p class="valorar-nota-envio">Se guarda al momento — la media se actualiza en cuanto pulses aquí.</p>
     </div>
   </div>
 
@@ -82,10 +82,10 @@
   </div>
 
   <script src="data.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script src="script.js"></script>
   <script>
-    const CORREO_VALORACIONES = "jarranztorrijos@gmail.com";
-
     let ordenAscendente = false;
     let terminoBusqueda = "";
     let animeEnEdicion = null;
@@ -227,7 +227,7 @@
       animeEnEdicion = null;
     }
 
-    function guardarYEnviarValoracion() {
+    async function guardarYEnviarValoracion() {
       if (!animeEnEdicion) return;
       const usuarioActual = getUsuarioActual();
 
@@ -248,29 +248,21 @@
         return;
       }
 
-      // Bloque listo para copiar y pegar en data.js
-      const lineas = ESTADISTICAS.map(stat => `      ${stat.key}: ${valores[stat.key]}`).join(",\n");
-      const bloqueCodigo =
-        `"${usuarioActual}": {\n${lineas},\n      final: ${valores.final}\n    }`;
+      const boton = document.getElementById("valorar-guardar");
+      boton.disabled = true;
+      boton.textContent = "Guardando...";
 
-      const asunto = `Valoración: ${usuarioActual} — ${animeEnEdicion.nombre}`;
-      const cuerpo =
-`Anime: ${animeEnEdicion.nombre}
-Usuario: ${usuarioActual}
-
-${ESTADISTICAS.map(stat => `${stat.emoji} ${stat.label}: ${valores[stat.key]}`).join("\n")}
-
-Nota final: ${valores.final}
-
----
-Copia esto dentro de "notasUsuarios" de este anime en data.js:
-
-${bloqueCodigo}`;
-
-      const mailtoUrl = `mailto:${CORREO_VALORACIONES}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-      window.location.href = mailtoUrl;
-
-      cerrarFormularioValoracion();
+      try {
+        await guardarNotaUsuarioFirebase(animeEnEdicion.nombre, usuarioActual, valores);
+        cerrarFormularioValoracion();
+        await cargarNotasUsuariosYAplicar();
+        pintarResenas();
+      } catch (err) {
+        alert("No se ha podido guardar: " + err.message);
+      } finally {
+        boton.disabled = false;
+        boton.textContent = "💾 Guardar valoración";
+      }
     }
 
     document.getElementById("valorar-cancelar").addEventListener("click", cerrarFormularioValoracion);
@@ -326,7 +318,11 @@ ${bloqueCodigo}`;
       pintarResenas();
     });
 
-    pintarResenas();
+    (async () => {
+      pintarResenas(); // se ve algo al instante con los valores fijos de data.js
+      await cargarNotasUsuariosYAplicar(); // y en cuanto llegan los de Firebase, se repinta
+      pintarResenas();
+    })();
   </script>
 </body>
 </html>
