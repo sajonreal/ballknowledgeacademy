@@ -542,11 +542,11 @@ const RULETA_GIFS = [
   "images/ruleta-gif1.gif",
   "images/ruleta-gif2.gif"
 ];
-const FIREBASE_CONFIG = [
+const FIREBASE_CONFIG = {
   apiKey: "AIzaSyAvMzeSStSFJvVywfs5fJaaZsVW4F5AAEI",
   authDomain: "ballknowledge-academy.firebaseapp.com",
   projectId: "ballknowledge-academy",
   storageBucket: "ballknowledge-academy.firebasestorage.app",
   messagingSenderId: "31335381132",
   appId: "1:31335381132:web:fb5b2db9232296f869e3a9"
-];
+}
