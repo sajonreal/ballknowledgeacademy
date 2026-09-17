@@ -468,6 +468,8 @@ const CALENDARIO = {
 ------------------------------------------------------------ */
 const IMAGEN_PARALLAX = "images/parallax-hero.png";
 
+const IMAGEN_LOGIN = "images/login-imagen.jpg"; // si no la subes, se ve un 🎓 en su lugar
+
 const GIFS_DECORATIVOS = [
   "images/gif1.gif",
   "images/gif2.gif",
