@@ -26,11 +26,16 @@ function getUsuarioActual() {
 function mostrarPantallaLogin() {
   document.body.style.overflow = "hidden";
 
+  const tieneImagen = typeof IMAGEN_LOGIN !== "undefined" && IMAGEN_LOGIN;
+  const imagenHtml = tieneImagen
+    ? `<div class="login-imagen-wrap"><img src="${IMAGEN_LOGIN}" alt="" onerror="this.parentElement.classList.add('img-fallback'); this.remove();"></div>`
+    : `<div class="login-imagen-wrap img-fallback">🎓</div>`;
+
   const overlay = document.createElement("div");
   overlay.id = "login-overlay";
   overlay.innerHTML = `
+    ${imagenHtml}
     <div class="login-card">
-      <div class="login-logo">🎓</div>
       <h1>Ballknowledge Academy</h1>
       <p>Inicia sesión para entrar</p>
       <form id="login-form">
