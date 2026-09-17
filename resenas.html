@@ -201,16 +201,17 @@
       animeEnEdicion = anime;
       const usuarioActual = getUsuarioActual();
       const notaPrevia = (anime.notasUsuarios && anime.notasUsuarios[usuarioActual]) || {};
+      const { nota: notaMedia, subnotas: subnotasMedia } = calcularNotasFinales(anime);
 
       document.getElementById("valorar-titulo").textContent = `Valorar: ${anime.nombre}`;
-      document.getElementById("valorar-sub").textContent = `Valorando como ${usuarioActual}`;
+      document.getElementById("valorar-sub").textContent = `Valorando como ${usuarioActual} · ya vienen rellenas con la media actual, cámbialas solo si quieres`;
 
       const grid = document.getElementById("valorar-grid");
       grid.innerHTML = "";
       ESTADISTICAS.forEach(stat => {
         const campo = document.createElement("div");
         campo.className = "valorar-campo";
-        const valorPrevio = notaPrevia[stat.key] ?? "";
+        const valorPrevio = notaPrevia[stat.key] ?? subnotasMedia[stat.key] ?? "";
         campo.innerHTML = `
           <label for="v-${stat.key}">${stat.emoji} ${stat.label}</label>
           <input type="number" id="v-${stat.key}" min="1" max="10" step="0.5" value="${valorPrevio}">
@@ -218,7 +219,7 @@
         grid.appendChild(campo);
       });
 
-      document.getElementById("valorar-final-input").value = notaPrevia.final ?? "";
+      document.getElementById("valorar-final-input").value = notaPrevia.final ?? notaMedia ?? "";
       document.getElementById("valorar-overlay").classList.add("visible");
     }
 
@@ -269,6 +270,20 @@
     document.getElementById("valorar-guardar").addEventListener("click", guardarYEnviarValoracion);
 
     /* ---------------- Ver notas de los usuarios ---------------- */
+    function claseColorUsuario(nombre) {
+      if (nombre === "Sajón-sensei 999") return "usuario-verde";
+      if (nombre === "Hori_mogger67") return "usuario-rojo";
+      return "";
+    }
+
+    function flechaComparativa(valorUsuario, valorMedia) {
+      if (valorUsuario === null || valorUsuario === undefined) return "";
+      if (valorMedia === null || valorMedia === undefined) return "";
+      if (valorUsuario > valorMedia) return `<span class="flecha flecha-arriba">▲</span>`;
+      if (valorUsuario < valorMedia) return `<span class="flecha flecha-abajo">▼</span>`;
+      return "";
+    }
+
     function abrirVerNotas(anime) {
       document.getElementById("vernotas-titulo").textContent = `Notas de: ${anime.nombre}`;
       const cont = document.getElementById("vernotas-contenido");
@@ -276,6 +291,7 @@
 
       const usuarios = anime.notasUsuarios || {};
       const nombres = Object.keys(usuarios);
+      const { nota: notaMedia, subnotas: subnotasMedia } = calcularNotasFinales(anime);
 
       if (!nombres.length) {
         cont.innerHTML = `<p class="valorar-sub">Todavía no hay notas guardadas.</p>`;
@@ -283,16 +299,17 @@
         nombres.forEach(nombreUsuario => {
           const datos = usuarios[nombreUsuario];
           const bloque = document.createElement("div");
-          bloque.className = "vernotas-usuario";
+          bloque.className = `vernotas-usuario ${claseColorUsuario(nombreUsuario)}`;
           bloque.innerHTML = `
             <h4>${nombreUsuario}</h4>
             <div class="stat-grid">
               ${ESTADISTICAS.map(stat => {
                 const v = datos[stat.key];
                 const texto = (v === null || v === undefined) ? "?" : v;
-                return `<div class="stat-chip"><span class="sc-emoji">${stat.emoji}</span><span class="sc-label">${stat.label}</span><span class="sc-value">${texto}</span></div>`;
+                const flecha = flechaComparativa(v, subnotasMedia[stat.key]);
+                return `<div class="stat-chip"><span class="sc-emoji">${stat.emoji}</span><span class="sc-label">${stat.label}</span><span class="sc-value">${texto} ${flecha}</span></div>`;
               }).join("")}
-              <div class="stat-chip"><span class="sc-emoji">🏁</span><span class="sc-label">Nota final</span><span class="sc-value">${datos.final ?? "?"}</span></div>
+              <div class="stat-chip"><span class="sc-emoji">🏁</span><span class="sc-label">Nota final</span><span class="sc-value">${datos.final ?? "?"} ${flechaComparativa(datos.final, notaMedia)}</span></div>
             </div>
           `;
           cont.appendChild(bloque);
