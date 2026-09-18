@@ -182,7 +182,7 @@
 
     function pintarTop() {
       const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
-        ? ANIME_COMPLETADOS.filter(a => calcularNotasFinales(a).nota === 10)
+        ? ANIME_COMPLETADOS.filter(a => calcularNotasFinales(a).nota >= 9.3)
         : [];
       const elegido = pickRandom(candidatos);
       renderAnuncio("card-top", "top", elegido, elegido ? `Nota final: ⭐ ${calcularNotasFinales(elegido).nota}` : "");
@@ -190,10 +190,10 @@
 
     function pintarHappiness() {
       const candidatos = (typeof ANIME_COMPLETADOS !== "undefined")
-        ? ANIME_COMPLETADOS.filter(a => calcularNotasFinales(a).subnotas.actualHappiness === 10)
+        ? ANIME_COMPLETADOS.filter(a => calcularNotasFinales(a).subnotas.actualHappiness >= 9.3)
         : [];
       const elegido = pickRandom(candidatos);
-      renderAnuncio("card-happiness", "happiness", elegido, elegido ? `Actual happiness: 💗 10` : "");
+      renderAnuncio("card-happiness", "happiness", elegido, elegido ? `Actual happiness: 💗 ${calcularNotasFinales(elegido).subnotas.actualHappiness}` : "");
     }
 
     function pintarPeak() {
