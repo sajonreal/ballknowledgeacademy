@@ -1536,10 +1536,11 @@ footer.espaciador { height: 20px; }
 
 /* ---------------- Imagen encima del login ---------------- */
 .login-imagen-wrap {
-  width: 96px;
-  height: 96px;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 16 / 9;
   margin: 0 auto 16px;
-  border-radius: 26px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-neon);
   border: 2px solid var(--white);
@@ -1554,7 +1555,7 @@ footer.espaciador { height: 20px; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   background: linear-gradient(135deg, var(--pink-pastel), var(--pink-mid));
 }
 
