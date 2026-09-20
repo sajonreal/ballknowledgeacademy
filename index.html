@@ -103,10 +103,12 @@
       <input type="text" id="custom-nombre" class="buscador" placeholder="Tu nombre para mostrar" maxlength="24">
 
       <label class="custom-label" for="custom-foto">Foto de perfil</label>
-      <input type="file" id="custom-foto" accept="image/*">
+      <label class="custom-file-label" for="custom-foto">📷 Elegir foto</label>
+      <input type="file" id="custom-foto" accept="image/*" style="display:none;">
+      <span class="custom-file-nombre" id="custom-file-nombre">Ningún archivo seleccionado</span>
 
-      <label class="custom-label" for="custom-color">Color representativo</label>
-      <input type="color" id="custom-color" value="#ff5fb2">
+      <label class="custom-label">Color representativo</label>
+      <div class="color-swatches" id="color-swatches"></div>
 
       <button type="button" class="valorar-guardar" id="custom-guardar" style="margin-top:14px; width:100%;">💾 Guardar cambios</button>
       <p class="valorar-nota-envio" id="custom-estado"></p>
@@ -267,11 +269,42 @@
     }
 
     /* ---------------- Customización de perfil ---------------- */
+    const COLORES_DISPONIBLES = [
+      "#ff4d6d", "#ff8500", "#ffc300", "#8ac926", "#06d6a0", "#00b4d8",
+      "#0077b6", "#3a86ff", "#7209b7", "#b5179e", "#ff006e", "#ff5fb2",
+      "#e63946", "#f4a261", "#2a9d8f", "#6a4c93", "#495057", "#8d5524"
+    ];
+
+    let colorSeleccionado = COLORES_DISPONIBLES[0];
+
+    function pintarSwatches() {
+      const cont = document.getElementById("color-swatches");
+      cont.innerHTML = "";
+      COLORES_DISPONIBLES.forEach(color => {
+        const sw = document.createElement("button");
+        sw.type = "button";
+        sw.className = "color-swatch" + (color === colorSeleccionado ? " selected" : "");
+        sw.style.background = color;
+        sw.setAttribute("aria-label", color);
+        sw.addEventListener("click", () => {
+          colorSeleccionado = color;
+          pintarSwatches();
+        });
+        cont.appendChild(sw);
+      });
+    }
+
+    document.getElementById("custom-foto").addEventListener("change", (e) => {
+      const nombreSpan = document.getElementById("custom-file-nombre");
+      nombreSpan.textContent = e.target.files[0] ? e.target.files[0].name : "Ningún archivo seleccionado";
+    });
+
     function pintarPreviewPerfil() {
       const usuarioActual = getUsuarioActual();
       document.getElementById("custom-preview").innerHTML = htmlUsuario(usuarioActual);
       document.getElementById("custom-nombre").value = getNombreMostrar(usuarioActual);
-      document.getElementById("custom-color").value = getColorUsuario(usuarioActual);
+      colorSeleccionado = getColorUsuario(usuarioActual);
+      pintarSwatches();
     }
 
     document.getElementById("custom-guardar").addEventListener("click", async () => {
@@ -287,7 +320,7 @@
       try {
         const datos = {
           nombreMostrar: document.getElementById("custom-nombre").value.trim() || usuarioActual,
-          color: document.getElementById("custom-color").value
+          color: colorSeleccionado
         };
         if (archivoFoto) {
           datos.foto = await comprimirImagenComoBase64(archivoFoto);
