@@ -204,7 +204,7 @@
       const { nota: notaMedia, subnotas: subnotasMedia } = calcularNotasFinales(anime);
 
       document.getElementById("valorar-titulo").textContent = `Valorar: ${anime.nombre}`;
-      document.getElementById("valorar-sub").textContent = `Valorando como ${usuarioActual} · ya vienen rellenas con la media actual, cámbialas solo si quieres`;
+      document.getElementById("valorar-sub").innerHTML = `Valorando como ${htmlUsuario(usuarioActual)} · ya vienen rellenas con la media actual, cámbialas solo si quieres`;
 
       const grid = document.getElementById("valorar-grid");
       grid.innerHTML = "";
@@ -270,12 +270,6 @@
     document.getElementById("valorar-guardar").addEventListener("click", guardarYEnviarValoracion);
 
     /* ---------------- Ver notas de los usuarios ---------------- */
-    function claseColorUsuario(nombre) {
-      if (nombre === "Sajón-sensei 999") return "usuario-verde";
-      if (nombre === "Hori_mogger67") return "usuario-rojo";
-      return "";
-    }
-
     function flechaComparativa(valorUsuario, valorMedia) {
       if (valorUsuario === null || valorUsuario === undefined) return "";
       if (valorMedia === null || valorMedia === undefined) return "";
@@ -298,10 +292,13 @@
       } else {
         nombres.forEach(nombreUsuario => {
           const datos = usuarios[nombreUsuario];
+          const color = getColorUsuario(nombreUsuario);
           const bloque = document.createElement("div");
-          bloque.className = `vernotas-usuario ${claseColorUsuario(nombreUsuario)}`;
+          bloque.className = "vernotas-usuario";
+          bloque.style.borderLeftColor = color;
+          bloque.style.background = color + "14";
           bloque.innerHTML = `
-            <h4>${nombreUsuario}</h4>
+            <h4>${htmlUsuario(nombreUsuario)}</h4>
             <div class="stat-grid">
               ${ESTADISTICAS.map(stat => {
                 const v = datos[stat.key];
@@ -337,7 +334,7 @@
 
     (async () => {
       pintarResenas(); // se ve algo al instante con los valores fijos de data.js
-      await cargarNotasUsuariosYAplicar(); // y en cuanto llegan los de Firebase, se repinta
+      await Promise.all([cargarNotasUsuariosYAplicar(), cargarPerfilesYAplicar()]);
       pintarResenas();
     })();
   </script>
