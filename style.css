@@ -1559,22 +1559,13 @@ footer.espaciador { height: 20px; }
   background: linear-gradient(135deg, var(--pink-pastel), var(--pink-mid));
 }
 
-/* ---------------- Colores por usuario y flechas comparativas ---------------- */
+/* ---------------- Colores por usuario (dinámicos) y flechas comparativas ---------------- */
 .vernotas-usuario {
   border-radius: 14px;
   padding: 12px 12px 14px;
+  border-left: 4px solid var(--pink-neon);
+  background: var(--bg-soft);
 }
-.vernotas-usuario.usuario-verde {
-  background: #eafbf2;
-  border-left: 4px solid #1f9d63;
-}
-.vernotas-usuario.usuario-verde h4 { color: #1f9d63; }
-
-.vernotas-usuario.usuario-rojo {
-  background: #fdecee;
-  border-left: 4px solid #d6455f;
-}
-.vernotas-usuario.usuario-rojo h4 { color: #d6455f; }
 
 .flecha {
   font-size: 0.7rem;
@@ -1588,3 +1579,111 @@ footer.espaciador { height: 20px; }
 .tag-happiness { background: #ffe1ef; color: #d6317e; }
 .tag-happiness::before { content: "💗 "; }
 .anuncio-card--happiness { border-left: 4px solid #d6317e; }
+
+/* ---------------- Avatar + nombre de usuario (reutilizable) ---------------- */
+.usuario-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+.usuario-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+.usuario-avatar-letra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+/* ---------------- Customización de perfil ---------------- */
+.custom-card {
+  margin: 6px 18px 0;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--pink-pastel);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.custom-preview {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8px;
+}
+.custom-preview .usuario-avatar {
+  width: 56px;
+  height: 56px;
+  font-size: 1.3rem;
+}
+.custom-preview .usuario-nombre {
+  font-size: 1rem;
+}
+.custom-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  margin-top: 4px;
+}
+#custom-foto {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+}
+#custom-color {
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--pink-pastel);
+  border-radius: 12px;
+  padding: 4px;
+  background: var(--bg-soft);
+}
+
+/* ---------------- Seguir / Siguiendo (calendario) ---------------- */
+.seguir-wrap {
+  margin: 16px 18px 0;
+}
+.btn-seguir {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  color: var(--white);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-neon);
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease);
+}
+.btn-seguir:active { transform: scale(0.97); }
+.btn-seguir.siguiendo {
+  background: var(--bg-soft);
+  color: #1f9d63;
+  box-shadow: none;
+  border: 1px solid #1f9d63;
+}
+.btn-seguir:disabled { opacity: 0.6; }
+
+.lista-seguidores {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.seguidor-item {
+  background: var(--white);
+  border: 1px solid var(--pink-pastel);
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: var(--shadow-card);
+}
