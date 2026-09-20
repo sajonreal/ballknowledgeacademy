@@ -1634,17 +1634,46 @@ footer.espaciador { height: 20px; }
   color: var(--text-soft);
   margin-top: 4px;
 }
-#custom-foto {
-  font-size: 0.78rem;
-  color: var(--text-soft);
+.custom-file-label {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--pink-neon-strong), var(--pink-neon));
+  color: var(--white);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-align: center;
+  box-shadow: var(--shadow-neon);
+  transition: transform 0.3s var(--ease);
+  cursor: pointer;
 }
-#custom-color {
+.custom-file-label:active { transform: scale(0.96); }
+.custom-file-nombre {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  margin-top: 6px;
+}
+
+.color-swatches {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  padding: 4px 0 2px;
+}
+.color-swatch {
   width: 100%;
-  height: 44px;
-  border: 1px solid var(--pink-pastel);
-  border-radius: 12px;
-  padding: 4px;
-  background: var(--bg-soft);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.color-swatch:active { transform: scale(0.9); }
+.color-swatch.selected {
+  border-color: var(--text-dark);
+  transform: scale(1.12);
 }
 
 /* ---------------- Seguir / Siguiendo (calendario) ---------------- */
@@ -1681,9 +1710,19 @@ footer.espaciador { height: 20px; }
   gap: 8px;
 }
 .seguidor-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   background: var(--white);
   border: 1px solid var(--pink-pastel);
   border-radius: 12px;
   padding: 8px 12px;
   box-shadow: var(--shadow-card);
+}
+.frase-seguidor {
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  font-style: italic;
+  white-space: nowrap;
 }
