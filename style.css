@@ -1583,3 +1583,8 @@ footer.espaciador { height: 20px; }
 }
 .flecha-arriba { color: #1f9d63; }
 .flecha-abajo { color: #d6455f; }
+
+/* Tablón "Actual happiness" — tono rosa */
+.tag-happiness { background: #ffe1ef; color: #d6317e; }
+.tag-happiness::before { content: "💗 "; }
+.anuncio-card--happiness { border-left: 4px solid #d6317e; }
