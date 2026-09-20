@@ -109,10 +109,18 @@
       renderizarSeguimiento(animeNombre, seguidores);
     }
 
+    const FRASES_SEGUIDOR = ["está focus", "está en su prime", "está to focus", "es un disciplinado", "le está dando duro", "no puede parar"];
+
+    function frasesAleatoriasSinRepetir(cantidad) {
+      const barajadas = [...FRASES_SEGUIDOR].sort(() => Math.random() - 0.5);
+      return barajadas.slice(0, cantidad);
+    }
+
     function renderizarSeguimiento(animeNombre, seguidores) {
       const usuarioActual = getUsuarioActual();
       const yaSigue = !!seguidores[usuarioActual];
       const nombresSeguidores = Object.keys(seguidores);
+      const frases = frasesAleatoriasSinRepetir(nombresSeguidores.length);
 
       const wrap = document.getElementById("seguir-wrap");
       wrap.innerHTML = `
@@ -121,7 +129,7 @@
         </button>
         <div class="lista-seguidores" id="lista-seguidores">
           ${nombresSeguidores.length
-            ? nombresSeguidores.map(u => `<div class="seguidor-item">${htmlUsuario(u)}</div>`).join("")
+            ? nombresSeguidores.map((u, i) => `<div class="seguidor-item">${htmlUsuario(u)}<span class="frase-seguidor">${frases[i]}</span></div>`).join("")
             : `<p class="fecha-sub" style="margin:0;">Nadie lo está siguiendo activamente todavía.</p>`}
         </div>
       `;
