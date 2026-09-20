@@ -186,6 +186,114 @@ async function guardarNotaUsuarioFirebase(animeNombre, usuario, valores) {
   await db.collection("valoraciones").doc(id).set({ [usuario]: valores }, { merge: true });
 }
 
+/* --------------------------------------------------------
+   PERFILES: nombre para mostrar, foto y color de cada
+   usuario. Se guardan en Firebase para que se vean igual
+   desde cualquier dispositivo, y se cargan una vez al
+   principio en la variable global PERFILES.
+-------------------------------------------------------- */
+let PERFILES = {};
+
+const COLOR_USUARIO_POR_DEFECTO = "#ff5fb2";
+
+async function cargarPerfilesYAplicar() {
+  const db = initFirebase();
+  if (!db) return;
+  try {
+    const snapshot = await db.collection("perfiles").get();
+    const mapa = {};
+    snapshot.forEach(doc => { mapa[doc.id] = doc.data(); });
+    PERFILES = mapa;
+  } catch (err) {
+    console.error("No se pudieron cargar los perfiles de Firebase:", err);
+  }
+}
+
+async function guardarPerfilFirebase(usuario, datos) {
+  const db = initFirebase();
+  if (!db) throw new Error("Firebase no está configurado todavía en data.js.");
+  await db.collection("perfiles").doc(usuario).set(datos, { merge: true });
+  PERFILES[usuario] = { ...(PERFILES[usuario] || {}), ...datos };
+}
+
+function getNombreMostrar(usuario) {
+  return (PERFILES[usuario] && PERFILES[usuario].nombreMostrar) || usuario;
+}
+
+function getColorUsuario(usuario) {
+  return (PERFILES[usuario] && PERFILES[usuario].color) || COLOR_USUARIO_POR_DEFECTO;
+}
+
+function getFotoUsuario(usuario) {
+  return (PERFILES[usuario] && PERFILES[usuario].foto) || null;
+}
+
+/* Devuelve el HTML de "avatar + nombre en su color" para
+   mostrar un usuario en cualquier parte de la web. */
+function htmlUsuario(usuario) {
+  const color = getColorUsuario(usuario);
+  const foto = getFotoUsuario(usuario);
+  const inicial = usuario.trim().charAt(0).toUpperCase();
+  const avatar = foto
+    ? `<img class="usuario-avatar" src="${foto}" alt="">`
+    : `<span class="usuario-avatar usuario-avatar-letra" style="background:${color};">${inicial}</span>`;
+  return `<span class="usuario-inline">${avatar}<span class="usuario-nombre" style="color:${color};">${getNombreMostrar(usuario)}</span></span>`;
+}
+
+/* Redimensiona y comprime una imagen elegida por el usuario
+   para poder guardarla como texto (base64) en Firestore sin
+   pasarse de tamaño. Devuelve una Promise con el resultado. */
+function comprimirImagenComoBase64(archivo, tamañoMax = 160, calidad = 0.75) {
+  return new Promise((resolve, reject) => {
+    const lector = new FileReader();
+    lector.onerror = () => reject(new Error("No se pudo leer la imagen."));
+    lector.onload = () => {
+      const img = new Image();
+      img.onerror = () => reject(new Error("No se pudo procesar la imagen."));
+      img.onload = () => {
+        const escala = Math.min(1, tamañoMax / Math.max(img.width, img.height));
+        const w = Math.round(img.width * escala);
+        const h = Math.round(img.height * escala);
+        const canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", calidad));
+      };
+      img.src = lector.result;
+    };
+    lector.readAsDataURL(archivo);
+  });
+}
+
+/* --------------------------------------------------------
+   SEGUIMIENTO: quién está "siguiendo activamente" el anime
+   que toca hoy. Se guarda por anime (no por día), así que si
+   el mismo anime sigue varios días seguidos en el calendario
+   la gente no tiene que volver a darle a "Seguir" — solo hace
+   falta pulsarlo de nuevo cuando cambia a un anime distinto.
+-------------------------------------------------------- */
+async function getSeguidoresAnime(animeNombre) {
+  const db = initFirebase();
+  if (!db) return {};
+  const id = slugAnime(animeNombre);
+  const doc = await db.collection("seguimiento").doc(id).get();
+  return doc.exists ? doc.data() : {};
+}
+
+async function alternarSeguimiento(animeNombre, usuario, seguir) {
+  const db = initFirebase();
+  if (!db) throw new Error("Firebase no está configurado todavía en data.js.");
+  const id = slugAnime(animeNombre);
+  const ref = db.collection("seguimiento").doc(id);
+  if (seguir) {
+    await ref.set({ [usuario]: true }, { merge: true });
+  } else {
+    await ref.set({ [usuario]: firebase.firestore.FieldValue.delete() }, { merge: true });
+  }
+}
+
+
 
 /* Crea un <img> con fallback bonito si la imagen no existe todavía */
 function crearImagenConFallback(src, alt) {
