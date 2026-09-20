@@ -93,19 +93,24 @@
   </section>
 
   <section class="lore-section reveal" style="margin-top:14px;">
-    <div class="title-with-gif">
-      <h2>👥 Comunidad</h2>
-      <div id="gif-comunidad-1"></div>
+    <h2>🎨 Customización</h2>
+    <p>Tu nombre, tu foto y tu color — así es como te verá el otro cada vez que aparezcas en la web.</p>
+
+    <div class="custom-card">
+      <div class="custom-preview" id="custom-preview"></div>
+
+      <label class="custom-label" for="custom-nombre">Nombre para mostrar</label>
+      <input type="text" id="custom-nombre" class="buscador" placeholder="Tu nombre para mostrar" maxlength="24">
+
+      <label class="custom-label" for="custom-foto">Foto de perfil</label>
+      <input type="file" id="custom-foto" accept="image/*">
+
+      <label class="custom-label" for="custom-color">Color representativo</label>
+      <input type="color" id="custom-color" value="#ff5fb2">
+
+      <button type="button" class="valorar-guardar" id="custom-guardar" style="margin-top:14px; width:100%;">💾 Guardar cambios</button>
+      <p class="valorar-nota-envio" id="custom-estado"></p>
     </div>
-    <p>Fotos y momentos sueltos de todo esto. Aquí es donde se ve que detrás de las notas y las tablas hay gente disfrutando de verdad.</p>
-  </section>
-
-  <div class="comunidad-fotos" id="comunidad-fotos"></div>
-
-  <div class="hero-gifs" id="gif-comunidad-2" style="margin-top:22px;"></div>
-
-  <section class="lore-section reveal">
-    <p>La comunidad es la mitad de la gracia de todo esto: sin quien vea el mismo capítulo el mismo día, sin quien discuta si la nota está bien puesta o sin quien mande el gif exacto en el momento exacto, esto sería solo una lista más. Así que gracias por estar — según vayan pasando cosas, iremos dejando aquí las novedades, los momentos random y lo que vaya surgiendo.</p>
   </section>
 
   <footer class="espaciador"></footer>
@@ -259,40 +264,54 @@
 
       const puntuamosCont = document.getElementById("gif-puntuamos");
       if (gifs[3]) puntuamosCont.appendChild(crearGifSlot(gifs[3], "gif-solo tilt-d"));
-
-      const comunidad1 = document.getElementById("gif-comunidad-1");
-      if (gifs[6]) comunidad1.appendChild(crearGifSlot(gifs[6], "gif-solo tilt-e"));
-
-      const comunidad2 = document.getElementById("gif-comunidad-2");
-      if (gifs[7]) comunidad2.appendChild(crearGifSlot(gifs[7], "gif-solo size-lg tilt-b"));
     }
 
-    function pintarComunidad() {
-      const cont = document.getElementById("comunidad-fotos");
-      const imgs = typeof IMAGENES_COMUNIDAD !== "undefined" ? IMAGENES_COMUNIDAD : [];
-      imgs.slice(0, 6).forEach(src => {
-        const foto = document.createElement("div");
-        foto.className = "comunidad-foto pop-in";
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = "";
-        img.loading = "lazy";
-        img.onerror = () => {
-          foto.classList.add("img-fallback");
-          foto.innerHTML = "📷";
+    /* ---------------- Customización de perfil ---------------- */
+    function pintarPreviewPerfil() {
+      const usuarioActual = getUsuarioActual();
+      document.getElementById("custom-preview").innerHTML = htmlUsuario(usuarioActual);
+      document.getElementById("custom-nombre").value = getNombreMostrar(usuarioActual);
+      document.getElementById("custom-color").value = getColorUsuario(usuarioActual);
+    }
+
+    document.getElementById("custom-guardar").addEventListener("click", async () => {
+      const usuarioActual = getUsuarioActual();
+      const boton = document.getElementById("custom-guardar");
+      const estado = document.getElementById("custom-estado");
+      const archivoFoto = document.getElementById("custom-foto").files[0];
+
+      boton.disabled = true;
+      boton.textContent = "Guardando...";
+      estado.textContent = "";
+
+      try {
+        const datos = {
+          nombreMostrar: document.getElementById("custom-nombre").value.trim() || usuarioActual,
+          color: document.getElementById("custom-color").value
         };
-        foto.appendChild(img);
-        cont.appendChild(foto);
-      });
-      activarRevelados();
-    }
+        if (archivoFoto) {
+          datos.foto = await comprimirImagenComoBase64(archivoFoto);
+        }
+        await guardarPerfilFirebase(usuarioActual, datos);
+        pintarPreviewPerfil();
+        estado.textContent = "¡Guardado! Ya se ve así en toda la web.";
+      } catch (err) {
+        estado.textContent = "No se ha podido guardar: " + err.message;
+      } finally {
+        boton.disabled = false;
+        boton.textContent = "💾 Guardar cambios";
+      }
+    });
 
     lanzarCorazones(8);
     pintarActual();
     pintarPeak();
     pintarLeyenda();
     pintarGifsPortada();
-    pintarComunidad();
+    (async () => {
+      await cargarPerfilesYAplicar();
+      pintarPreviewPerfil();
+    })();
     vigilarCambioDeDia(pintarActual);
 
     // Estas tres dependen de las notas, así que esperan a Firebase
