@@ -34,6 +34,8 @@
 
   <div id="episodios-hoy"></div>
 
+  <div class="seguir-wrap" id="seguir-wrap"></div>
+
   <button class="toggle-proximos" id="btn-proximos">Ver días programados ▾</button>
   <div class="proximos-dias" id="proximos-dias"></div>
 
@@ -56,6 +58,8 @@
   </nav>
 
   <script src="data.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script src="script.js"></script>
   <script>
     function pintarHoy() {
@@ -68,6 +72,7 @@
 
       if (!episodios.length) {
         cont.innerHTML = `<div class="empty-state" style="margin:14px 18px 0;">Hoy no hay nada programado. Día libre para escalar sin prisa ⛰️</div>`;
+        document.getElementById("seguir-wrap").innerHTML = "";
         return;
       }
 
@@ -84,6 +89,54 @@
         card.appendChild(info);
 
         cont.appendChild(card);
+      });
+
+      pintarSeguimiento(episodios[0].anime);
+    }
+
+    /* ---------------- Seguir / Siguiendo ---------------- */
+    let animeActualSeguimiento = null;
+
+    async function pintarSeguimiento(animeNombre) {
+      animeActualSeguimiento = animeNombre;
+      const wrap = document.getElementById("seguir-wrap");
+      wrap.innerHTML = `<button class="btn-seguir" id="btn-seguir" disabled>Cargando...</button>`;
+
+      await cargarPerfilesYAplicar();
+      const seguidores = await getSeguidoresAnime(animeNombre);
+      if (animeActualSeguimiento !== animeNombre) return; // ya se cambió de anime mientras cargaba
+
+      renderizarSeguimiento(animeNombre, seguidores);
+    }
+
+    function renderizarSeguimiento(animeNombre, seguidores) {
+      const usuarioActual = getUsuarioActual();
+      const yaSigue = !!seguidores[usuarioActual];
+      const nombresSeguidores = Object.keys(seguidores);
+
+      const wrap = document.getElementById("seguir-wrap");
+      wrap.innerHTML = `
+        <button class="btn-seguir ${yaSigue ? "siguiendo" : ""}" id="btn-seguir">
+          ${yaSigue ? "✅ Siguiendo" : "➕ Seguir"}
+        </button>
+        <div class="lista-seguidores" id="lista-seguidores">
+          ${nombresSeguidores.length
+            ? nombresSeguidores.map(u => `<div class="seguidor-item">${htmlUsuario(u)}</div>`).join("")
+            : `<p class="fecha-sub" style="margin:0;">Nadie lo está siguiendo activamente todavía.</p>`}
+        </div>
+      `;
+
+      document.getElementById("btn-seguir").addEventListener("click", async () => {
+        const boton = document.getElementById("btn-seguir");
+        boton.disabled = true;
+        try {
+          await alternarSeguimiento(animeNombre, usuarioActual, !yaSigue);
+          const nuevos = await getSeguidoresAnime(animeNombre);
+          renderizarSeguimiento(animeNombre, nuevos);
+        } catch (err) {
+          alert("No se ha podido actualizar: " + err.message);
+          boton.disabled = false;
+        }
       });
     }
 
