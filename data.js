@@ -386,67 +386,24 @@ const ANIME_PLANEADOS = [
 ------------------------------------------------------------ */
 const CALENDARIO = {
   
-"2026-09-13": [
-    { anime: "You And I Are Polar Opposites", episodio: 9 },
-	{ anime: "You And I Are Polar Opposites", episodio: 10 }
   ],
-"2026-09-14": [
-    { anime: "You And I Are Polar Opposites", episodio: 11 },
-	{ anime: "You And I Are Polar Opposites", episodio: 12 }
-  ],
-	"2026-09-15": [
-    { anime: "The Ramparts Of Ice", episodio: 1 },
-	{ anime: "The Ramparts Of Ice", episodio: 2 }
-  ],
-	"2026-09-16": [
-    { anime: "The Ramparts Of Ice", episodio: 3 },
-	{ anime: "The Ramparts Of Ice", episodio: 4 }
-  ],
-	"2026-09-17": [
-    { anime: "The Ramparts Of Ice", episodio: 5 },
-	{ anime: "The Ramparts Of Ice", episodio: 6 }
-  ],
-	"2026-09-18": [
-    { anime: "The Ramparts Of Ice", episodio: 7 },
-	{ anime: "The Ramparts Of Ice", episodio: 8 }
-  ],
-	"2026-09-19": [
-    { anime: "The Ramparts Of Ice", episodio: 9 },
-	{ anime: "The Ramparts Of Ice", episodio: 10 }
-  ],
-	"2026-09-20": [
-    { anime: "The Ramparts Of Ice", episodio: 11 },
-	{ anime: "The Ramparts Of Ice", episodio: 12 }
-  ],
-	"2026-09-21": [
-    { anime: "The Ramparts Of Ice", episodio: 13 },
-	{ anime: "The Ramparts Of Ice", episodio: 14 }
-  ],
-	"2026-09-22": [
-    { anime: "You And I Are Polar Opposites", episodio: 1 },
-	{ anime: "You And I Are Polar Opposites", episodio: 2 }
-  ],
-	"2026-09-23": [
-    { anime: "You And I Are Polar Opposites", episodio: 3 },
-	{ anime: "You And I Are Polar Opposites", episodio: 4 }
-  ],
-	"2026-09-24": [
+	"2026-09-25": [
     { anime: "You And I Are Polar Opposites", episodio: 5 },
 	{ anime: "You And I Are Polar Opposites", episodio: 6 }
   ],
-	"2026-09-25": [
+	"2026-09-26": [
     { anime: "You And I Are Polar Opposites", episodio: 7 },
 	{ anime: "You And I Are Polar Opposites", episodio: 8 }
   ],
-	"2026-09-26": [
+	"2026-09-27": [
     { anime: "You And I Are Polar Opposites", episodio: 9 },
 	{ anime: "You And I Are Polar Opposites", episodio: 10 }
   ],
-	"2026-09-27": [
+	"2026-09-28": [
     { anime: "You And I Are Polar Opposites", episodio: 11 },
 	{ anime: "You And I Are Polar Opposites", episodio: 12 }
   ],
-	"2026-09-28": [
+	"2026-09-29": [
     { anime: "You And I Are Polar Opposites", episodio: 13 },
 	{ anime: "The Ramparts Of Ice", episodio: 1 }
   ],
