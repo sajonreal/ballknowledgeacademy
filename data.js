@@ -386,7 +386,6 @@ const ANIME_PLANEADOS = [
 ------------------------------------------------------------ */
 const CALENDARIO = {
   
-  ],
 	"2026-09-25": [
     { anime: "You And I Are Polar Opposites", episodio: 5 },
 	{ anime: "You And I Are Polar Opposites", episodio: 6 }
