@@ -405,7 +405,7 @@ const CALENDARIO = {
 	"2026-09-29": [
     { anime: "You And I Are Polar Opposites", episodio: 13 },
 	{ anime: "The Ramparts Of Ice", episodio: 1 }
-  ],
+  ]
 };
 
 
