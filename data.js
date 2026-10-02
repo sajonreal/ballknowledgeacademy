@@ -463,7 +463,7 @@ const CALENDARIO = {
 	{ anime: "The Ramparts Of Ice", episodio: 13 }
   ],
 				"2026-10-18": [
-    { anime: "The Ramparts Of Ice", episodio: 14 }
+    { anime: "The Ramparts Of Ice", episodio: 14 },
   ]
 };
 
