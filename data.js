@@ -394,39 +394,39 @@ const CALENDARIO = {
     { anime: "Toradora!", episodio: 3 },
 	{ anime: "Toradora!", episodio: 4 }
   ],
-		"2026-10-1": [
+		"2026-10-01": [
     { anime: "Toradora!", episodio: 5 },
 	{ anime: "Toradora!", episodio: 6 }
   ],
-		"2026-10-2": [
+		"2026-10-02": [
     { anime: "Toradora!", episodio: 7 },
 	{ anime: "Toradora!", episodio: 8 }
   ],
-		"2026-10-3": [
+		"2026-10-03": [
     { anime: "Toradora!", episodio: 9 },
 	{ anime: "Toradora!", episodio: 10 }
   ],
-		"2026-10-4": [
+		"2026-10-04": [
     { anime: "Toradora!", episodio: 11 },
 	{ anime: "Toradora!", episodio: 12 }
   ],
-		"2026-10-5": [
+		"2026-10-05": [
     { anime: "Toradora!", episodio: 13 },
 	{ anime: "Toradora!", episodio: 14 }
   ],
-		"2026-10-6": [
+		"2026-10-06": [
     { anime: "Toradora!", episodio: 15 },
 	{ anime: "Toradora!", episodio: 16 }
   ],
-		"2026-10-7": [
+		"2026-10-07": [
     { anime: "Toradora!", episodio: 17 },
 	{ anime: "Toradora!", episodio: 18 }
   ],
-		"2026-10-8": [
+		"2026-10-08": [
     { anime: "Toradora!", episodio: 19 },
 	{ anime: "Toradora!", episodio: 20 }
   ],
-		"2026-10-9": [
+		"2026-10-09": [
     { anime: "Toradora!", episodio: 21 },
 	{ anime: "Toradora!", episodio: 22 }
   ],
@@ -463,7 +463,7 @@ const CALENDARIO = {
 	{ anime: "The Ramparts Of Ice", episodio: 13 }
   ],
 				"2026-10-18": [
-    { anime: "The Ramparts Of Ice", episodio: 14 },
+    { anime: "The Ramparts Of Ice", episodio: 14 }
   ]
 };
 
