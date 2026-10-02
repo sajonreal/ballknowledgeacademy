@@ -390,79 +390,79 @@ const CALENDARIO = {
     { anime: "Toradora!", episodio: 1 },
 	{ anime: "Toradora!", episodio: 2 }
   ],
-		"2026-09-30": [
+	"2026-09-30": [
     { anime: "Toradora!", episodio: 3 },
 	{ anime: "Toradora!", episodio: 4 }
   ],
-		"2026-10-01": [
+	"2026-10-01": [
     { anime: "Toradora!", episodio: 5 },
 	{ anime: "Toradora!", episodio: 6 }
   ],
-		"2026-10-02": [
+	"2026-10-02": [
     { anime: "Toradora!", episodio: 7 },
 	{ anime: "Toradora!", episodio: 8 }
   ],
-		"2026-10-03": [
+	"2026-10-03": [
     { anime: "Toradora!", episodio: 9 },
 	{ anime: "Toradora!", episodio: 10 }
   ],
-		"2026-10-04": [
+	"2026-10-04": [
     { anime: "Toradora!", episodio: 11 },
 	{ anime: "Toradora!", episodio: 12 }
   ],
-		"2026-10-05": [
+	"2026-10-05": [
     { anime: "Toradora!", episodio: 13 },
 	{ anime: "Toradora!", episodio: 14 }
   ],
-		"2026-10-06": [
+	"2026-10-06": [
     { anime: "Toradora!", episodio: 15 },
 	{ anime: "Toradora!", episodio: 16 }
   ],
-		"2026-10-07": [
+	"2026-10-07": [
     { anime: "Toradora!", episodio: 17 },
 	{ anime: "Toradora!", episodio: 18 }
   ],
-		"2026-10-08": [
+	"2026-10-08": [
     { anime: "Toradora!", episodio: 19 },
 	{ anime: "Toradora!", episodio: 20 }
   ],
-		"2026-10-09": [
+	"2026-10-09": [
     { anime: "Toradora!", episodio: 21 },
 	{ anime: "Toradora!", episodio: 22 }
   ],
-			"2026-10-10": [
+	"2026-10-10": [
     { anime: "Toradora!", episodio: 23 },
 	{ anime: "Toradora!", episodio: 24 }
   ],
-			"2026-10-11": [
+	"2026-10-11": [
     { anime: "Toradora!", episodio: 25 },
 	{ anime: "The Ramparts Of Ice", episodio: 1 }
   ],
-			"2026-10-12": [
+	"2026-10-12": [
     { anime: "The Ramparts Of Ice", episodio: 2 },
 	{ anime: "The Ramparts Of Ice", episodio: 3 }
   ],
-			"2026-10-13": [
+	"2026-10-13": [
     { anime: "The Ramparts Of Ice", episodio: 4 },
 	{ anime: "The Ramparts Of Ice", episodio: 5 }
   ],
-			"2026-10-14": [
+	"2026-10-14": [
     { anime: "The Ramparts Of Ice", episodio: 6 },
 	{ anime: "The Ramparts Of Ice", episodio: 7 }
   ],
-			"2026-10-15": [
+	"2026-10-15": [
     { anime: "The Ramparts Of Ice", episodio: 8 },
 	{ anime: "The Ramparts Of Ice", episodio: 9 }
   ],
-			"2026-10-16": [
+	"2026-10-16": [
     { anime: "The Ramparts Of Ice", episodio: 10 },
 	{ anime: "The Ramparts Of Ice", episodio: 11 }
   ],
-			"2026-10-17": [
+	"2026-10-17": [
     { anime: "The Ramparts Of Ice", episodio: 12 },
 	{ anime: "The Ramparts Of Ice", episodio: 13 }
   ],
-				"2026-10-18": [
+	"2026-10-18": [
     { anime: "The Ramparts Of Ice", episodio: 14 }
   ]
 };
