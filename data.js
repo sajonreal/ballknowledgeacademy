@@ -337,7 +337,6 @@ const ANIME_PLANEADOS = [
   { nombre: "TONIKAWA: Over the Moon for You", imagen: "images/tonikawa.webp", prioridad: false, etiqueta: "" },
   { nombre: "Don't Toy With Me Miss Nagatoro", imagen: "images/don-t-toy-with-me-miss-nagatoro.jpg", prioridad: false, etiqueta: "" },
   { nombre: "The Shiunji Family Children", imagen: "images/shiunji.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Makeine", imagen: "images/makeine.webp", prioridad: false, etiqueta: "" },
   { nombre: "To Every You I've Loved Before", imagen: "images/you.jpe", prioridad: false, etiqueta: "" },
   { nombre: "My Teen Romantic Comedy SNAFU", imagen: "images/snafu.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Uzaki-chan Wants to Hang Out!", imagen: "images/uzaki.jpg", prioridad: true, etiqueta: "" },
