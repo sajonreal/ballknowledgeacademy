@@ -284,6 +284,26 @@ const ANIME_COMPLETADOS = [
       animacion: 8, trama: 6, historia: 7, fanService: 3,
       fantasia: 10, perSec: 6, actualHappiness: 5, aprendizaje: 6, final: 6
 	}
+   },
+{
+	nombre: "You And I Are Polar Opposites",
+	imagen: "images/you-and-i-are-polar-opposites.jpg",
+	nota: 7,
+    subnotas: {
+      opEd: 8, queso: 7, personalidadQueso: 9, cocina: 6, prota: 6,
+      animacion: 8, trama: 6, historia: 7, fanService: 3,
+      fantasia: 10, perSec: 6, actualHappiness: 5, aprendizaje: 6, final: 6
+	}
+   },
+{
+	nombre: "Toradora!",
+	imagen: "images/toradora.avif",
+	nota: 7,
+    subnotas: {
+      opEd: 8, queso: 7, personalidadQueso: 9, cocina: 6, prota: 6,
+      animacion: 8, trama: 6, historia: 7, fanService: 3,
+      fantasia: 10, perSec: 6, actualHappiness: 5, aprendizaje: 6, final: 6
+	}
    }
 ];
 
@@ -297,7 +317,6 @@ const ANIME_COMPLETADOS = [
    "comentario": opcional, por qué te interesa este anime
 ------------------------------------------------------------ */
 const ANIME_PLANEADOS = [
-  { nombre: "You And I Are Polar Opposites", imagen: "images/you-and-i-are-polar-opposites.jpg", prioridad: true, etiqueta: "" },
   { nombre: "The Angel Next Door Spoils Me Rotten", imagen: "images/the-angel-next-door-spoils-me-rotten.webp", prioridad: true, etiqueta: "" },
   { nombre: "I Want to Eat Your Pancreas", imagen: "images/i-want-to-eat-your-pancreas.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Monogatari", imagen: "images/monogatari.webp", prioridad: false, etiqueta: "" },
@@ -305,7 +324,6 @@ const ANIME_PLANEADOS = [
   { nombre: "Josee, the Tiger and the Fish", imagen: "images/josee-the-tiger-and-the-fish.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Orange", imagen: "images/orange.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Golden Time", imagen: "images/golden-time.jpg", prioridad: false, etiqueta: "" },
-  { nombre: "Toradora!", imagen: "images/toradora.avif", prioridad: false, etiqueta: "" },
   { nombre: "The Ramparts Of Ice", imagen: "images/the-ramparts-of-ice.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Blue Box", imagen: "images/blue-box.jpg", prioridad: true, etiqueta: "" },
   { nombre: "Nisekoi", imagen: "images/nisekoi.jpg", prioridad: false, etiqueta: "" },
@@ -418,84 +436,70 @@ const ANIME_PLANEADOS = [
 ------------------------------------------------------------ */
 const CALENDARIO = {
   
-	"2026-09-29": [
-    { anime: "Toradora!", episodio: 1 },
-	{ anime: "Toradora!", episodio: 2 }
-  ],
-	"2026-09-30": [
-    { anime: "Toradora!", episodio: 3 },
-	{ anime: "Toradora!", episodio: 4 }
-  ],
-	"2026-10-01": [
-    { anime: "Toradora!", episodio: 5 },
-	{ anime: "Toradora!", episodio: 6 }
-  ],
-	"2026-10-02": [
-    { anime: "Toradora!", episodio: 7 },
-	{ anime: "Toradora!", episodio: 8 }
-  ],
-	"2026-10-03": [
-    { anime: "Toradora!", episodio: 9 },
-	{ anime: "Toradora!", episodio: 10 }
-  ],
-	"2026-10-04": [
-    { anime: "Toradora!", episodio: 11 },
-	{ anime: "Toradora!", episodio: 12 }
-  ],
-	"2026-10-05": [
-    { anime: "Toradora!", episodio: 13 },
-	{ anime: "Toradora!", episodio: 14 }
-  ],
-	"2026-10-06": [
-    { anime: "Toradora!", episodio: 15 },
-	{ anime: "Toradora!", episodio: 16 }
-  ],
-	"2026-10-07": [
-    { anime: "Toradora!", episodio: 17 },
-	{ anime: "Toradora!", episodio: 18 }
-  ],
-	"2026-10-08": [
-    { anime: "Toradora!", episodio: 19 },
-	{ anime: "Toradora!", episodio: 20 }
-  ],
-	"2026-10-09": [
-    { anime: "Toradora!", episodio: 21 },
-	{ anime: "Toradora!", episodio: 22 }
-  ],
-	"2026-10-10": [
-    { anime: "Toradora!", episodio: 23 },
-	{ anime: "Toradora!", episodio: 24 }
-  ],
-	"2026-10-11": [
-    { anime: "Toradora!", episodio: 25 },
-	{ anime: "The Ramparts Of Ice", episodio: 1 }
-  ],
-	"2026-10-12": [
-    { anime: "The Ramparts Of Ice", episodio: 2 },
-	{ anime: "The Ramparts Of Ice", episodio: 3 }
-  ],
-	"2026-10-13": [
-    { anime: "The Ramparts Of Ice", episodio: 4 },
-	{ anime: "The Ramparts Of Ice", episodio: 5 }
-  ],
-	"2026-10-14": [
-    { anime: "The Ramparts Of Ice", episodio: 6 },
-	{ anime: "The Ramparts Of Ice", episodio: 7 }
-  ],
-	"2026-10-15": [
-    { anime: "The Ramparts Of Ice", episodio: 8 },
-	{ anime: "The Ramparts Of Ice", episodio: 9 }
-  ],
-	"2026-10-16": [
-    { anime: "The Ramparts Of Ice", episodio: 10 },
-	{ anime: "The Ramparts Of Ice", episodio: 11 }
-  ],
-	"2026-10-17": [
-    { anime: "The Ramparts Of Ice", episodio: 12 },
-	{ anime: "The Ramparts Of Ice", episodio: 13 }
-  ],
+	
 	"2026-10-18": [
-    { anime: "The Ramparts Of Ice", episodio: 14 }
+    { anime: "Nisekoi", episodio: 1 },
+    { anime: "Nisekoi", episodio: 2 }
+  ],
+"2026-10-19": [
+    { anime: "Nisekoi", episodio: 3 },
+    { anime: "Nisekoi", episodio: 4 }
+  ],
+"2026-10-20": [
+    { anime: "Nisekoi", episodio: 5 },
+    { anime: "Nisekoi", episodio: 6 }
+  ],
+"2026-10-21": [
+    { anime: "Nisekoi", episodio: 7 },
+    { anime: "Nisekoi", episodio: 8 }
+  ],
+"2026-10-22": [
+    { anime: "Nisekoi", episodio: 9 },
+    { anime: "Nisekoi", episodio: 10 }
+  ],
+"2026-10-23": [
+    { anime: "Nisekoi", episodio: 11 },
+    { anime: "Nisekoi", episodio: 12 }
+  ],
+"2026-10-24": [
+    { anime: "Nisekoi", episodio: 13 },
+    { anime: "Nisekoi", episodio: 14 }
+  ],
+"2026-10-25": [
+    { anime: "Nisekoi", episodio: 15 },
+    { anime: "Nisekoi", episodio: 16 }
+  ],
+"2026-10-26": [
+    { anime: "Nisekoi", episodio: 17 },
+    { anime: "Nisekoi", episodio: 18 }
+  ],
+"2026-10-27": [
+    { anime: "Nisekoi", episodio: 19 },
+    { anime: "Nisekoi", episodio: 20 }
+  ],
+"2026-10-28": [
+    { anime: "Nisekoi", episodio: 1 },
+    { anime: "Nisekoi", episodio: 2 }
+  ],
+"2026-10-29": [
+    { anime: "Nisekoi", episodio: 3 },
+    { anime: "Nisekoi", episodio: 4 }
+  ],
+"2026-10-30": [
+    { anime: "Nisekoi", episodio: 5 },
+    { anime: "Nisekoi", episodio: 6 }
+  ],
+"2026-10-31": [
+    { anime: "Nisekoi", episodio: 7 },
+    { anime: "Nisekoi", episodio: 8 }
+  ],
+"2026-11-1": [
+    { anime: "Nisekoi", episodio: 9 },
+    { anime: "Nisekoi", episodio: 10 }
+  ],
+"2026-11-2": [
+    { anime: "Nisekoi", episodio: 11 },
+    { anime: "Nisekoi", episodio: 12 }
   ]
 };
 
