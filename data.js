@@ -437,67 +437,75 @@ const ANIME_PLANEADOS = [
 const CALENDARIO = {
   
 	
-	"2026-10-18": [
+	"2026-10-19": [
     { anime: "Nisekoi", episodio: 1 },
     { anime: "Nisekoi", episodio: 2 }
   ],
-"2026-10-19": [
+"2026-10-20": [
     { anime: "Nisekoi", episodio: 3 },
     { anime: "Nisekoi", episodio: 4 }
   ],
-"2026-10-20": [
+"2026-10-21": [
     { anime: "Nisekoi", episodio: 5 },
     { anime: "Nisekoi", episodio: 6 }
   ],
-"2026-10-21": [
+"2026-10-22": [
     { anime: "Nisekoi", episodio: 7 },
     { anime: "Nisekoi", episodio: 8 }
   ],
-"2026-10-22": [
+"2026-10-23": [
     { anime: "Nisekoi", episodio: 9 },
     { anime: "Nisekoi", episodio: 10 }
   ],
-"2026-10-23": [
+"2026-10-24": [
     { anime: "Nisekoi", episodio: 11 },
     { anime: "Nisekoi", episodio: 12 }
   ],
-"2026-10-24": [
+"2026-10-25": [
     { anime: "Nisekoi", episodio: 13 },
     { anime: "Nisekoi", episodio: 14 }
   ],
-"2026-10-25": [
+"2026-10-26": [
     { anime: "Nisekoi", episodio: 15 },
     { anime: "Nisekoi", episodio: 16 }
   ],
-"2026-10-26": [
+"2026-10-27": [
     { anime: "Nisekoi", episodio: 17 },
     { anime: "Nisekoi", episodio: 18 }
   ],
-"2026-10-27": [
+"2026-10-28": [
     { anime: "Nisekoi", episodio: 19 },
     { anime: "Nisekoi", episodio: 20 }
   ],
-"2026-10-28": [
+"2026-10-29": [
+    { anime: "Nisekoi", episodio: 21 },
+    { anime: "Nisekoi", episodio: 22 }
+  ],
+"2026-10-30": [
+    { anime: "Nisekoi", episodio: 23 },
+    { anime: "Nisekoi", episodio: 24 }
+  ],
+"2026-10-31": [
     { anime: "Nisekoi", episodio: 1 },
     { anime: "Nisekoi", episodio: 2 }
   ],
-"2026-10-29": [
+"2026-11-01": [
     { anime: "Nisekoi", episodio: 3 },
     { anime: "Nisekoi", episodio: 4 }
   ],
-"2026-10-30": [
+"2026-11-02": [
     { anime: "Nisekoi", episodio: 5 },
     { anime: "Nisekoi", episodio: 6 }
   ],
-"2026-10-31": [
+"2026-11-03": [
     { anime: "Nisekoi", episodio: 7 },
     { anime: "Nisekoi", episodio: 8 }
   ],
-"2026-11-1": [
+"2026-11-04": [
     { anime: "Nisekoi", episodio: 9 },
     { anime: "Nisekoi", episodio: 10 }
   ],
-"2026-11-2": [
+"2026-11-05": [
     { anime: "Nisekoi", episodio: 11 },
     { anime: "Nisekoi", episodio: 12 }
   ]
