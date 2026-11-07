@@ -32,8 +32,8 @@
   <section class="hero">
     <h1 class="hero-title">Ball<span class="accent">knowledge</span> Academy</h1>
     <div class="hero-underline"></div>
-    <p class="hero-slogan">Aunque no veas la cumbre, sigue escalando</p>
-    <p class="hero-intro">El cuaderno de bitácora de todo lo que vemos: lo que ya hemos escalado, lo que toca hoy y lo que espera más arriba en la montaña.</p>
+    <p class="hero-slogan">Aunque aún no encuentres tus palabras, sigue escribiendo</p>
+    <p class="hero-intro">Nuestro cuaderno compartido: cada historia que hemos leído, cada emoción que hemos escrito y cada anime que aún espera su capítulo.</p>
   </section>
 
   <div class="hero-gifs" id="hero-gifs"></div>
@@ -47,7 +47,7 @@
   <section class="lore-section reveal">
     <h2>⛰️ ¿Qué es esto?</h2>
     <p>Ballknowledge Academy es donde llevamos la cuenta de cada anime que vemos juntos: notas, desgloses, qué toca hoy y qué está esperando su turno. Nada de listas sueltas ni notas en el móvil que se pierden — todo en un mismo sitio, siempre a mano.</p>
-    <p>Cada montaña escalada (cada anime terminado) se queda registrada con su puntuación final y su desglose completo. Las que aún no hemos empezado esperan en la cola, listas para cuando decidamos seguir subiendo.</p>
+    <p>Cada historia terminada queda registrada con su puntuación final y su desglose completo. Las que aún no hemos leído esperan en nuestra biblioteca, listas para cuando abramos juntos su primera página.</p>
   </section>
 
   <section class="section reveal">
@@ -112,6 +112,7 @@
 
       <button type="button" class="valorar-guardar" id="custom-guardar" style="margin-top:14px; width:100%;">💾 Guardar cambios</button>
       <p class="valorar-nota-envio" id="custom-estado"></p>
+      <div class="music-settings" aria-label="Configuración de música"><label class="custom-label" for="academy-volume">🎼 Volumen de la música</label><div class="music-controls"><input type="range" id="academy-volume" min="0" max="100" value="35" step="1" aria-label="Volumen de la música"><button type="button" id="academy-mute" class="music-mute-btn" aria-pressed="false">🔇 Silenciar</button></div><p class="music-note">La reproducción comienza tras tu primera interacción. Coloca tu archivo de audio autorizado como <code>audio/academy-theme.mp3</code>.</p></div><button type="button" id="academy-logout" class="logout-btn">⏻ Cerrar sesión</button>
     </div>
   </section>
 
@@ -134,7 +135,7 @@
     function renderAnuncio(contenedorId, tipo, anime, extra) {
       const el = document.getElementById(contenedorId);
       if (!anime) {
-        el.innerHTML = `<div class="empty-state">Nada por aquí todavía. ¡Sigue escalando! ⛰️</div>`;
+        el.innerHTML = `<div class="empty-state">Nada por aquí todavía. ¡Sigue escribiendo tu historia! 📖</div>`;
         return;
       }
       const card = document.createElement("div");
@@ -363,5 +364,6 @@
     };
     initParallax("parallax-img");
   </script>
+  <script src="academy.js"></script>
 </body>
 </html>
