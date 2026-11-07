@@ -1807,3 +1807,17 @@ h1,h2,h3,.display,.section-title,.page-header h1,.guide-heading strong{font-fami
 }
 .page-header h1{margin:0 0 16px;line-height:1.25}
 .page-header p{margin:0;line-height:1.7}
+
+
+/* Más separación bajo los títulos y mayor presencia del fondo del aula */
+.page-header{
+  padding:36px 20px 58px;
+  margin-bottom:22px;
+}
+.page-header h1{margin-bottom:18px;line-height:1.28}
+.page-header p{line-height:1.75}
+body::before{
+  background:linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),url('assets/classroom-bg.png') center/cover no-repeat;
+  filter:blur(3px);
+  transform:scale(1.02);
+}
