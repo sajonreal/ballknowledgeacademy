@@ -1746,3 +1746,39 @@ body{font-family:'Nunito',sans-serif;background:transparent}body::before{content
 .logout-btn:active{transform:scale(.97);filter:brightness(.96)}
 .music-controls input[type=range]{cursor:pointer;accent-color:#a94e91}
 @media(prefers-reduced-motion:reduce){.music-mute-btn,.logout-btn,.guide-next{transition:none}}
+
+
+/* Ajustes solicitados: tipografía original, texto con aire y animaciones más fluidas */
+body{font-family:'Quicksand',sans-serif}
+h1,h2,h3,.display,.section-title,.page-header h1,.guide-heading strong{font-family:'Baloo 2',sans-serif}
+.hero-title,.top-bar .logo{font-family:'Playfair Display',serif}
+.music-mute-btn,.logout-btn,.guide-next{font-family:'Quicksand',sans-serif}
+.lore-section{
+  margin:18px 18px 22px;
+  padding:22px 20px 24px;
+  border:1px solid #e1c9df;
+  border-radius:22px;
+  box-shadow:var(--shadow-card);
+  text-align:center;
+}
+.lore-section h2{margin:0 0 16px;text-align:center}
+.lore-section p{margin:0 0 14px;text-align:center;line-height:1.72}
+.lore-section p:last-child{margin-bottom:0}
+.hero-title{animation:academyTitleHop 1.25s cubic-bezier(.22,1.55,.42,1) both}
+@keyframes academyTitleHop{
+  0%{opacity:0;transform:translateY(-42px) scale(.72)}
+  52%{opacity:1;transform:translateY(14px) scale(1.18)}
+  70%{transform:translateY(-9px) scale(.96)}
+  86%{transform:translateY(4px) scale(1.04)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+.guide-line{animation:guideTextChange .42s cubic-bezier(.22,1,.36,1) both}
+@keyframes guideTextChange{
+  0%{opacity:0;transform:translateY(9px) scale(.985);filter:blur(2px)}
+  55%{opacity:1;transform:translateY(-2px) scale(1.005);filter:blur(0)}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-title{animation:none}
+  .guide-line{animation:none}
+}
