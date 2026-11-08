@@ -1868,3 +1868,12 @@ body::before{
 /* Mini Natsuki integrada en la página: PNG transparente sin tarjeta de fondo */
 #academy-guide .guide-mini{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;filter:drop-shadow(0 3px 5px rgba(55,30,55,.16))!important}
 #academy-guide .guide-mini img{object-fit:contain;object-position:bottom center}
+
+
+/* Natsuki: sprite de diálogo mayor y con presencia de cintura arriba detrás del cuadro */
+@media(max-width:480px){
+ #academy-guide .guide-portrait{width:min(100vw,480px)!important;height:min(72vh,660px)!important;bottom:calc(76px + env(safe-area-inset-bottom))!important;}
+ #academy-guide .guide-portrait img{object-fit:contain!important;object-position:center bottom!important;}
+ #academy-guide .guide-dialog{bottom:calc(78px + env(safe-area-inset-bottom))!important;max-height:42vh!important;}
+ #academy-guide .guide-mini{width:82px!important;height:118px!important;}
+}
