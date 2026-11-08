@@ -1895,3 +1895,21 @@ body::before{
 @media(max-width:480px){
  #academy-guide .guide-portrait{bottom:calc(132px + env(safe-area-inset-bottom))!important;width:min(110vw,540px)!important;height:min(80vh,700px)!important;}
 }
+
+
+/* Posición revisada: Natsuki centrada en pantalla y un poco hacia abajo; el panel queda delante */
+#academy-guide .guide-portrait{
+  top:14vh!important;
+  bottom:auto!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  width:min(112vw,620px)!important;
+  height:76vh!important;
+  align-items:center!important;
+}
+#academy-guide .guide-portrait img{
+  object-position:center center!important;
+}
+@media(max-width:480px){
+ #academy-guide .guide-portrait{top:13vh!important;width:112vw!important;height:76vh!important;}
+}
