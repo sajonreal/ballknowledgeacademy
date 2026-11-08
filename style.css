@@ -1888,3 +1888,10 @@ body::before{
 @media(prefers-reduced-motion:reduce){
   #academy-guide .guide-mini img[style*="natsukiMiniBounces"]{animation:none!important}
 }
+
+
+/* Natsuki: sprite de diálogo más elevado y ligeramente ampliado para que el panel no la tape tanto */
+#academy-guide .guide-portrait{bottom:calc(132px + env(safe-area-inset-bottom))!important;width:min(106vw,580px)!important;height:min(70vh,700px)!important;}
+@media(max-width:480px){
+ #academy-guide .guide-portrait{bottom:calc(132px + env(safe-area-inset-bottom))!important;width:min(110vw,540px)!important;height:min(80vh,700px)!important;}
+}
