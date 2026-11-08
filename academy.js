@@ -1,12 +1,12 @@
 /* Ballknowledge Academy — literary academy UI layer (keeps data.js untouched) */
 (function () {
   const guides = {
-    "index.html": ["sayori", "Sayori", ["¡Bienvenido a nuestra academia literaria!", "Aquí guardamos los animes que nos han hecho sentir algo especial, nuestras notas y los próximos capítulos.", "Personaliza tu perfil y ajusta la música al final de esta página. ¡Que empiece nuestra historia!"]],
-    "resenas.html": ["yuri", "Yuri", ["Esta es nuestra biblioteca de reseñas.", "Cada anime tiene su valoración y desglose. Puedes dejar tu puntuación y comparar opiniones.", "Lee con calma; cada historia merece unas líneas."]],
-    "planeados.html": ["natsuki", "Natsuki", ["¡Aquí están los animes pendientes!", "Revisa prioridades y comentarios para decidir qué historia abrir después.", "No dejes que la lista se convierta en una montaña de tareas, ¿vale?"]],
-    "calendario.html": ["monika", "Monika", ["Bienvenido al calendario de la academia.", "Organizamos episodios por día y podemos seguir las series que nos interesan.", "¡Un capítulo a la vez, disfruta la historia!"]],
-    "ruleta.html": ["sayori", "Sayori", ["¿No sabes qué anime elegir?", "La ruleta escoge al azar entre nuestros planeados. Toca la palanca y deja que el destino decida.", "¡Suerte!"]],
-    "listas.html": ["yuri", "Yuri", ["Este rincón reúne nuestras listas musicales.", "Canciones que acompañan las historias y momentos de la academia.", "A veces una melodía también cuenta una historia."]]
+    "index.html": ["natsuki", "Natsuki", ["¡Bienvenido a nuestra academia literaria!", "Aquí guardamos los animes que nos han hecho sentir algo especial, nuestras notas y los próximos capítulos.", "Personaliza tu perfil y ajusta la música al final de esta página. ¡Que empiece nuestra historia!"]],
+    "resenas.html": ["chica-2", "Chica 2", ["Esta es nuestra biblioteca de reseñas.", "Cada anime tiene su valoración y desglose. Puedes dejar tu puntuación y comparar opiniones.", "Lee con calma; cada historia merece unas líneas."]],
+    "planeados.html": ["chica-3", "Chica 3", ["¡Aquí están los animes pendientes!", "Revisa prioridades y comentarios para decidir qué historia abrir después.", "No dejes que la lista se convierta en una montaña de tareas, ¿vale?"]],
+    "calendario.html": ["chica-4", "Chica 4", ["Bienvenido al calendario de la academia.", "Organizamos episodios por día y podemos seguir las series que nos interesan.", "¡Un capítulo a la vez, disfruta la historia!"]],
+    "ruleta.html": ["chica-5", "Chica 5", ["¿No sabes qué anime elegir?", "La ruleta escoge al azar entre nuestros planeados. Toca la palanca y deja que el destino decida.", "¡Suerte!"]],
+    "listas.html": ["chica-6", "Chica 6", ["Este rincón reúne nuestras listas musicales.", "Canciones que acompañan las historias y momentos de la academia.", "A veces una melodía también cuenta una historia."]]
   };
   function setupMusic() {
     let audio = document.getElementById('academy-bgm');
@@ -15,7 +15,7 @@
     let vol = Number(localStorage.getItem('bka_music_volume')); if (!Number.isFinite(vol) || vol < 0 || vol > 1) vol = .35;
     audio.volume = vol; audio.muted = localStorage.getItem('bka_music_muted') === 'true';
     if (range) range.value = String(Math.round(vol * 100));
-    if (mute) { mute.textContent = audio.muted ? '🔊 Activar' : '🔇 Silenciar'; mute.setAttribute('aria-pressed', String(audio.muted)); }
+    if (mute) { mute.textContent = audio.muted ? '🔊' : '🔇'; mute.setAttribute('aria-pressed', String(audio.muted)); }
     if (range) range.addEventListener('input', () => { audio.volume = Number(range.value) / 100; localStorage.setItem('bka_music_volume', String(audio.volume)); if (audio.volume > 0 && audio.muted) { audio.muted = false; localStorage.setItem('bka_music_muted', 'false'); } if (mute) { mute.textContent = audio.muted ? '🔊 Activar' : '🔇 Silenciar'; mute.setAttribute('aria-pressed', String(audio.muted)); } });
     if (mute) mute.addEventListener('click', () => { audio.muted = !audio.muted; localStorage.setItem('bka_music_muted', String(audio.muted)); mute.textContent = audio.muted ? '🔊 Activar' : '🔇 Silenciar'; mute.setAttribute('aria-pressed', String(audio.muted)); if (!audio.muted) audio.play().catch(() => {}); });
     const start = () => audio.play().catch(() => {}); document.addEventListener('pointerdown', start, { once: true }); document.addEventListener('keydown', start, { once: true });
