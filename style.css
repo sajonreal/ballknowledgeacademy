@@ -1877,3 +1877,14 @@ body::before{
  #academy-guide .guide-dialog{bottom:calc(78px + env(safe-area-inset-bottom))!important;max-height:42vh!important;}
  #academy-guide .guide-mini{width:82px!important;height:118px!important;}
 }
+
+
+/* Natsuki mini: dos brincos cortos cada 7 segundos, mientras está visible */
+@keyframes natsukiMiniBounces{
+  0%,26%,100%{transform:translateY(0)}
+  3%,9%,16%,22%{transform:translateY(-13px)}
+  6%,12%,19%{transform:translateY(0)}
+}
+@media(prefers-reduced-motion:reduce){
+  #academy-guide .guide-mini img[style*="natsukiMiniBounces"]{animation:none!important}
+}
