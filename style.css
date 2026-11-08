@@ -1863,3 +1863,8 @@ body::before{
 #academy-guide .guide-portrait[hidden]{display:none!important}
 @keyframes guidePortraitIn{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
 @media(max-width:480px){#academy-guide .guide-portrait{width:100vw;height:min(54vh,500px)}}
+
+
+/* Mini Natsuki integrada en la página: PNG transparente sin tarjeta de fondo */
+#academy-guide .guide-mini{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;filter:drop-shadow(0 3px 5px rgba(55,30,55,.16))!important}
+#academy-guide .guide-mini img{object-fit:contain;object-position:bottom center}
