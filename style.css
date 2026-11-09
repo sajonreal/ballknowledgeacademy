@@ -1947,3 +1947,24 @@ body::before{
  #academy-guide .guide-dialog{z-index:10000!important;}
  #academy-guide .guide-portrait{z-index:9998!important;}
 }
+
+
+/* FIX Waguri guide: image fallback and genuine exit fade. */
+#academy-guide .guide-dialog.guide-closing,
+#academy-guide .guide-portrait.guide-closing {
+  animation: none !important;
+  opacity: 0 !important;
+  transition: opacity 1s ease !important;
+}
+#academy-guide .guide-portrait.guide-closing { transform: translateX(-50%) !important; }
+#academy-guide .guide-mini.guide-returning { animation: guideMiniReturn 1s ease both !important; }
+@keyframes guideMiniReturn { from { opacity: 0; } to { opacity: 1; } }
+#academy-guide .guide-mini.guide-image-missing {
+  display: flex; align-items: center; justify-content: center;
+  width: 92px !important; height: 132px !important;
+  border: 1px solid #d5b6d3 !important; border-radius: 14px !important;
+  background: rgba(255,249,253,.92) !important;
+  color: #a94e91; font: 800 1rem 'Nunito', sans-serif;
+}
+#academy-guide .guide-mini.guide-image-missing::after { content: attr(data-guide-name); }
+@media(max-width:480px){ #academy-guide .guide-mini.guide-image-missing { width:88px!important;height:126px!important; } }
