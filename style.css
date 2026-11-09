@@ -1930,3 +1930,20 @@ body::before{
 
 /* Respetar movimiento reducido para ambas mini-guías */
 @media(prefers-reduced-motion:reduce){#academy-guide .guide-mini img[style*="natsukiMiniBounces"]{animation:none!important}}
+
+
+/* Guías: fundido limpio de un segundo, sin aplastar ni desplazar sprites */
+#academy-guide .guide-dialog,#academy-guide .guide-portrait{transition:opacity 1s ease!important;}
+#academy-guide .guide-dialog.guide-closing,#academy-guide .guide-portrait.guide-closing{opacity:0!important;transform:none!important;}
+#academy-guide .guide-portrait.guide-closing{transform:translateX(-50%)!important;}
+#academy-guide .guide-mini[hidden]{display:none!important;}
+#academy-guide .guide-mini img{display:block;opacity:1;visibility:visible;}
+#academy-guide .guide-mini:has(img[alt="Guía Waguri"]){width:92px;height:132px;}
+#academy-guide .guide-mini:has(img[alt="Guía Waguri"]){aspect-ratio:23/33;}
+@media(max-width:480px){
+ #academy-guide{right:10px!important;bottom:calc(108px + env(safe-area-inset-bottom))!important;z-index:9999!important;}
+ #academy-guide .guide-mini{width:76px;height:110px;}
+ #academy-guide .guide-mini:has(img[alt="Guía Waguri"]){width:88px;height:126px;}
+ #academy-guide .guide-dialog{z-index:10000!important;}
+ #academy-guide .guide-portrait{z-index:9998!important;}
+}
