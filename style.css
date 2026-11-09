@@ -1975,8 +1975,11 @@ body::before{
   transform: translateY(-28px) scale(.62) !important;
   transform-origin: center center !important;
 }
-#academy-guide .guide-portrait[data-waguri-frame="2"] img,
+#academy-guide .guide-portrait[data-waguri-frame="2"] img {
+  transform: translate(5px, -28px) scale(1) !important;
+  transform-origin: center center !important;
+}
 #academy-guide .guide-portrait[data-waguri-frame="3"] img {
-  transform: translateY(-28px) scale(1) !important;
+  transform: translateY(-38px) scale(.60) !important;
   transform-origin: center center !important;
 }
