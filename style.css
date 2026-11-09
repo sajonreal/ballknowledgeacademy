@@ -1968,3 +1968,15 @@ body::before{
 }
 #academy-guide .guide-mini.guide-image-missing::after { content: attr(data-guide-name); }
 @media(max-width:480px){ #academy-guide .guide-mini.guide-image-missing { width:88px!important;height:126px!important; } }
+
+
+/* Waguri dialogue sprite framing: smaller first pose and lift the first three poses. */
+#academy-guide .guide-portrait[data-waguri-frame="1"] img {
+  transform: translateY(-28px) scale(.62) !important;
+  transform-origin: center center !important;
+}
+#academy-guide .guide-portrait[data-waguri-frame="2"] img,
+#academy-guide .guide-portrait[data-waguri-frame="3"] img {
+  transform: translateY(-28px) scale(1) !important;
+  transform-origin: center center !important;
+}
