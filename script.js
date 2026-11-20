@@ -1,73 +1,11 @@
 /* ============================================================
    BALLKNOWLEDGE ACADEMY — script.js
    Lógica compartida por todas las páginas.
-   No hace falta tocar este archivo para actualizar contenido:
-   eso se hace en data.js
-   ============================================================
+   La autenticación se gestiona en auth-core.js y auth-gate.js.
+   ============================================================ */
 
-   ------------------------------------------------------------
-   INICIO DE SESIÓN
-   ------------------------------------------------------------
-   Solo hay dos usuarios válidos, escritos aquí abajo. Si algún
-   día quieres cambiar una contraseña (o el nombre de usuario),
-   edita este objeto — es lo único que necesitas tocar.
-   ------------------------------------------------------------ */
-const USUARIOS_VALIDOS = {
-  "Sajón-sensei 999": "yotsuba67",
-  "Hori_mogger67": "horimierda"
-};
-
-/* Devuelve el usuario que ha iniciado sesión en este dispositivo,
-   o null si todavía no ha iniciado sesión nadie. */
 function getUsuarioActual() {
   return localStorage.getItem("bka_usuario");
-}
-
-function mostrarPantallaLogin() {
-  document.body.style.overflow = "hidden";
-
-  const tieneImagen = typeof IMAGEN_LOGIN !== "undefined" && IMAGEN_LOGIN;
-  const imagenHtml = tieneImagen
-    ? `<div class="login-imagen-wrap"><img src="${IMAGEN_LOGIN}" alt="" onerror="this.parentElement.classList.add('img-fallback'); this.remove();"></div>`
-    : `<div class="login-imagen-wrap img-fallback">🎓</div>`;
-
-  const overlay = document.createElement("div");
-  overlay.id = "login-overlay";
-  overlay.innerHTML = `
-    ${imagenHtml}
-    <div class="login-card">
-      <h1>Ballknowledge Academy</h1>
-      <p>Inicia sesión para entrar</p>
-      <form id="login-form">
-        <input type="text" id="login-usuario" placeholder="Usuario" autocomplete="username" required>
-        <input type="password" id="login-clave" placeholder="Contraseña" autocomplete="current-password" required>
-        <button type="submit">Entrar</button>
-        <p class="login-error" id="login-error"></p>
-      </form>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-
-  document.getElementById("login-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const usuario = document.getElementById("login-usuario").value.trim();
-    const clave = document.getElementById("login-clave").value;
-    const error = document.getElementById("login-error");
-
-    if (USUARIOS_VALIDOS[usuario] && USUARIOS_VALIDOS[usuario] === clave) {
-      localStorage.setItem("bka_usuario", usuario);
-      overlay.remove();
-      document.body.style.overflow = "";
-    } else {
-      error.textContent = "Usuario o contraseña incorrectos.";
-    }
-  });
-}
-
-/* Se ejecuta nada más cargar el archivo, antes que cualquier
-   otra cosa de la página. */
-if (!getUsuarioActual()) {
-  document.addEventListener("DOMContentLoaded", mostrarPantallaLogin);
 }
 
 const DIAS_SEMANA = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
