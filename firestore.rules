@@ -1,10 +1,24 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function signedIn() { return request.auth != null; }
-    // Datos compartidos por las dos cuentas de la academia.
-    match /valoraciones/{document=**} { allow read, write: if signedIn(); }
-    match /perfiles/{document=**} { allow read, write: if signedIn(); }
-    match /seguimiento/{document=**} { allow read, write: if signedIn(); }
+    function academyUser() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in [
+          'gtelloolalla@gmail.com',
+          'jarranztorrijos@gmail.com'
+        ];
+    }
+
+    // Datos compartidos entre las dos cuentas autorizadas.
+    match /valoraciones/{document=**} {
+      allow read, write: if academyUser();
+    }
+    match /perfiles/{document=**} {
+      allow read, write: if academyUser();
+    }
+    match /seguimiento/{document=**} {
+      allow read, write: if academyUser();
+    }
   }
 }
