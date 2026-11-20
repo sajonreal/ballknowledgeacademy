@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    // Datos compartidos por las dos cuentas de la academia.
+    match /valoraciones/{document=**} { allow read, write: if signedIn(); }
+    match /perfiles/{document=**} { allow read, write: if signedIn(); }
+    match /seguimiento/{document=**} { allow read, write: if signedIn(); }
+  }
+}
