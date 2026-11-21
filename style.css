@@ -2001,3 +2001,38 @@ body::before{
 .login-card-standalone button:disabled { opacity:.65; cursor:wait; }
 .login-error-standalone { min-height:1.3em; margin:12px 0 0; text-align:center; color:#c62858; font-size:.9rem; font-weight:700; }
 .login-footer { color:var(--text-soft); font-size:.8rem; text-align:center; }
+
+
+/* Pantalla de acceso: composición compacta, sin scroll y sin decoración romántica. */
+.login-page{
+  height:100vh;height:100svh;min-height:0;overflow:hidden;
+  padding:max(12px,env(safe-area-inset-top)) 16px max(12px,env(safe-area-inset-bottom));
+}
+.login-page .bg-decor{display:none!important}
+.login-shell{width:min(100%,430px);max-height:100%;gap:clamp(7px,1.8vh,14px);justify-content:center}
+.login-brand{font-size:clamp(1.65rem,6.5vw,2.35rem);flex:none}
+.login-image{
+  width:min(88%,310px);height:clamp(105px,25svh,190px);max-height:25svh;
+  object-fit:contain;border-radius:22px;overflow:hidden;
+  filter:drop-shadow(0 5px 13px rgba(255,95,178,.13));flex:none
+}
+.login-card-standalone{padding:clamp(15px,3.2vh,23px) clamp(18px,5vw,25px);flex:none}
+.login-card-standalone h2{font-size:clamp(1.45rem,6vw,1.7rem);line-height:1.12}
+.login-card-standalone .login-subtitle{margin:4px 0 12px;font-size:.88rem}
+.login-card-standalone label{margin:10px 0 5px;font-size:.88rem}
+.login-card-standalone input{padding:11px 13px;font-size:16px}
+.login-card-standalone button{margin-top:14px;padding:12px}
+.login-error-standalone{min-height:1.1em;margin:8px 0 0;font-size:.82rem}
+@media(max-height:700px){
+ .login-shell{gap:7px}
+ .login-image{height:19svh;max-height:145px}
+ .login-card-standalone{padding-top:13px;padding-bottom:12px}
+ .login-card-standalone .login-subtitle{margin-bottom:8px}
+ .login-card-standalone label{margin-top:8px}
+ .login-card-standalone button{margin-top:11px;padding:10px}
+}
+@media(max-height:560px){
+ .login-image{height:13svh;max-height:90px}
+ .login-brand{font-size:1.45rem}
+ .login-card-standalone h2{font-size:1.3rem}
+}
