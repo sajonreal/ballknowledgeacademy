@@ -2108,9 +2108,10 @@ body::before{
   transform-origin:center center!important;
 }
 #academy-guide .guide-portrait[data-marin-frame="3"] img{
-  transform:translate(0px,-10px) scale(.5)!important;
+  transform:translate(0px,-17px) scale(.7)!important;
   transform-origin:center center!important;
 }
+
 
 
 /* Ajuste definitivo: borde pegado a la imagen y más aire vertical */
