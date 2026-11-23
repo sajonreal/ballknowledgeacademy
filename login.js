@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const rememberedUsername=localStorage.getItem("bka_ultimo_usuario");
   if(rememberedUsername && window.BKA_USERS[rememberedUsername]){
     usernameInput.value=rememberedUsername;
-    passwordInput.focus();
   }
   if (!window.bkaAuth) { errorEl.textContent="No se ha podido conectar con el servicio de acceso."; return; }
   const destination=()=>{ const next=new URLSearchParams(location.search).get("next"); return next && /^[a-z0-9-]+\.html$/i.test(next) ? next : "index.html"; };
