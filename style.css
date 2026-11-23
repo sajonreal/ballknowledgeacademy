@@ -2052,3 +2052,61 @@ body::before{
 @media(max-width:480px){
  #academy-guide .guide-mini:has(img[alt="Guía Marin"]){width:68px!important;height:98px!important}
 }
+
+
+/* Login: imagen con borde directo, sin marco o tarjeta exterior */
+.login-image{
+  padding:0!important;
+  background:transparent!important;
+  border:3px solid #a94e91!important;
+  border-radius:22px!important;
+  box-shadow:0 0 0 3px rgba(169,78,145,.10),0 7px 22px rgba(169,78,145,.18)!important;
+  box-sizing:border-box;
+}
+/* Título centrado de verdad; el birrete ocupa una columna independiente */
+.login-brand{
+  width:100%;
+  display:grid!important;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  justify-content:initial!important;
+  gap:0!important;
+  text-align:center!important;
+  font-family:'Playfair Display',serif!important;
+  font-weight:800;
+  line-height:1.02!important;
+  letter-spacing:-.025em;
+}
+.login-brand-icon{
+  grid-column:1;
+  justify-self:end;
+  align-self:start;
+  margin-right:9px;
+  font-family:system-ui,sans-serif;
+  font-size:.72em!important;
+  line-height:1.15;
+}
+.login-brand-text{grid-column:2;display:block;white-space:nowrap}
+.login-brand-spacer{grid-column:3}
+.login-brand-accent{
+  background:linear-gradient(90deg,#9f478a,#d28ab9,#b85d9d);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+@media(max-height:560px){.login-brand-icon{font-size:.68em!important}}
+
+/* Marin: controles independientes para encuadrar cada sprite de diálogo.
+   Ajusta translateX/translateY (px) y scale (1 = tamaño original). */
+#academy-guide .guide-portrait[data-marin-frame="1"] img{
+  transform:translate(0px,0px) scale(1)!important;
+  transform-origin:center center!important;
+}
+#academy-guide .guide-portrait[data-marin-frame="2"] img{
+  transform:translate(0px,0px) scale(.88)!important;
+  transform-origin:center center!important;
+}
+#academy-guide .guide-portrait[data-marin-frame="3"] img{
+  transform:translate(0px,0px) scale(1)!important;
+  transform-origin:center center!important;
+}
