@@ -2111,3 +2111,37 @@ body::before{
   transform:translate(0px,-10px) scale(.5)!important;
   transform-origin:center center!important;
 }
+
+
+/* Ajuste definitivo: borde pegado a la imagen y más aire vertical */
+.login-image{
+  display:block!important;
+  width:auto!important;
+  height:clamp(112px,23svh,184px)!important;
+  max-width:88%!important;
+  max-height:23svh!important;
+  padding:0!important;
+  margin:10px 0 14px!important;
+  box-sizing:content-box!important;
+  object-fit:contain!important;
+  border:3px solid #e94b9b!important;
+  border-radius:22px!important;
+  overflow:hidden!important;
+  background:transparent!important;
+  filter:drop-shadow(0 5px 13px rgba(233,75,155,.18))!important;
+  flex:none!important;
+}
+@media(max-height:700px){
+  .login-image{
+    height:19svh!important;
+    max-height:142px!important;
+    margin:7px 0 10px!important;
+  }
+}
+@media(max-height:560px){
+  .login-image{
+    height:13svh!important;
+    max-height:88px!important;
+    margin:4px 0 7px!important;
+  }
+}
