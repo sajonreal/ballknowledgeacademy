@@ -2,10 +2,10 @@
 (function () {
   const guides = {
     "index.html": ["natsuki", "Natsuki", ["Qué pasa ¿te has perdido? Aquí solo hablamos de manga y anime de romance, si no te interesa puedes ir dándote la vuelta.", "C-cómo?!! Que si quieres estar aquí y seguir aprendiendo sobre esta academia?", "Pues siéntete libre de indagar en sus diferentes apartados y personalizar tu perfil al fondo de esta misma página.", "T-te lo he dicho solo por educación! No te hagas ideas raras de mí b-baka!."]],
-    "resenas.html": ["mai", "Mai", ["[MAI · DIÁLOGO 1: escribe aquí el primer diálogo]", "[MAI · DIÁLOGO 2: escribe aquí el segundo diálogo]", "[MAI · DIÁLOGO 3: escribe aquí el tercer diálogo]", "[MAI · DIÁLOGO 4: escribe aquí el cuarto diálogo]"]],
+    "resenas.html": ["mai", "Mai", ["Que aburrida estoy en la sección de planeados de esta biblioteca. Aquí solo hay animes que la gente no tiene tiempo de ver.", "Cómo!? Puedes verme? Y escucharme?", "Pues que desgracia que hayas tenido que ser tú el único que pueda reconocerme", "Bueno, la verdad es que me has caído bien. Espero que nos podamos volver a ver pronto"]],
     "planeados.html": ["chica-3", "Chica 3", ["¡Aquí están los animes pendientes!", "Revisa la lista y descubre qué historias nos esperan.", "¡Toda recomendación es bienvenida!"]],
-    "calendario.html": ["waguri", "Waguri", ["H-hola! Aquí podrás consultar el calendario de episodios.", "Organizamos los capítulos por día para que no te pierdas ninguno.", "También puedes seguir las series que te interesan.", "¡Nos vemos en el próximo episodio!"]],
-    "ruleta.html": ["marin", "Marin", ["¡Holiii! ¿No sabes qué anime elegir?", "¡No te preocupes! La ruleta puede decidir por ti.", "¡Dale a la palanca y que empiece la diversión!"]],
+    "calendario.html": ["waguri", "Waguri", ["H-hola! Aquí podrás consultar el calendario de episodios.", "La organización es fundamental! Por eso anunciamos aquí los episodios que tocan cada día para que no te pierdas ninguno.", "También puedes elegir si estar al día o no, a si que no tengas presión.", "¡Nos vemos mañana con más y mejor!"]],
+    "ruleta.html": ["marin", "Marin", ["¡Holiii:)! ¿No sabes qué anime elegir?", "¡No te preocupes! La ruleta puede decidir por ti. Como al hacer cosplay, pueden surgir de la nada cosas completamente impredecibles y hay que ponerse frente a ellas.", "¡Dale a la palanca y a ver que sale! Hasta luegi!"]],
     "listas.html": ["chica-6", "Chica 6", ["Este rincón reúne nuestras listas musicales.", "Canciones que acompañan las historias y momentos de la academia.", "A veces una melodía también cuenta una historia."]]
   };
   function setupMusic() {
