@@ -2148,14 +2148,44 @@ body::before{
 }
 
 
-/* Fond temático de la biblioteca para Reseñas.
-   Sube el archivo resenas-biblioteca.jpg a assets/backgrounds/. */
+/* Fondos independientes por apartado.
+   Todos mantienen el mismo desenfoque y velo suave que el fondo de Inicio.
+   Index conserva classroom-bg.png sin cambios.
+   Archivos esperados dentro de assets/backgrounds/. */
 body.page-resenas::before{
   background:
     linear-gradient(rgba(255,244,250,.48),rgba(247,232,245,.60)),
     url('assets/backgrounds/resenas-biblioteca.jpg') center center / cover no-repeat!important;
   filter:blur(3px)!important;
   transform:scale(1.025)!important;
+}
+body.page-planeados::before{
+  background:
+    linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),
+    url('assets/backgrounds/planeados.jpg') center center / cover no-repeat!important;
+  filter:blur(3px)!important;
+  transform:scale(1.02)!important;
+}
+body.page-calendario::before{
+  background:
+    linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),
+    url('assets/backgrounds/calendario.webp') center center / cover no-repeat!important;
+  filter:blur(3px)!important;
+  transform:scale(1.02)!important;
+}
+body.page-ruleta::before{
+  background:
+    linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),
+    url('assets/backgrounds/ruleta.jpg') center center / cover no-repeat!important;
+  filter:blur(3px)!important;
+  transform:scale(1.02)!important;
+}
+body.page-listas::before{
+  background:
+    linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),
+    url('assets/backgrounds/listas.jpg') center center / cover no-repeat!important;
+  filter:blur(3px)!important;
+  transform:scale(1.02)!important;
 }
 /* Reservas de tamaño para la mini Mai */
 #academy-guide .guide-mini:has(img[alt="Guía Mai"]){width:74px;height:106px}
