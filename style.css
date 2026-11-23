@@ -2146,3 +2146,19 @@ body::before{
     margin:4px 0 7px!important;
   }
 }
+
+
+/* Fond temático de la biblioteca para Reseñas.
+   Sube el archivo resenas-biblioteca.jpg a assets/backgrounds/. */
+body.page-resenas::before{
+  background:
+    linear-gradient(rgba(255,244,250,.48),rgba(247,232,245,.60)),
+    url('assets/backgrounds/resenas-biblioteca.jpg') center center / cover no-repeat!important;
+  filter:blur(3px)!important;
+  transform:scale(1.025)!important;
+}
+/* Reservas de tamaño para la mini Mai */
+#academy-guide .guide-mini:has(img[alt="Guía Mai"]){width:74px;height:106px}
+@media(max-width:480px){
+  #academy-guide .guide-mini:has(img[alt="Guía Mai"]){width:76px;height:110px}
+}
