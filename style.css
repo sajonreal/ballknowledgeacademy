@@ -2036,3 +2036,11 @@ body::before{
  .login-brand{font-size:1.45rem}
  .login-card-standalone h2{font-size:1.3rem}
 }
+
+
+/* Ajustes de la portada de acceso */
+.login-brand{display:flex;align-items:center;justify-content:center;gap:10px;text-align:left!important;line-height:.98!important}
+.login-brand-icon{font-size:.82em;flex:none}
+.login-brand-text{display:block}
+.login-image{padding:10px;box-sizing:border-box;border-radius:26px;background:rgba(255,255,255,.68);border:1px solid rgba(244,198,223,.85);box-shadow:0 7px 22px rgba(190,112,157,.13);margin:5px 0}
+@media(max-height:740px){.login-image{padding:7px;margin:2px 0}}
