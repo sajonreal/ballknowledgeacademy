@@ -2044,3 +2044,11 @@ body::before{
 .login-brand-text{display:block}
 .login-image{padding:10px;box-sizing:border-box;border-radius:26px;background:rgba(255,255,255,.68);border:1px solid rgba(244,198,223,.85);box-shadow:0 7px 22px rgba(190,112,157,.13);margin:5px 0}
 @media(max-height:740px){.login-image{padding:7px;margin:2px 0}}
+
+
+/* Marin: miniatura algo más discreta y segundo sprite ligeramente reducido y centrado. */
+#academy-guide .guide-mini:has(img[alt="Guía Marin"]){width:66px!important;height:95px!important}
+#academy-guide .guide-portrait[data-marin-frame="2"] img{transform:scale(.88)!important;transform-origin:center center!important}
+@media(max-width:480px){
+ #academy-guide .guide-mini:has(img[alt="Guía Marin"]){width:68px!important;height:98px!important}
+}
