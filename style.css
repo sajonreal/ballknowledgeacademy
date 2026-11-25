@@ -2192,3 +2192,41 @@ body.page-listas::before{
 @media(max-width:480px){
   #academy-guide .guide-mini:has(img[alt="Guía Mai"]){width:76px;height:110px}
 }
+
+
+/* Ajustes de fondos por apartado: extensiones reales de los archivos subidos.
+   Mai y su biblioteca acompañan a Planeados; Inicio conserva classroom-bg.png. */
+body.page-resenas::before{
+  background:linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),url('assets/classroom-bg.png') center/cover no-repeat!important;
+  filter:blur(3px)!important;transform:scale(1.02)!important;
+}
+body.page-planeados::before{
+  background:linear-gradient(rgba(255,244,250,.48),rgba(247,232,245,.60)),url('assets/backgrounds/resenas-biblioteca.jpg') center center/cover no-repeat!important;
+  filter:blur(3px)!important;transform:scale(1.025)!important;
+}
+body.page-ruleta::before{
+  background:linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),url('assets/backgrounds/ruleta.png') center center/cover no-repeat!important;
+  filter:blur(3px)!important;transform:scale(1.02)!important;
+}
+body.page-listas::before{
+  background:linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),url('assets/backgrounds/listas.png') center center/cover no-repeat!important;
+  filter:blur(3px)!important;transform:scale(1.02)!important;
+}
+
+/* Acentos de color de las cinco tarjetas de portada */
+.anuncio-card--actual{border-left:4px solid #9bd9a5!important}
+.anuncio-card--top{border-left:4px solid #e6bd55!important}
+.anuncio-card--happiness{border-left:4px solid #ed91c4!important}
+.anuncio-card--charca{border-left:4px solid #8b8a55!important}
+.anuncio-card--peak{border-left:4px solid #c5a4ed!important}
+
+/* El título se centra por sí mismo; el GIF queda como adorno flotante a la derecha. */
+.scoring-title-wrap{padding:8px 0!important;min-height:82px!important}
+.scoring-title-wrap .scoring-heading{width:100%!important;text-align:center!important}
+.scoring-title-wrap #gif-puntuamos .gif-item{width:76px!important;height:76px!important;transform:rotate(8deg)!important}
+@media(max-width:480px){
+  .scoring-title-wrap{min-height:76px!important;padding:6px 0!important}
+  .scoring-title-wrap #gif-puntuamos .gif-item{width:68px!important;height:68px!important;transform:rotate(8deg)!important}
+}
+.valorar-select{width:100%;min-height:42px;padding:9px 11px;border:1px solid #e1c9df;border-radius:12px;background:#fffafc;color:#3c263c;font:600 .9rem 'Nunito',sans-serif}
+#valorar-final-input{min:0}
