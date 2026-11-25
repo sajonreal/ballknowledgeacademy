@@ -232,7 +232,7 @@
         grid.appendChild(campo);
       });
 
-      document.getElementById("valorar-final-input").value = notaPrevia.final ?? notaMedia ?? "";
+      document.getElementById("valorar-final-input").value = notaPrevia.notaFinal ?? notaMedia ?? "";
       document.getElementById("valorar-overlay").classList.add("visible");
     }
 
@@ -255,7 +255,7 @@
       });
             const finalInput = document.getElementById("valorar-final-input");
       if (finalInput.value.trim() === "") huecos = true;
-      else valores.final = Number(finalInput.value);
+      else valores.notaFinal = Number(finalInput.value);
 
       if (huecos || Object.entries(valores).some(([key, v]) => {
         if (key === "fanService" && v === "H") return false;
@@ -323,7 +323,7 @@
                 const flecha = flechaComparativa(v, subnotasMedia[stat.key]);
                 return `<div class="stat-chip"><span class="sc-emoji">${stat.emoji}</span><span class="sc-label">${stat.label}</span><span class="sc-value">${texto} ${flecha}</span></div>`;
               }).join("")}
-              <div class="stat-chip"><span class="sc-emoji">🏁</span><span class="sc-label">Nota final</span><span class="sc-value">${datos.final ?? "?"} ${flechaComparativa(datos.final, notaMedia)}</span></div>
+              <div class="stat-chip"><span class="sc-emoji">🏁</span><span class="sc-label">Nota final</span><span class="sc-value">${datos.notaFinal ?? (typeof datos.final === "number" ? datos.final : "?")} ${flechaComparativa(datos.notaFinal ?? datos.final, notaMedia)}</span></div>
             </div>
           `;
           cont.appendChild(bloque);
