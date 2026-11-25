@@ -51,14 +51,22 @@ function calcularNotasFinales(anime) {
 
   const subnotas = {};
   (typeof ESTADISTICAS !== "undefined" ? ESTADISTICAS : []).forEach(stat => {
-    const valores = usuarios
-      .map(u => u[stat.key])
-      .filter(v => v !== null && v !== undefined && v !== "");
-    subnotas[stat.key] = valores.length
-      ? truncar1(valores.reduce((a, b) => a + Number(b), 0) / valores.length)
-      : null;
+    const valores = usuarios.map(u => u[stat.key]).filter(v => v !== null && v !== undefined && v !== "");
+    if (!valores.length) { subnotas[stat.key] = null; return; }
+    if (stat.key === "fanService" && valores.every(v => String(v).toUpperCase() === "H")) {
+      subnotas[stat.key] = "H"; return;
+    }
+    if (stat.key === "final" && valores.every(v => String(v) === "?")) {
+      subnotas[stat.key] = "?"; return;
+    }
+    const numericos = valores.filter(v => typeof v === "number" || (String(v).trim() !== "" && !Number.isNaN(Number(v))));
+    if (!numericos.length) { subnotas[stat.key] = null; return; }
+    const suma = numericos.reduce((acc, value) => acc + Number(value), 0)
+      + (stat.key === "fanService" ? valores.filter(v => String(v).toUpperCase() === "H").length * 10 : 0);
+    const divisor = stat.key === "final" ? numericos.length : valores.length;
+    subnotas[stat.key] = truncar1(suma / divisor);
   });
-
+  
   const finales = usuarios
     .map(u => u.final)
     .filter(v => v !== null && v !== undefined && v !== "");
