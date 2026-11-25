@@ -36,7 +36,25 @@
     document.body.appendChild(root);
     const mini = root.querySelector('.guide-mini'), portrait = root.querySelector('.guide-portrait'), panel = root.querySelector('.guide-dialog'), line = root.querySelector('.guide-line'), next = root.querySelector('.guide-next'); let i = 0; const miniImg = mini.querySelector('img'); if (miniImg) miniImg.addEventListener('error', () => { miniImg.style.display = 'none'; mini.classList.add('guide-image-missing'); mini.dataset.guideName = item[1]; });
     if (item[0] === 'natsuki' || item[0] === 'waguri' || item[0] === 'marin' || item[0] === 'mai') { const miniImg = mini.querySelector('img'); if (miniImg) miniImg.style.animation = 'natsukiMiniBounces 13s ease-in-out infinite'; }
-    function closeGuide() { root.classList.add('guide-closing'); panel.classList.add('guide-closing'); portrait.classList.add('guide-closing'); if (item[0] !== 'mai') mini.hidden = false; const fade = el => { if (el && typeof el.animate === 'function') return el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 850, easing: 'ease-in', fill: 'forwards' }); if (el) el.style.opacity = '0'; return null; }; const panelFade = fade(panel), portraitFade = fade(portrait); window.setTimeout(() => { panel.hidden = true; portrait.hidden = true; [panelFade, portraitFade].forEach(a => { if (a) a.cancel(); }); panel.style.opacity = ''; portrait.style.opacity = ''; mini.style.opacity = ''; if (item[0] === 'mai') { mini.hidden = true; mini.disabled = true; root.classList.add('guide-used'); } root.classList.remove('guide-closing'); panel.classList.remove('guide-closing'); portrait.classList.remove('guide-closing'); i = 0; }, 900); }
+    function closeGuide() {
+      root.classList.add('guide-closing'); panel.classList.add('guide-closing'); portrait.classList.add('guide-closing');
+      if (item[0] !== 'mai') mini.hidden = false;
+      const fade = el => el && typeof el.animate === 'function' ? el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 850, easing: 'ease-in', fill: 'forwards' }) : null;
+      const panelFade = fade(panel), portraitFade = fade(portrait);
+      let miniFade = null;
+      if (item[0] === 'mai') {
+        mini.hidden = false; mini.style.opacity = '1';
+        miniFade = fade(mini);
+      }
+      window.setTimeout(() => {
+        panel.hidden = true; portrait.hidden = true;
+        [panelFade, portraitFade, miniFade].forEach(animation => { if (animation) animation.cancel(); });
+        panel.style.opacity = ''; portrait.style.opacity = '';
+        if (item[0] === 'mai') { mini.hidden = true; mini.disabled = true; mini.style.opacity = ''; root.classList.add('guide-used'); }
+        else mini.style.opacity = '';
+        root.classList.remove('guide-closing'); panel.classList.remove('guide-closing'); portrait.classList.remove('guide-closing'); i = 0;
+      }, item[0] === 'mai' ? 420 : 900);
+    }
     function advance() { if (i >= item[2].length) { closeGuide(); return; } line.textContent = item[2][i]; const portraitImg = portrait.querySelector('img'); if (portraitImg && item[0] === 'natsuki') portraitImg.src = 'assets/characters/natsuki-dialog-' + [1, 2, 3, 4][i] + '.webp?v=20261108c'; if (portraitImg && item[0] === 'waguri') { portrait.dataset.waguriFrame = String(i + 1); portraitImg.src = 'assets/characters/waguri-dialog-' + [1, 2, 3, 4][i] + '.png?v=20261109e'; } if (portraitImg && item[0] === 'marin') { portrait.dataset.marinFrame = String(i + 1); portraitImg.src = 'assets/characters/marin-dialog-' + [1, 2, 3][i] + '.png?v=20261121a'; } if (portraitImg && item[0] === 'mai') { portrait.dataset.maiFrame = String(i + 1); portraitImg.src = 'assets/characters/mai-dialog-' + [1, 2, 3, 4][i] + '.png?v=20261123a'; } i++; line.style.animation = 'none'; line.offsetHeight; line.style.animation = ''; next.textContent = i >= item[2].length ? 'Cerrar ✕' : 'Continuar ›'; }
     mini.addEventListener('click', () => { mini.hidden = true; portrait.hidden = false; panel.hidden = false; i = 0; advance(); }); next.addEventListener('click', advance); line.addEventListener('click', advance);
   }
