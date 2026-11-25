@@ -16,7 +16,7 @@
     audio.volume = vol; audio.muted = localStorage.getItem('bka_music_muted') === 'true';
     const savedTime = Number(sessionStorage.getItem('bka_music_time') || localStorage.getItem('bka_music_time') || 0);
     const restore = () => { if (Number.isFinite(savedTime) && savedTime > 0 && audio.duration && savedTime < audio.duration) audio.currentTime = savedTime; };
-    audio.addEventListener('loadedmetadata', restore, { once: true });
+    audio.addEventListener('loadedmetadata', () => { restore(); audio.play().catch(() => {}); }, { once: true });
     audio.addEventListener('timeupdate', () => { const t = String(audio.currentTime || 0); sessionStorage.setItem('bka_music_time', t); localStorage.setItem('bka_music_time', t); });
     window.addEventListener('pagehide', () => { const t = String(audio.currentTime || 0); sessionStorage.setItem('bka_music_time', t); localStorage.setItem('bka_music_time', t); });
     if (range) range.value = String(Math.round(vol * 100));
