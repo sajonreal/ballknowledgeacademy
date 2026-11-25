@@ -56,6 +56,12 @@ const ESTADISTICAS = [
 ------------------------------------------------------------ */
 const ANIME_COMPLETADOS = [
   {
+    nombre: "Nisekoi",
+    imagen: "images/nisekoi.jpg",
+    nota: null,
+    subnotas: { opEd: null, queso: null, personalidadQueso: null, cocina: null, prota: null, animacion: null, trama: null, historia: null, fanService: null, fantasia: null, perSec: null, aprendizaje: null, actualHappiness: null, final: null }
+  },
+  {
     nombre: "The Quintessential Quintuplets",
     imagen: "images/the-quintessential-quintuplets.jpg",
     nota: 9,
@@ -326,7 +332,6 @@ const ANIME_PLANEADOS = [
   { nombre: "Golden Time", imagen: "images/golden-time.jpg", prioridad: false, etiqueta: "" },
   { nombre: "The Ramparts Of Ice", imagen: "images/the-ramparts-of-ice.jpg", prioridad: false, etiqueta: "" },
   { nombre: "Blue Box", imagen: "images/blue-box.jpg", prioridad: true, etiqueta: "" },
-  { nombre: "Nisekoi", imagen: "images/nisekoi.jpg", prioridad: false, etiqueta: "" },
   { nombre: "More Than a Married Couple, But Not Lovers", imagen: "images/more-than-a-married-couple-but-not-lovers.jpg", prioridad: true, etiqueta: "" },
   { nombre: "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You", imagen: "images/the-100-girlfriends-who-really-really-really-really-really-love-you.webp", prioridad: false, etiqueta: "" },
   { nombre: "Oregairu", imagen: "images/oregairu.webp", prioridad: false, etiqueta: "" },
