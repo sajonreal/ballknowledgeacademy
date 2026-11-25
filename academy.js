@@ -44,7 +44,7 @@
       let miniFade = null;
       if (item[0] === 'mai') {
         mini.hidden = false; mini.style.opacity = '1';
-        miniFade = fade(mini);
+        miniFade = mini.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 380, easing: 'ease-out', fill: 'forwards' });
       }
       window.setTimeout(() => {
         panel.hidden = true; portrait.hidden = true;
