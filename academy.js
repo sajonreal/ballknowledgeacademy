@@ -23,7 +23,7 @@
     if (mute) { mute.textContent = audio.muted ? '🔊' : '🔇'; mute.setAttribute('aria-pressed', String(audio.muted)); }
     if (range) range.addEventListener('input', () => { audio.volume = Number(range.value) / 100; localStorage.setItem('bka_music_volume', String(audio.volume)); if (audio.volume > 0 && audio.muted) { audio.muted = false; localStorage.setItem('bka_music_muted', 'false'); } if (mute) { mute.textContent = audio.muted ? '🔊' : '🔇'; mute.setAttribute('aria-pressed', String(audio.muted)); } });
     if (mute) mute.addEventListener('click', () => { audio.muted = !audio.muted; localStorage.setItem('bka_music_muted', String(audio.muted)); mute.textContent = audio.muted ? '🔊' : '🔇'; mute.setAttribute('aria-pressed', String(audio.muted)); if (!audio.muted) audio.play().catch(() => {}); });
-    const start = () => { restore(); audio.play().catch(() => {}); };
+    const start = () => audio.play().catch(() => {});
     document.addEventListener('pointerdown', start, { once: true }); document.addEventListener('keydown', start, { once: true });
     audio.addEventListener('canplay', () => { if (document.visibilityState === 'visible' && !audio.paused) return; });
   }
