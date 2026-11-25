@@ -68,8 +68,8 @@ function calcularNotasFinales(anime) {
   });
   
   const finales = usuarios
-    .map(u => u.final)
-    .filter(v => v !== null && v !== undefined && v !== "");
+    .map(u => u.notaFinal ?? u.final)
+    .filter(v => v !== null && v !== undefined && v !== "" && v !== "?");
   const nota = finales.length
     ? truncar1(finales.reduce((a, b) => a + Number(b), 0) / finales.length)
     : null;
