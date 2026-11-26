@@ -440,79 +440,46 @@ const ANIME_PLANEADOS = [
    el nombre EXACTAMENTE igual que en esas listas.
 ------------------------------------------------------------ */
 const CALENDARIO = {
-  
-	
-	"2026-10-19": [
-    { anime: "Nisekoi", episodio: 1 },
-    { anime: "Nisekoi", episodio: 2 }
+  "2026-11-26": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 4 },
+    { anime: "The Ramparts Of Ice", episodio: 24 }
   ],
-"2026-10-20": [
-    { anime: "Nisekoi", episodio: 3 },
-    { anime: "Nisekoi", episodio: 4 }
+  "2026-11-27": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 5 }
   ],
-"2026-10-21": [
-    { anime: "Nisekoi", episodio: 5 },
-    { anime: "Nisekoi", episodio: 6 }
+  "2026-11-28": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 6 }
   ],
-"2026-10-22": [
-    { anime: "Nisekoi", episodio: 7 },
-    { anime: "Nisekoi", episodio: 8 }
+  "2026-11-29": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 7 }
   ],
-"2026-10-23": [
-    { anime: "Nisekoi", episodio: 9 },
-    { anime: "Nisekoi", episodio: 10 }
+  "2026-11-30": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 8 }
   ],
-"2026-10-24": [
-    { anime: "Nisekoi", episodio: 11 },
-    { anime: "Nisekoi", episodio: 12 }
+  "2026-12-01": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 9 }
   ],
-"2026-10-25": [
-    { anime: "Nisekoi", episodio: 13 },
-    { anime: "Nisekoi", episodio: 14 }
+  "2026-12-02": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 10 }
   ],
-"2026-10-26": [
-    { anime: "Nisekoi", episodio: 15 },
-    { anime: "Nisekoi", episodio: 16 }
+  "2026-12-03": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 11 },
+    { anime: "The Ramparts Of Ice", episodio: 25 }
   ],
-"2026-10-27": [
-    { anime: "Nisekoi", episodio: 17 },
-    { anime: "Nisekoi", episodio: 18 }
+  "2026-12-04": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 12 }
   ],
-"2026-10-28": [
-    { anime: "Nisekoi", episodio: 19 },
-    { anime: "Nisekoi", episodio: 20 }
+  "2026-12-05": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 13 }
   ],
-"2026-10-29": [
-    { anime: "Nisekoi", episodio: 21 },
-    { anime: "Nisekoi", episodio: 22 }
+  "2026-12-06": [
+    { anime: "Yamada-kun and the Seven Witches", episodio: 14 }
   ],
-"2026-10-30": [
-    { anime: "Nisekoi", episodio: 23 },
-    { anime: "Nisekoi", episodio: 24 }
+  "2026-12-10": [
+    { anime: "The Ramparts Of Ice", episodio: 26 }
   ],
-"2026-10-31": [
-    { anime: "Nisekoi", episodio: 1 },
-    { anime: "Nisekoi", episodio: 2 }
-  ],
-"2026-11-01": [
-    { anime: "Nisekoi", episodio: 3 },
-    { anime: "Nisekoi", episodio: 4 }
-  ],
-"2026-11-02": [
-    { anime: "Nisekoi", episodio: 5 },
-    { anime: "Nisekoi", episodio: 6 }
-  ],
-"2026-11-03": [
-    { anime: "Nisekoi", episodio: 7 },
-    { anime: "Nisekoi", episodio: 8 }
-  ],
-"2026-11-04": [
-    { anime: "Nisekoi", episodio: 9 },
-    { anime: "Nisekoi", episodio: 10 }
-  ],
-"2026-11-05": [
-    { anime: "Nisekoi", episodio: 11 },
-    { anime: "Nisekoi", episodio: 12 }
+  "2026-12-17": [
+    { anime: "The Ramparts Of Ice", episodio: 27 }
   ]
 };
 
