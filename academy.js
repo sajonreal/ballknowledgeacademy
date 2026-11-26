@@ -13,27 +13,14 @@
     if (!audio) {
       audio = document.createElement('audio');
       audio.id = 'academy-bgm';
-      audio.src = 'audio/academy-theme.mp3';
+      audio.src = 'audio/audioacademy-theme.mp3';
       audio.loop = true;
       audio.preload = 'auto';
       audio.volume = .35;
       document.body.appendChild(audio);
     }
-
-    let dock = document.getElementById('bka-music-dock');
-    if (!dock) {
-      dock = document.createElement('div');
-      dock.id = 'bka-music-dock';
-      dock.className = 'bka-music-dock';
-      dock.innerHTML = '<button type="button" class="bka-music-toggle" aria-label="Reproducir música" title="Reproducir música">▶</button><input class="bka-music-volume" type="range" min="0" max="100" step="1" aria-label="Volumen de música"><span class="bka-music-status" role="status">Preparando música…</span>';
-      document.body.appendChild(dock);
-    }
-    const playButton = dock.querySelector('.bka-music-toggle');
-    const dockRange = dock.querySelector('.bka-music-volume');
-    const status = dock.querySelector('.bka-music-status');
     const range = document.getElementById('academy-volume');
     const mute = document.getElementById('academy-mute');
-
     if (!window.__bkaMusicInitialized) {
       window.__bkaMusicInitialized = true;
       let vol = Number(localStorage.getItem('bka_music_volume'));
@@ -41,93 +28,47 @@
       audio.volume = vol;
       audio.muted = localStorage.getItem('bka_music_muted') === 'true';
       const savedTime = Number(sessionStorage.getItem('bka_music_time') || localStorage.getItem('bka_music_time') || 0);
-
-      const updateStatus = () => {
-        if (audio.error) {
-          status.textContent = 'Falta audio/academy-theme.mp3';
-          playButton.disabled = true;
-          return;
-        }
-        playButton.disabled = false;
-        playButton.textContent = audio.paused ? '▶' : 'Ⅱ';
-        playButton.setAttribute('aria-label', audio.paused ? 'Reproducir música' : 'Pausar música');
-        playButton.title = audio.paused ? 'Reproducir música' : 'Pausar música';
-        status.textContent = audio.paused ? 'Música en pausa' : 'Reproduciendo';
-      };
       audio.addEventListener('loadedmetadata', () => {
         if (Number.isFinite(savedTime) && savedTime > 0 && audio.duration && savedTime < audio.duration) audio.currentTime = savedTime;
-        audio.play().catch(() => { status.textContent = 'Pulsa ▶ para escuchar'; });
       }, { once: true });
-      audio.addEventListener('timeupdate', () => {
+      const saveTime = () => {
         const t = String(audio.currentTime || 0);
         sessionStorage.setItem('bka_music_time', t);
         localStorage.setItem('bka_music_time', t);
-      });
-      window.addEventListener('pagehide', () => {
-        const t = String(audio.currentTime || 0);
-        sessionStorage.setItem('bka_music_time', t);
-        localStorage.setItem('bka_music_time', t);
-      });
-      audio.addEventListener('play', updateStatus);
-      audio.addEventListener('pause', updateStatus);
-      audio.addEventListener('error', updateStatus);
-      playButton.addEventListener('click', () => {
-        if (audio.paused) audio.play().then(updateStatus).catch(() => {
-          status.textContent = audio.error ? 'Falta audio/academy-theme.mp3' : 'No se pudo iniciar la música';
-        });
-        else { audio.pause(); updateStatus(); }
-      });
-      const start = () => audio.play().catch(() => { status.textContent = audio.error ? 'Falta audio/academy-theme.mp3' : 'Pulsa ▶ para escuchar'; });
+      };
+      audio.addEventListener('timeupdate', saveTime);
+      window.addEventListener('pagehide', saveTime);
+      const start = () => audio.play().catch(() => {});
       document.addEventListener('pointerdown', start, { once: true });
       document.addEventListener('keydown', start, { once: true });
       audio.load();
-      updateStatus();
     }
-
-    const syncVolume = value => {
-      const vol = Math.max(0, Math.min(1, Number(value) / 100));
-      audio.volume = vol;
-      localStorage.setItem('bka_music_volume', String(vol));
-      if (vol > 0 && audio.muted) {
-        audio.muted = false;
-        localStorage.setItem('bka_music_muted', 'false');
+    const syncControls = () => {
+      if (range) range.value = String(Math.round(audio.volume * 100));
+      if (mute) {
+        mute.textContent = audio.muted ? '🔊' : '🔇';
+        mute.setAttribute('aria-pressed', String(audio.muted));
       }
     };
-    if (dockRange) {
-      dockRange.value = String(Math.round(audio.volume * 100));
-      if (!dockRange.dataset.musicBound) {
-        dockRange.dataset.musicBound = 'true';
-        dockRange.addEventListener('input', () => syncVolume(dockRange.value));
-      }
+    if (range && !range.dataset.musicBound) {
+      range.dataset.musicBound = 'true';
+      range.addEventListener('input', () => {
+        audio.volume = Math.max(0, Math.min(1, Number(range.value) / 100));
+        localStorage.setItem('bka_music_volume', String(audio.volume));
+        if (audio.volume > 0 && audio.muted) audio.muted = false;
+        syncControls();
+      });
     }
-    if (range) {
-      range.value = String(Math.round(audio.volume * 100));
-      if (!range.dataset.musicBound) {
-        range.dataset.musicBound = 'true';
-        range.addEventListener('input', () => {
-          syncVolume(range.value);
-          if (dockRange) dockRange.value = range.value;
-          if (mute) {
-            mute.textContent = audio.muted ? '🔊' : '🔇';
-            mute.setAttribute('aria-pressed', String(audio.muted));
-          }
-        });
-      }
+    if (mute && !mute.dataset.musicBound) {
+      mute.dataset.musicBound = 'true';
+      mute.addEventListener('click', () => {
+        audio.muted = !audio.muted;
+        localStorage.setItem('bka_music_muted', String(audio.muted));
+        if (!audio.muted) audio.play().catch(() => {});
+        syncControls();
+      });
     }
-    if (mute) {
-      mute.textContent = audio.muted ? '🔊' : '🔇';
-      mute.setAttribute('aria-pressed', String(audio.muted));
-      if (!mute.dataset.musicBound) {
-        mute.dataset.musicBound = 'true';
-        mute.addEventListener('click', () => {
-          audio.muted = !audio.muted;
-          localStorage.setItem('bka_music_muted', String(audio.muted));
-          mute.textContent = audio.muted ? '🔊' : '🔇';
-          mute.setAttribute('aria-pressed', String(audio.muted));
-          if (!audio.muted) audio.play().catch(() => {});
-        });
-      }
-    }
+    syncControls();
   }
   function setupGuide() {
     const page = window.BKA_currentPage || (location.hash ? location.hash.slice(1) + '.html' : (location.pathname.split('/').pop() || 'index.html'));
