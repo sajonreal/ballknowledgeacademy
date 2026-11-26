@@ -2235,29 +2235,67 @@ body.page-listas::before{
 /* El GIF de puntuación queda ligeramente fuera de la esquina superior derecha del recuadro. */
 .scoring-title-wrap #gif-puntuamos{top:-10px!important;right:-8px!important}
 
-/* Reproductor compacto y persistente, visible en todos los apartados de la SPA. */
-.bka-music-dock{
-  position:fixed;left:12px;bottom:calc(112px + env(safe-area-inset-bottom));
-  z-index:9997;display:grid;grid-template-columns:38px minmax(72px,104px);
-  grid-template-rows:34px auto;align-items:center;gap:3px 8px;
-  max-width:calc(100vw - 120px);padding:7px 10px;
-  border:1px solid rgba(201,155,194,.85);border-radius:16px;
-  background:rgba(255,248,253,.94);box-shadow:0 4px 16px rgba(70,38,66,.16);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)
+
+
+
+/* Ajustes de composición: las páginas internas no muestran la franja superior.
+   Se conserva únicamente en Inicio, donde forma parte del diseño de portada. */
+body:not(.page-index) .top-bar{display:none!important}
+body{position:relative;min-height:100vh;min-height:100dvh}
+html,body{background-color:#f4eaf1}
+body::before{inset:-18px!important;transform:scale(1.015)!important}
+body:not(.page-index) .page-header{
+  padding:clamp(78px,11vh,112px) 18px 34px!important;
+  margin:0 0 18px!important;
+  background:transparent!important;
 }
-.bka-music-toggle{
-  grid-column:1;grid-row:1;width:36px;height:34px;border:0;border-radius:11px;
-  background:linear-gradient(110deg,#a94e91,#c879b0);color:#fff;
-  font:800 .85rem 'Nunito',sans-serif;cursor:pointer
+body:not(.page-index){padding-top:env(safe-area-inset-top)}
+body.page-ruleta,.page-ruleta #bka-spa-page{min-height:100vh;min-height:100dvh}
+body.page-ruleta::before{
+  background:
+    linear-gradient(rgba(245,235,245,.38),rgba(235,220,237,.46)),
+    url('assets/backgrounds/ruleta.png') center center / cover no-repeat!important;
+  filter:blur(3px)!important;
+  transform:scale(1.025)!important;
 }
-.bka-music-toggle:disabled{opacity:.5;cursor:not-allowed}
-.bka-music-volume{grid-column:2;grid-row:1;width:100%;min-width:0;accent-color:#a94e91}
-.bka-music-status{
-  grid-column:1 / -1;grid-row:2;max-width:180px;overflow:hidden;
-  color:#704467;font:600 .62rem 'Nunito',sans-serif;white-space:nowrap;text-overflow:ellipsis
+body.page-ruleta{padding-bottom:calc(120px + env(safe-area-inset-bottom))}
+
+/* Reseñas: portada y nota centrada; el desglose se despliega a demanda. */
+.resena-nota-centro{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1px;text-align:center;padding:8px 4px 10px;
+}
+.resena-nota-centro .nfb-label{font-size:.64rem;letter-spacing:.55px}
+.resena-nota-centro strong{
+  color:#a94e91;font:800 1.35rem 'Nunito',sans-serif;
+}
+.resena-desglose{margin:2px 0 10px}
+.resena-desglose[hidden]{display:none!important}
+.resena-card .resena-body{padding:7px 10px 12px}
+.resena-card .resena-media{aspect-ratio:3/4}
+.resena-comentarios{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:9px;margin:12px 0 2px;padding-top:10px;border-top:1px solid #ecd8e8;
+}
+.comentario-avatar-btn{
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  width:42px;height:42px;min-width:42px;border:2px solid #fff;
+  border-radius:50%;box-shadow:0 2px 8px rgba(80,42,74,.2);
+  color:#fff;font:800 1rem 'Nunito',sans-serif;cursor:pointer;padding:0;
+}
+.comentario-avatar-btn img{width:100%;height:100%;object-fit:cover}
+#comentario-texto{
+  width:100%;resize:vertical;min-height:120px;padding:12px;
+  border:1px solid #dfc4dc;border-radius:12px;background:#fffafd;
+  color:#3c263c;font:600 .9rem 'Nunito',sans-serif;
+}
+.comentario-contador{text-align:right;color:#806b80;font:700 .72rem 'Nunito',sans-serif;margin:5px 2px 14px}
+.comentario-ver-texto{
+  white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;
+  padding:12px 14px;margin:12px 0 18px;border-radius:14px;
+  background:#f7edf5;color:#4b3549;font-size:.9rem;
 }
 @media(max-width:480px){
-  .bka-music-dock{left:8px;bottom:calc(108px + env(safe-area-inset-bottom));padding:6px 8px;grid-template-columns:34px minmax(62px,84px);max-width:calc(100vw - 112px)}
-  .bka-music-toggle{width:32px;height:32px}
-  .bka-music-status{font-size:.58rem}
+  body:not(.page-index) .page-header{padding-top:clamp(76px,10vh,98px)!important}
+  .comentario-avatar-btn{width:40px;height:40px;min-width:40px}
 }
