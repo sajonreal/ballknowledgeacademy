@@ -42,6 +42,7 @@
       const stopOnExit = () => { saveTime(); audio.pause(); };
       window.addEventListener('pagehide', stopOnExit);
       window.addEventListener('beforeunload', stopOnExit);
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') stopOnExit(); });
       const start = () => audio.play().catch(() => {});
       document.addEventListener('pointerdown', start, { once: true });
       document.addEventListener('keydown', start, { once: true });
