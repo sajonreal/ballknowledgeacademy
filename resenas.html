@@ -164,6 +164,14 @@
         const desglose = document.createElement("div");
         desglose.className = "resena-desglose";
         desglose.hidden = true;
+        const btnDesglose = document.createElement("button");
+        btnDesglose.className = "mini-accion-btn";
+        btnDesglose.textContent = "▤ Desglose";
+        btnDesglose.addEventListener("click", () => {
+          desglose.hidden = !desglose.hidden;
+          btnDesglose.textContent = desglose.hidden ? "▤ Desglose" : "▴ Ocultar desglose";
+        });
+        desglose.appendChild(btnDesglose);
         const grid = document.createElement("div");
         grid.className = "stat-grid";
         ESTADISTICAS.forEach(stat => {
@@ -180,15 +188,6 @@
 
         const acciones = document.createElement("div");
         acciones.className = "valorar-acciones";
-        const btnDesglose = document.createElement("button");
-        btnDesglose.className = "mini-accion-btn";
-        btnDesglose.textContent = "▤ Desglose";
-        btnDesglose.addEventListener("click", () => {
-          desglose.hidden = !desglose.hidden;
-          btnDesglose.textContent = desglose.hidden ? "▤ Desglose" : "▴ Ocultar desglose";
-        });
-        acciones.appendChild(btnDesglose);
-
         const btnValorar = document.createElement("button");
         btnValorar.className = "mini-accion-btn destacado";
         btnValorar.textContent = yaValorado ? "✏️ Cambiar valoración" : "⭐ Valorar este anime";
