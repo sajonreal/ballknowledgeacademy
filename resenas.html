@@ -91,6 +91,25 @@
       </div>
     </div>
   </div>
+  <div class="valorar-overlay" id="comentario-overlay">
+    <div class="valorar-card">
+      <h2 id="comentario-titulo">Comentar reseña</h2>
+      <p class="valorar-sub">Tu comentario será visible para los dos usuarios.</p>
+      <textarea id="comentario-texto" maxlength="500" rows="5" placeholder="Escribe tu comentario (máximo 500 caracteres)..."></textarea>
+      <div class="comentario-contador"><span id="comentario-restantes">0</span>/500</div>
+      <div class="valorar-botones">
+        <button type="button" class="valorar-cancelar" id="comentario-cancelar">Cancelar</button>
+        <button type="button" class="valorar-guardar" id="comentario-guardar">Publicar</button>
+      </div>
+    </div>
+  </div>
+  <div class="valorar-overlay" id="comentario-ver-overlay">
+    <div class="valorar-card">
+      <h2 id="comentario-ver-titulo">Comentario</h2>
+      <div id="comentario-ver-texto" class="comentario-ver-texto"></div>
+      <div class="valorar-botones"><button type="button" class="valorar-cancelar" id="comentario-ver-cerrar" style="width:100%">Cerrar</button></div>
+    </div>
+  </div>
   <script src="script.js"></script>
   <script>
     let ordenAscendente = false;
@@ -105,27 +124,21 @@
     function pintarResenas() {
       const cont = document.getElementById("lista-resenas");
       cont.innerHTML = "";
-
-      const filtrada = ANIME_COMPLETADOS.filter(a =>
-        a.nombre.toLowerCase().includes(terminoBusqueda)
-      );
-
+      const filtrada = ANIME_COMPLETADOS.filter(a => a.nombre.toLowerCase().includes(terminoBusqueda));
       const lista = [...filtrada].sort((a, b) => {
         const diff = valorOrden(b) - valorOrden(a);
         return ordenAscendente ? -diff : diff;
       });
-
       if (!lista.length) {
         cont.innerHTML = `<div class="empty-state">No hay ninguna reseña que coincida con "${terminoBusqueda}".</div>`;
         return;
       }
 
       const usuarioActual = getUsuarioActual();
-
       lista.forEach(anime => {
         const { nota, subnotas } = calcularNotasFinales(anime);
-
-        const card = document.createElement("div");
+        const yaValorado = !!(anime.notasUsuarios && anime.notasUsuarios[usuarioActual]);
+        const card = document.createElement("article");
         card.className = "resena-card reveal";
 
         const media = document.createElement("div");
@@ -143,65 +156,141 @@
 
         const body = document.createElement("div");
         body.className = "resena-body";
+        const nota = document.createElement("div");
+        nota.className = "resena-nota-centro";
+        nota.innerHTML = `<span class="nfb-label">Nota final</span><strong>⭐ ${calcularNotasFinales(anime).nota ?? "?"}</strong>`;
+        body.appendChild(nota);
 
-        const top = document.createElement("div");
-        top.className = "resena-top";
-
-        const notaTexto = (nota === null || nota === undefined) ? "?" : nota;
-        top.innerHTML = `
-          <h3>${anime.nombre}</h3>
-          <div class="nota-final-box">
-            <span class="nfb-label">Nota final</span>
-            <span class="nfb-value">⭐ ${notaTexto}</span>
-          </div>
-        `;
-        body.appendChild(top);
-
+        const desglose = document.createElement("div");
+        desglose.className = "resena-desglose";
+        desglose.hidden = true;
         const grid = document.createElement("div");
         grid.className = "stat-grid";
         ESTADISTICAS.forEach(stat => {
           const valor = subnotas ? subnotas[stat.key] : null;
-          const valorTexto = (valor === null || valor === undefined) ? "?" : valor;
           const chip = document.createElement("div");
           chip.className = "stat-chip";
-          chip.innerHTML = `<span class="sc-emoji">${stat.emoji}</span><span class="sc-label">${stat.label}</span><span class="sc-value">${valorTexto}</span>`;
-          grid.appendChild(chip);
+          const emoji = document.createElement("span"); emoji.className = "sc-emoji"; emoji.textContent = stat.emoji;
+          const label = document.createElement("span"); label.className = "sc-label"; label.textContent = stat.label;
+          const value = document.createElement("span"); value.className = "sc-value"; value.textContent = valor ?? "?";
+          chip.append(emoji, label, value); grid.appendChild(chip);
         });
-        body.appendChild(grid);
+        desglose.appendChild(grid);
+        body.appendChild(desglose);
 
-        // Botones de valoración personal
-        const yaValorado = anime.notasUsuarios && anime.notasUsuarios[usuarioActual];
-        const accionesWrap = document.createElement("div");
-        accionesWrap.className = "valorar-acciones";
+        const acciones = document.createElement("div");
+        acciones.className = "valorar-acciones";
+        const btnDesglose = document.createElement("button");
+        btnDesglose.className = "mini-accion-btn";
+        btnDesglose.textContent = "▤ Desglose";
+        btnDesglose.addEventListener("click", () => {
+          desglose.hidden = !desglose.hidden;
+          btnDesglose.textContent = desglose.hidden ? "▤ Desglose" : "▴ Ocultar desglose";
+        });
+        acciones.appendChild(btnDesglose);
+
+        const btnValorar = document.createElement("button");
+        btnValorar.className = "mini-accion-btn destacado";
+        btnValorar.textContent = yaValorado ? "✏️ Cambiar valoración" : "⭐ Valorar este anime";
+        btnValorar.addEventListener("click", () => abrirFormularioValoracion(anime));
+        acciones.appendChild(btnValorar);
+
+        const btnVer = document.createElement("button");
+        btnVer.className = "mini-accion-btn";
+        btnVer.textContent = "👀 Ver notas de los usuarios";
+        btnVer.addEventListener("click", () => abrirVerNotas(anime));
+        acciones.appendChild(btnVer);
 
         if (yaValorado) {
-          const btnCambiar = document.createElement("button");
-          btnCambiar.className = "mini-accion-btn";
-          btnCambiar.textContent = "✏️ Cambiar valoración";
-          btnCambiar.addEventListener("click", () => abrirFormularioValoracion(anime));
-
-          const btnVer = document.createElement("button");
-          btnVer.className = "mini-accion-btn";
-          btnVer.textContent = "👀 Ver notas de los usuarios";
-          btnVer.addEventListener("click", () => abrirVerNotas(anime));
-
-          accionesWrap.appendChild(btnCambiar);
-          accionesWrap.appendChild(btnVer);
-        } else {
-          const btnValorar = document.createElement("button");
-          btnValorar.className = "mini-accion-btn destacado";
-          btnValorar.textContent = "⭐ Valorar este anime";
-          btnValorar.addEventListener("click", () => abrirFormularioValoracion(anime));
-          accionesWrap.appendChild(btnValorar);
+          const btnComentar = document.createElement("button");
+          btnComentar.className = "mini-accion-btn";
+          btnComentar.textContent = "💬 Comentar";
+          btnComentar.addEventListener("click", () => abrirComentario(anime));
+          acciones.appendChild(btnComentar);
         }
+        body.appendChild(acciones);
 
-        body.appendChild(accionesWrap);
+        const comentarios = document.createElement("div");
+        comentarios.className = "resena-comentarios";
+        const ordenados = [...(anime.comentarios || [])].sort((a,b) => Number(a.creado || 0) - Number(b.creado || 0));
+        ordenados.forEach((comentario, index) => {
+          const usuario = comentario.usuario || "Usuario";
+          const avatarBtn = document.createElement("button");
+          avatarBtn.type = "button";
+          avatarBtn.className = "comentario-avatar-btn";
+          avatarBtn.title = "Ver comentario de " + getNombreMostrar(usuario);
+          const foto = getFotoUsuario(usuario);
+          if (foto) {
+            const avatar = document.createElement("img"); avatar.src = foto; avatar.alt = getNombreMostrar(usuario);
+            avatarBtn.appendChild(avatar);
+          } else {
+            avatarBtn.textContent = (getNombreMostrar(usuario).trim()[0] || "?").toUpperCase();
+            avatarBtn.style.background = getColorUsuario(usuario);
+          }
+          avatarBtn.addEventListener("click", () => mostrarComentario(anime, comentario));
+          comentarios.appendChild(avatarBtn);
+        });
+        if (ordenados.length) body.appendChild(comentarios);
         card.appendChild(body);
         cont.appendChild(card);
       });
-
       activarRevelados();
     }
+
+    let animeComentarioActual = null;
+
+    function abrirComentario(anime) {
+      animeComentarioActual = anime;
+      const area = document.getElementById("comentario-texto");
+      area.value = "";
+      document.getElementById("comentario-titulo").textContent = "Comentar: " + anime.nombre;
+      document.getElementById("comentario-restantes").textContent = "0";
+      document.getElementById("comentario-overlay").classList.add("visible");
+      area.focus();
+    }
+
+    function mostrarComentario(anime, comentario) {
+      const usuario = comentario.usuario || "Usuario";
+      document.getElementById("comentario-ver-titulo").textContent = getNombreMostrar(usuario) + " · " + anime.nombre;
+      document.getElementById("comentario-ver-texto").textContent = comentario.texto || "";
+      document.getElementById("comentario-ver-overlay").classList.add("visible");
+    }
+
+    document.getElementById("comentario-texto").addEventListener("input", e => {
+      if (e.target.value.length > 500) e.target.value = e.target.value.slice(0, 500);
+      document.getElementById("comentario-restantes").textContent = e.target.value.length;
+    });
+    document.getElementById("comentario-cancelar").addEventListener("click", () => {
+      document.getElementById("comentario-overlay").classList.remove("visible");
+      animeComentarioActual = null;
+    });
+    document.getElementById("comentario-ver-cerrar").addEventListener("click", () => {
+      document.getElementById("comentario-ver-overlay").classList.remove("visible");
+    });
+    document.getElementById("comentario-guardar").addEventListener("click", async () => {
+      if (!animeComentarioActual) return;
+      const usuario = getUsuarioActual();
+      if (!(animeComentarioActual.notasUsuarios && animeComentarioActual.notasUsuarios[usuario])) {
+        alert("Primero tienes que valorar este anime.");
+        return;
+      }
+      const texto = document.getElementById("comentario-texto").value.trim();
+      if (!texto) { alert("Escribe algo antes de publicar."); return; }
+      const boton = document.getElementById("comentario-guardar");
+      boton.disabled = true; boton.textContent = "Publicando...";
+      try {
+        await guardarComentarioFirebase(animeComentarioActual.nombre, usuario, texto);
+        document.getElementById("comentario-overlay").classList.remove("visible");
+        animeComentarioActual = null;
+        await cargarNotasUsuariosYAplicar();
+        await cargarPerfilesYAplicar();
+        pintarResenas();
+      } catch (error) {
+        alert("No se pudo publicar el comentario: " + error.message);
+      } finally {
+        boton.disabled = false; boton.textContent = "Publicar";
+      }
+    });
 
     /* ---------------- Formulario de valoración ---------------- */
     function abrirFormularioValoracion(anime) {
