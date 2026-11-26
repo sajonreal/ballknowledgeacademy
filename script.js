@@ -116,7 +116,14 @@ async function cargarNotasUsuariosYAplicar() {
 
     ANIME_COMPLETADOS.forEach(anime => {
       const datos = mapa[slugAnime(anime.nombre)];
-      if (datos) anime.notasUsuarios = datos;
+      if (datos) {
+        anime.notasUsuarios = Object.fromEntries(
+          Object.entries(datos).filter(([key, value]) =>
+            key !== "comentarios" && value && typeof value === "object" && !Array.isArray(value)
+          )
+        );
+        anime.comentarios = Array.isArray(datos.comentarios) ? datos.comentarios : [];
+      }
     });
   } catch (err) {
     console.error("No se pudieron cargar las valoraciones de Firebase:", err);
@@ -130,6 +137,22 @@ async function guardarNotaUsuarioFirebase(animeNombre, usuario, valores) {
   if (!db) throw new Error("Firebase no está configurado todavía en data.js.");
   const id = slugAnime(animeNombre);
   await db.collection("valoraciones").doc(id).set({ [usuario]: valores }, { merge: true });
+}
+
+/* Comentarios de reseñas: se guardan en el mismo documento que las valoraciones. */
+async function guardarComentarioFirebase(animeNombre, usuario, texto) {
+  const db = initFirebase();
+  if (!db) throw new Error("Firebase no está configurado todavía.");
+  const ref = db.collection("valoraciones").doc(slugAnime(animeNombre));
+  const comentario = { usuario, texto: String(texto).trim().slice(0, 500), creado: Date.now() };
+  await db.runTransaction(async transaction => {
+    const snapshot = await transaction.get(ref);
+    const datos = snapshot.exists ? snapshot.data() : {};
+    const comentarios = Array.isArray(datos.comentarios) ? datos.comentarios.slice() : [];
+    comentarios.push(comentario);
+    transaction.set(ref, { comentarios }, { merge: true });
+  });
+  return comentario;
 }
 
 /* --------------------------------------------------------
