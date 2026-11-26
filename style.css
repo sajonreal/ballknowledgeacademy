@@ -2299,3 +2299,8 @@ body.page-ruleta{padding-bottom:calc(120px + env(safe-area-inset-bottom))}
   body:not(.page-index) .page-header{padding-top:clamp(76px,10vh,98px)!important}
   .comentario-avatar-btn{width:40px;height:40px;min-width:40px}
 }
+
+/* Inicio conserva su cabecera y fondo originales, respetando la zona segura del móvil. */
+body.page-index::before{inset:-8px!important;transform:scale(1.035)!important}
+body.page-index .top-bar{padding-top:calc(14px + env(safe-area-inset-top))}
+body.page-index .hero{padding-top:74px}
