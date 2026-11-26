@@ -136,7 +136,7 @@
 
       const usuarioActual = getUsuarioActual();
       lista.forEach(anime => {
-        const { nota, subnotas } = calcularNotasFinales(anime);
+        const { nota: notaMedia, subnotas } = calcularNotasFinales(anime);
         const yaValorado = !!(anime.notasUsuarios && anime.notasUsuarios[usuarioActual]);
         const card = document.createElement("article");
         card.className = "resena-card reveal";
@@ -158,7 +158,7 @@
         body.className = "resena-body";
         const nota = document.createElement("div");
         nota.className = "resena-nota-centro";
-        nota.innerHTML = `<span class="nfb-label">Nota final</span><strong>⭐ ${calcularNotasFinales(anime).nota ?? "?"}</strong>`;
+        nota.innerHTML = `<span class="nfb-label">Nota final</span><strong>⭐ ${notaMedia ?? "?"}</strong>`;
         body.appendChild(nota);
 
         const desglose = document.createElement("div");
