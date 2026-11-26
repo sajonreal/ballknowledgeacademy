@@ -2304,3 +2304,34 @@ body.page-ruleta{padding-bottom:calc(120px + env(safe-area-inset-bottom))}
 body.page-index::before{inset:-8px!important;transform:scale(1.035)!important}
 body.page-index .top-bar{padding-top:calc(14px + env(safe-area-inset-top))}
 body.page-index .hero{padding-top:74px}
+
+
+/* Fondos por sección: fondo visible detrás del contenido en todas las rutas SPA. */
+html{background:transparent!important}
+body{background:transparent!important}
+body::before{z-index:-1!important;inset:-22px!important}
+body.page-resenas::before{
+  background:linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),url('assets/classroom-bg.png') center center/cover no-repeat!important;
+}
+body.page-planeados::before{
+  background:linear-gradient(rgba(255,244,250,.48),rgba(247,232,245,.60)),url('assets/backgrounds/resenas-biblioteca.jpg') center center/cover no-repeat!important;
+}
+body.page-calendario::before{
+  background:linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),url('assets/backgrounds/calendario.webp') center center/cover no-repeat!important;
+}
+body.page-ruleta::before{
+  background:linear-gradient(rgba(245,235,245,.38),rgba(235,220,237,.46)),url('assets/backgrounds/ruleta.png') center center/cover no-repeat!important;
+}
+body.page-listas::before{
+  background:linear-gradient(rgba(245,235,245,.42),rgba(235,220,237,.50)),url('assets/backgrounds/listas.png') center center/cover no-repeat!important;
+}
+/* Centrar vertical y horizontalmente la ventana de lectura de comentarios. */
+#comentario-ver-overlay{
+  align-items:center!important;
+  justify-content:center!important;
+  padding:20px 16px calc(20px + env(safe-area-inset-bottom))!important;
+}
+#comentario-ver-overlay .valorar-card{margin:auto!important;max-height:calc(100dvh - 40px);overflow-y:auto}
+/* Un pequeño margen adicional para el encabezado y el título de Inicio. */
+body.page-index .top-bar{padding-top:calc(22px + env(safe-area-inset-top))!important}
+body.page-index .hero{padding-top:84px!important}
