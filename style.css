@@ -2230,3 +2230,34 @@ body.page-listas::before{
 }
 .valorar-select{width:100%;min-height:42px;padding:9px 11px;border:1px solid #e1c9df;border-radius:12px;background:#fffafc;color:#3c263c;font:600 .9rem 'Nunito',sans-serif}
 #valorar-final-input{min:0}
+
+
+/* El GIF de puntuación queda ligeramente fuera de la esquina superior derecha del recuadro. */
+.scoring-title-wrap #gif-puntuamos{top:-10px!important;right:-8px!important}
+
+/* Reproductor compacto y persistente, visible en todos los apartados de la SPA. */
+.bka-music-dock{
+  position:fixed;left:12px;bottom:calc(112px + env(safe-area-inset-bottom));
+  z-index:9997;display:grid;grid-template-columns:38px minmax(72px,104px);
+  grid-template-rows:34px auto;align-items:center;gap:3px 8px;
+  max-width:calc(100vw - 120px);padding:7px 10px;
+  border:1px solid rgba(201,155,194,.85);border-radius:16px;
+  background:rgba(255,248,253,.94);box-shadow:0 4px 16px rgba(70,38,66,.16);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)
+}
+.bka-music-toggle{
+  grid-column:1;grid-row:1;width:36px;height:34px;border:0;border-radius:11px;
+  background:linear-gradient(110deg,#a94e91,#c879b0);color:#fff;
+  font:800 .85rem 'Nunito',sans-serif;cursor:pointer
+}
+.bka-music-toggle:disabled{opacity:.5;cursor:not-allowed}
+.bka-music-volume{grid-column:2;grid-row:1;width:100%;min-width:0;accent-color:#a94e91}
+.bka-music-status{
+  grid-column:1 / -1;grid-row:2;max-width:180px;overflow:hidden;
+  color:#704467;font:600 .62rem 'Nunito',sans-serif;white-space:nowrap;text-overflow:ellipsis
+}
+@media(max-width:480px){
+  .bka-music-dock{left:8px;bottom:calc(108px + env(safe-area-inset-bottom));padding:6px 8px;grid-template-columns:34px minmax(62px,84px);max-width:calc(100vw - 112px)}
+  .bka-music-toggle{width:32px;height:32px}
+  .bka-music-status{font-size:.58rem}
+}
