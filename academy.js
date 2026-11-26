@@ -10,27 +10,83 @@
   };
   function setupMusic() {
     let audio = document.getElementById('academy-bgm');
-    if (!audio) { audio = document.createElement('audio'); audio.id = 'academy-bgm'; audio.src = 'audio/academy-theme.mp3'; audio.loop = true; audio.preload = 'auto'; audio.volume = .35; document.body.appendChild(audio); }
-    const range = document.getElementById('academy-volume'), mute = document.getElementById('academy-mute');
-    let vol = Number(localStorage.getItem('bka_music_volume')); if (!Number.isFinite(vol) || vol < 0 || vol > 1) vol = .35;
-    audio.volume = vol; audio.muted = localStorage.getItem('bka_music_muted') === 'true';
-    const savedTime = Number(sessionStorage.getItem('bka_music_time') || localStorage.getItem('bka_music_time') || 0);
-    const restore = () => { if (Number.isFinite(savedTime) && savedTime > 0 && audio.duration && savedTime < audio.duration) audio.currentTime = savedTime; };
-    audio.addEventListener('loadedmetadata', () => { restore(); audio.play().catch(() => {}); }, { once: true });
-    audio.addEventListener('timeupdate', () => { const t = String(audio.currentTime || 0); sessionStorage.setItem('bka_music_time', t); localStorage.setItem('bka_music_time', t); });
-    window.addEventListener('pagehide', () => { const t = String(audio.currentTime || 0); sessionStorage.setItem('bka_music_time', t); localStorage.setItem('bka_music_time', t); });
-    if (range) range.value = String(Math.round(vol * 100));
-    if (mute) { mute.textContent = audio.muted ? '🔊' : '🔇'; mute.setAttribute('aria-pressed', String(audio.muted)); }
-    if (range) range.addEventListener('input', () => { audio.volume = Number(range.value) / 100; localStorage.setItem('bka_music_volume', String(audio.volume)); if (audio.volume > 0 && audio.muted) { audio.muted = false; localStorage.setItem('bka_music_muted', 'false'); } if (mute) { mute.textContent = audio.muted ? '🔊' : '🔇'; mute.setAttribute('aria-pressed', String(audio.muted)); } });
-    if (mute) mute.addEventListener('click', () => { audio.muted = !audio.muted; localStorage.setItem('bka_music_muted', String(audio.muted)); mute.textContent = audio.muted ? '🔊' : '🔇'; mute.setAttribute('aria-pressed', String(audio.muted)); if (!audio.muted) audio.play().catch(() => {}); });
-    const start = () => audio.play().catch(() => {});
-    document.addEventListener('pointerdown', start, { once: true }); document.addEventListener('keydown', start, { once: true });
-    audio.addEventListener('canplay', () => { if (document.visibilityState === 'visible' && !audio.paused) return; });
+    if (!audio) {
+      audio = document.createElement('audio');
+      audio.id = 'academy-bgm';
+      audio.src = 'audio/academy-theme.mp3';
+      audio.loop = true;
+      audio.preload = 'auto';
+      audio.volume = .35;
+      document.body.appendChild(audio);
+    }
+    if (!window.__bkaMusicInitialized) {
+      window.__bkaMusicInitialized = true;
+      let vol = Number(localStorage.getItem('bka_music_volume'));
+      if (!Number.isFinite(vol) || vol < 0 || vol > 1) vol = .35;
+      audio.volume = vol;
+      audio.muted = localStorage.getItem('bka_music_muted') === 'true';
+      const savedTime = Number(sessionStorage.getItem('bka_music_time') || localStorage.getItem('bka_music_time') || 0);
+      audio.addEventListener('loadedmetadata', () => {
+        if (Number.isFinite(savedTime) && savedTime > 0 && audio.duration && savedTime < audio.duration) audio.currentTime = savedTime;
+        audio.play().catch(() => {});
+      }, { once: true });
+      audio.addEventListener('timeupdate', () => {
+        const t = String(audio.currentTime || 0);
+        sessionStorage.setItem('bka_music_time', t);
+        localStorage.setItem('bka_music_time', t);
+      });
+      window.addEventListener('pagehide', () => {
+        const t = String(audio.currentTime || 0);
+        sessionStorage.setItem('bka_music_time', t);
+        localStorage.setItem('bka_music_time', t);
+      });
+      const start = () => audio.play().catch(() => {});
+      document.addEventListener('pointerdown', start, { once: true });
+      document.addEventListener('keydown', start, { once: true });
+    }
+    const range = document.getElementById('academy-volume');
+    const mute = document.getElementById('academy-mute');
+    if (range) {
+      range.value = String(Math.round(audio.volume * 100));
+      if (!range.dataset.musicBound) {
+        range.dataset.musicBound = 'true';
+        range.addEventListener('input', () => {
+          audio.volume = Number(range.value) / 100;
+          localStorage.setItem('bka_music_volume', String(audio.volume));
+          if (audio.volume > 0 && audio.muted) {
+            audio.muted = false;
+            localStorage.setItem('bka_music_muted', 'false');
+          }
+          if (mute) {
+            mute.textContent = audio.muted ? '🔊' : '🔇';
+            mute.setAttribute('aria-pressed', String(audio.muted));
+          }
+        });
+      }
+    }
+    if (mute) {
+      mute.textContent = audio.muted ? '🔊' : '🔇';
+      mute.setAttribute('aria-pressed', String(audio.muted));
+      if (!mute.dataset.musicBound) {
+        mute.dataset.musicBound = 'true';
+        mute.addEventListener('click', () => {
+          audio.muted = !audio.muted;
+          localStorage.setItem('bka_music_muted', String(audio.muted));
+          mute.textContent = audio.muted ? '🔊' : '🔇';
+          mute.setAttribute('aria-pressed', String(audio.muted));
+          if (!audio.muted) audio.play().catch(() => {});
+        });
+      }
+    }
   }
   function setupGuide() {
-    const page = location.pathname.split('/').pop() || 'index.html';
+    const page = window.BKA_currentPage || (location.hash ? location.hash.slice(1) + '.html' : (location.pathname.split('/').pop() || 'index.html'));
+    document.body.classList.remove('page-index', 'page-resenas', 'page-planeados', 'page-calendario', 'page-ruleta', 'page-listas');
     document.body.classList.add('page-' + page.replace('.html', ''));
-    const item = guides[page]; if (!item || document.getElementById('academy-guide')) return;
+    const previousGuide = document.getElementById('academy-guide');
+    if (previousGuide) previousGuide.remove();
+    window.__bkaGuideUsed = window.__bkaGuideUsed || {};
+    const item = guides[page]; if (!item || window.__bkaGuideUsed[page]) return;
     const root = document.createElement('aside'); root.id = 'academy-guide';
     root.innerHTML = '<button class="guide-mini" type="button" aria-label="Abrir guía"><img src="assets/characters/' + item[0] + '-mini.png?v=20261109d" alt="Guía ' + item[1] + '"></button><span class="guide-portrait" hidden><img src="assets/characters/' + (item[0] === 'natsuki' ? 'natsuki-dialog-1.webp?v=20261108c' : item[0] === 'waguri' ? 'waguri-dialog-1.png?v=20261109d' : item[0] === 'marin' ? 'marin-dialog-1.png?v=20261121a' : item[0] === 'mai' ? 'mai-dialog-1.png?v=20261123a' : item[0] + '.png') + '" alt="' + item[1] + '"></span><div class="guide-dialog" hidden><div class="guide-heading"><strong>' + item[1] + '</strong></div><p class="guide-line"></p><button type="button" class="guide-next">Continuar ›</button></div>';
     document.body.appendChild(root);
@@ -50,7 +106,7 @@
         panel.hidden = true; portrait.hidden = true;
         [panelFade, portraitFade, miniFade].forEach(animation => { if (animation) animation.cancel(); });
         panel.style.opacity = ''; portrait.style.opacity = '';
-        if (item[0] === 'mai') { mini.hidden = true; mini.disabled = true; mini.style.opacity = ''; root.classList.add('guide-used'); }
+        if (item[0] === 'mai') { mini.hidden = true; mini.disabled = true; mini.style.opacity = ''; root.classList.add('guide-used'); window.__bkaGuideUsed[page] = true; }
         else mini.style.opacity = '';
         root.classList.remove('guide-closing'); panel.classList.remove('guide-closing'); portrait.classList.remove('guide-closing'); i = 0;
       }, item[0] === 'mai' ? 420 : 900);
@@ -59,5 +115,15 @@
     mini.addEventListener('click', () => { mini.hidden = true; portrait.hidden = false; panel.hidden = false; i = 0; advance(); }); next.addEventListener('click', advance); line.addEventListener('click', advance);
   }
   function setupLogout() { const button = document.getElementById('academy-logout'); if (!button) return; button.addEventListener('click', async () => { button.disabled = true; try { localStorage.removeItem('bka_usuario'); await firebase.auth().signOut(); location.replace('login.html'); } catch (error) { button.disabled = false; console.error('No se pudo cerrar la sesión:', error); alert('No se pudo cerrar la sesión. Inténtalo de nuevo.'); } }); }
-  document.addEventListener('DOMContentLoaded', () => { setupMusic(); setupGuide(); setupLogout(); });
+  window.BKA_initPage = function (page) {
+    if (page) window.BKA_currentPage = page;
+    setupMusic();
+    setupGuide();
+    setupLogout();
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => window.BKA_initPage(window.BKA_currentPage), { once: true });
+  } else {
+    window.BKA_initPage(window.BKA_currentPage);
+  }
 })();
