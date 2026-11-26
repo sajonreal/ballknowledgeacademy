@@ -19,6 +19,7 @@
       audio.volume = .35;
       document.body.appendChild(audio);
     }
+    window.__bkaMusicBaseVolume = Number.isFinite(window.__bkaMusicBaseVolume) ? window.__bkaMusicBaseVolume : audio.volume;
     const range = document.getElementById('academy-volume');
     const mute = document.getElementById('academy-mute');
     if (!window.__bkaMusicInitialized) {
@@ -26,6 +27,7 @@
       let vol = Number(localStorage.getItem('bka_music_volume'));
       if (!Number.isFinite(vol) || vol < 0 || vol > 1) vol = .35;
       audio.volume = vol;
+      window.__bkaMusicBaseVolume = vol;
       audio.muted = localStorage.getItem('bka_music_muted') === 'true';
       const savedTime = Number(sessionStorage.getItem('bka_music_time') || localStorage.getItem('bka_music_time') || 0);
       audio.addEventListener('loadedmetadata', () => {
@@ -37,7 +39,9 @@
         localStorage.setItem('bka_music_time', t);
       };
       audio.addEventListener('timeupdate', saveTime);
-      window.addEventListener('pagehide', saveTime);
+      const stopOnExit = () => { saveTime(); audio.pause(); };
+      window.addEventListener('pagehide', stopOnExit);
+      window.addEventListener('beforeunload', stopOnExit);
       const start = () => audio.play().catch(() => {});
       document.addEventListener('pointerdown', start, { once: true });
       document.addEventListener('keydown', start, { once: true });
@@ -54,6 +58,7 @@
       range.dataset.musicBound = 'true';
       range.addEventListener('input', () => {
         audio.volume = Math.max(0, Math.min(1, Number(range.value) / 100));
+        window.__bkaMusicBaseVolume = audio.volume;
         localStorage.setItem('bka_music_volume', String(audio.volume));
         if (audio.volume > 0 && audio.muted) audio.muted = false;
         syncControls();
@@ -70,6 +75,22 @@
     }
     syncControls();
   }
+  function fadeAcademyMusic(target, duration = 700) {
+    const audio = document.getElementById('academy-bgm');
+    if (!audio || audio.muted) return;
+    if (window.__bkaMusicFadeFrame) cancelAnimationFrame(window.__bkaMusicFadeFrame);
+    const start = audio.volume;
+    const end = Math.max(0, Math.min(1, target));
+    const began = performance.now();
+    const tick = now => {
+      const progress = Math.min(1, (now - began) / duration);
+      const eased = progress * progress * (3 - 2 * progress);
+      audio.volume = start + (end - start) * eased;
+      if (progress < 1) window.__bkaMusicFadeFrame = requestAnimationFrame(tick);
+      else window.__bkaMusicFadeFrame = null;
+    };
+    window.__bkaMusicFadeFrame = requestAnimationFrame(tick);
+  }
   function setupGuide() {
     const page = window.BKA_currentPage || (location.hash ? location.hash.slice(1) + '.html' : (location.pathname.split('/').pop() || 'index.html'));
     document.body.classList.remove('page-index', 'page-resenas', 'page-planeados', 'page-calendario', 'page-ruleta', 'page-listas');
@@ -84,6 +105,7 @@
     const mini = root.querySelector('.guide-mini'), portrait = root.querySelector('.guide-portrait'), panel = root.querySelector('.guide-dialog'), line = root.querySelector('.guide-line'), next = root.querySelector('.guide-next'); let i = 0; const miniImg = mini.querySelector('img'); if (miniImg) miniImg.addEventListener('error', () => { miniImg.style.display = 'none'; mini.classList.add('guide-image-missing'); mini.dataset.guideName = item[1]; });
     if (item[0] === 'natsuki' || item[0] === 'waguri' || item[0] === 'marin' || item[0] === 'mai') { const miniImg = mini.querySelector('img'); if (miniImg) miniImg.style.animation = 'natsukiMiniBounces 13s ease-in-out infinite'; }
     function closeGuide() {
+      fadeAcademyMusic(window.__bkaMusicBaseVolume ?? 0.35, 850);
       root.classList.add('guide-closing'); panel.classList.add('guide-closing'); portrait.classList.add('guide-closing');
       if (item[0] !== 'mai') mini.hidden = false;
       const fade = el => el && typeof el.animate === 'function' ? el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 850, easing: 'ease-in', fill: 'forwards' }) : null;
@@ -91,7 +113,11 @@
       let miniFade = null;
       if (item[0] === 'mai') {
         mini.hidden = false; mini.style.opacity = '1';
-        miniFade = mini.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 1250, easing: 'ease-in-out', fill: 'forwards' });
+        window.setTimeout(() => {
+          if (mini.isConnected && root.classList.contains('guide-closing')) {
+            miniFade = mini.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 1250, easing: 'ease-in-out', fill: 'forwards' });
+          }
+        }, 1000);
       }
       window.setTimeout(() => {
         panel.hidden = true; portrait.hidden = true;
@@ -100,10 +126,10 @@
         if (item[0] === 'mai') { mini.hidden = true; mini.disabled = true; mini.style.opacity = ''; root.classList.add('guide-used'); window.__bkaGuideUsed[page] = true; }
         else mini.style.opacity = '';
         root.classList.remove('guide-closing'); panel.classList.remove('guide-closing'); portrait.classList.remove('guide-closing'); i = 0;
-      }, item[0] === 'mai' ? 1300 : 900);
+      }, item[0] === 'mai' ? 2300 : 900);
     }
     function advance() { if (i >= item[2].length) { closeGuide(); return; } line.textContent = item[2][i]; const portraitImg = portrait.querySelector('img'); if (portraitImg && item[0] === 'natsuki') portraitImg.src = 'assets/characters/natsuki-dialog-' + [1, 2, 3, 4][i] + '.webp?v=20261108c'; if (portraitImg && item[0] === 'waguri') { portrait.dataset.waguriFrame = String(i + 1); portraitImg.src = 'assets/characters/waguri-dialog-' + [1, 2, 3, 4][i] + '.png?v=20261109e'; } if (portraitImg && item[0] === 'marin') { portrait.dataset.marinFrame = String(i + 1); portraitImg.src = 'assets/characters/marin-dialog-' + [1, 2, 3][i] + '.png?v=20261121a'; } if (portraitImg && item[0] === 'mai') { portrait.dataset.maiFrame = String(i + 1); portraitImg.src = 'assets/characters/mai-dialog-' + [1, 2, 3, 4][i] + '.png?v=20261123a'; } i++; line.style.animation = 'none'; line.offsetHeight; line.style.animation = ''; next.textContent = i >= item[2].length ? 'Cerrar ✕' : 'Continuar ›'; }
-    mini.addEventListener('click', () => { mini.hidden = true; portrait.hidden = false; panel.hidden = false; i = 0; advance(); }); next.addEventListener('click', advance); line.addEventListener('click', advance);
+    mini.addEventListener('click', () => { mini.hidden = true; portrait.hidden = false; panel.hidden = false; fadeAcademyMusic(0, 750); i = 0; advance(); }); next.addEventListener('click', advance); line.addEventListener('click', advance);
   }
   function setupLogout() { const button = document.getElementById('academy-logout'); if (!button) return; button.addEventListener('click', async () => { button.disabled = true; try { localStorage.removeItem('bka_usuario'); await firebase.auth().signOut(); location.replace('login.html'); } catch (error) { button.disabled = false; console.error('No se pudo cerrar la sesión:', error); alert('No se pudo cerrar la sesión. Inténtalo de nuevo.'); } }); }
   window.BKA_initPage = function (page) {
