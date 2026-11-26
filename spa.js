@@ -46,7 +46,7 @@
     let persistentAudio = document.getElementById('academy-bgm');
     const nodes = Array.from(document.body.childNodes);
     nodes.forEach(node => {
-      if (node === persistentAudio || (node.nodeType === 1 && (node.id === 'academy-guide' || node.tagName === 'SCRIPT'))) {
+      if (node === persistentAudio || (node.nodeType === 1 && (node.id === 'academy-guide' || node.id === 'bka-music-dock' || node.tagName === 'SCRIPT'))) {
         node.remove();
       } else {
         pageRoot.appendChild(node);
@@ -58,7 +58,7 @@
 
   function clearTransientBodyElements() {
     Array.from(document.body.children).forEach(node => {
-      if (node === pageRoot || node.id === 'academy-bgm') return;
+      if (node === pageRoot || node.id === 'academy-bgm' || node.id === 'bka-music-dock') return;
       node.remove();
     });
   }
