@@ -43,16 +43,17 @@
     pageRoot.id = 'bka-spa-page';
     pageRoot.style.display = 'contents';
 
-    const keep = new Set(['academy-bgm']);
+    let persistentAudio = document.getElementById('academy-bgm');
     const nodes = Array.from(document.body.childNodes);
     nodes.forEach(node => {
-      if (node.nodeType === 1 && (keep.has(node.id) || node.id === 'academy-guide' || node.tagName === 'SCRIPT')) {
+      if (node === persistentAudio || (node.nodeType === 1 && (node.id === 'academy-guide' || node.tagName === 'SCRIPT'))) {
         node.remove();
       } else {
         pageRoot.appendChild(node);
       }
     });
     document.body.insertBefore(pageRoot, document.body.firstChild);
+    if (persistentAudio) document.body.appendChild(persistentAudio);
   }
 
   function clearTransientBodyElements() {
