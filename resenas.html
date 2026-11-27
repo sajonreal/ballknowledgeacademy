@@ -171,7 +171,7 @@
           desglose.hidden = !desglose.hidden;
           btnDesglose.textContent = desglose.hidden ? "▤ Desglose" : "▴ Ocultar desglose";
         });
-        desglose.appendChild(btnDesglose);
+        body.appendChild(btnDesglose);
         const grid = document.createElement("div");
         grid.className = "stat-grid";
         ESTADISTICAS.forEach(stat => {
